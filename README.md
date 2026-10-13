@@ -208,17 +208,25 @@ How to read it:
 
 ## Time and cost
 
-Run times from the logs; pod setup and idle time come on top.
+All GPU time, grouped by GPU. Rows are parts; **bold rows are totals**.
 
-| Step | Hardware | Run time | Cost of the run time |
+| GPU | Part | Hours | Cost |
 |---|---|---|---|
-| BFCL v4 baseline (20 categories) | A100 80GB, $1.80/h | ~15 h | ~$28 |
-| fs_env base-model runs (Parts 1–2 + refresh) | A100 80GB | 2.1 h | ~$4 |
-| SFT warm start: training + eval | A100 80GB | 54 min + 31 min | ~$3 |
-| GRPO run_v1 (30 steps) | H200 NVL, $3.79/h | 3.4 h | ~$13 |
-| Held-out evals (SFT + step 30, then steps 10 + 20, two at a time) | H200 NVL | ~1 h | ~$4 |
-| BFCL multi-turn on GRPO step 20 | H200 NVL | 71 min | ~$4.50 |
-| **H200 session in total** (setup, dry run, GRPO, evals, BFCL, idle) | H200 NVL | ~7 h | ~$27 |
+| A100 80GB ($1.80/h) | BFCL v4 baseline, 20 categories (whole pod session) | 15.0 | $28 |
+| | fs_env base-model runs (Parts 1–2 + refresh) ¹ | 2.1 | $4 |
+| | SFT warm start: training 54 min + eval 31 min ¹ | 1.4 | $3 |
+| | **A100 total** | **18.5** | **$35** |
+| H200 NVL ($3.79/h) | setup + dry run | 0.7 | $3 |
+| | GRPO run_v1, 30 steps | 3.4 | $13 |
+| | held-out evals: SFT + step 30, then steps 10 + 20 | 1.0 | $4 |
+| | BFCL multi-turn on GRPO step 20 (incl. BFCL install) | 1.2 | $4 |
+| | waiting between steps | 0.6 | $2 |
+| | **H200 total** ² | **6.9** | **$26** |
+| **Both** | **Grand total** | **25.4** | **≈ $61** |
+
+¹ Run time only: these pods' setup time wasn't logged, so the real cost is a little higher.
+² From pod start (01:26) to the last download (08:20). The pod billed until it was terminated, so any time after 08:20
+comes on top.
 
 ## Repo contents
 
