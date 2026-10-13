@@ -197,7 +197,8 @@ How to read it:
   conversations are short; long noisy tool outputs may be where the update hurt.
 - **Which failures changed (DSAT on the new run):** the trained causes fell cleanly (E: 7 of 19 fixed, 1 new; D: 7 of
   32 fixed, 2 new), the brake (A1) churned (12 fixed, 17 new, mostly long_context), and rewriting the user's text (B)
-  was untouched. Tables: `analysis/final_state_dsat.md`, last section.
+  was untouched. Tables: `analysis/final_state_dsat.md`, last section;
+  every conversation per cause: `renders/bfcl_dsat_base_vs_grpo20.html`.
 - **Nothing is significant at p < 0.05.** The test is McNemar's exact test on paired entries (the same 200 entries per
   category for both models; only the entries where they disagree count).
 
@@ -269,7 +270,9 @@ results/
     bfcl/                                   BFCL multi-turn on step 20: result/ (all 800 conversations), score/, partial/
     pod_logs/                               every pod log and script of the GRPO + eval session
   fs_env/grpo/dry/                          the 1-step dry run
-renders/           offline HTML viewers: bfcl_multi_turn.html (every baseline multi-turn conversation, grouped by failure
+renders/           offline HTML viewers: bfcl_dsat_base_vs_grpo20.html (failure causes A1-H, base vs GRPO step 20 side by side:
+                   fixed / same / new per conversation, first wrong turn, both full conversations);
+                   bfcl_multi_turn.html (every baseline multi-turn conversation, grouped by failure
                    type), fs_env_*.html (every fs_env conversation per run)
 figures/           the README figures (python code/make_figures.py)
 docs/              BFCL_SETUP.md (baseline setup and gotchas), GRPO_HANDOFF.md (the brief the GRPO run started from)
