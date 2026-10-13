@@ -1,0 +1,112 @@
+{
+  "id": "D_34_write_note_trips",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No text is given for the note; the model writes one. Expected: ask what it should say.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          },
+          "booked": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write a note in trips/madrid.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the note say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {},
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Check-in after 15:00, code 4471'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "trips/madrid.txt",
+            "content": "Check-in after 15:00, code 4471"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {},
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into booked.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "trips/madrid.txt",
+            "destination": "booked"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            },
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "trips/madrid.txt",
+          "content": "Note: remember to follow up."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

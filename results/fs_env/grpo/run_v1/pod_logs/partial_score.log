@@ -1,0 +1,328 @@
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.52it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.51it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 60.28%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.24it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.24it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 60.43%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.69it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.69it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 60.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.99it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.99it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.77it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.77it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 46.84%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.15it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.15it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.28it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.76%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.53it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.53it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 74.07%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.43it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.43it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 77.97%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.99it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.99it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.13it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.12it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.22it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.22it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.98it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.98it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 51.39%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.83it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.83it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.02it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.02it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.72it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.72it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 57.14%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.10it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.10it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.04it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.04it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.32it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.32it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 60.63%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.19it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.18it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.83it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.83it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 62.75%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.01it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.01it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.36it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.35it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.84it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.02%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.04it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.04it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.97it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.97it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.33it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.33it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 63.82%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.09it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.09it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.01it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.01it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.21it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.21it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.71it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.11it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.18it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.18it/s]
+🦍 Model: qwen3.8-27b-grpo20-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 54.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/partial/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-results/partial/score/data_live.csv, /root/bfcl-results/partial/score/data_non_live.csv, /root/bfcl-results/partial/score/data_multi_turn.csv, /root/bfcl-results/partial/score/data_agentic.csv and /root/bfcl-results/partial/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.

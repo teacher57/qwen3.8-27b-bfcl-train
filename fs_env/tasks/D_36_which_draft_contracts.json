@@ -1,0 +1,112 @@
+{
+  "id": "D_36_which_draft_contracts",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Three drafts and 'the draft'; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease",
+            "draft_1.txt": "first try\n",
+            "draft_2.txt": "second try\n",
+            "draft_3.txt": "third try\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Delete the draft in contracts.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are three drafts: draft_1.txt, draft_2.txt and draft_3.txt. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "draft_1.txt": "first try\n",
+              "draft_2.txt": "second try\n",
+              "draft_3.txt": "third try\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "draft_2.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "contracts/draft_2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "draft_1.txt": "first try\n",
+              "draft_3.txt": "third try\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename draft_3.txt to lawyer_notes.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "contracts/draft_3.txt",
+            "destination": "contracts/lawyer_notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "draft_1.txt": "first try\n",
+              "lawyer_notes.txt": "third try\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "contracts/draft_1.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

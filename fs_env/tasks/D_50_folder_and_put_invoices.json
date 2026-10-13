@@ -1,0 +1,121 @@
+{
+  "id": "D_50_folder_and_put_invoices",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put invoices/ledger.csv in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it paid.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "paid"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "invoices/ledger.csv",
+            "destination": "paid"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Ref: INV-0042' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "paid/ledger.csv",
+            "content": "Ref: INV-0042",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\nRef: INV-0042"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "invoices/ledger.csv",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

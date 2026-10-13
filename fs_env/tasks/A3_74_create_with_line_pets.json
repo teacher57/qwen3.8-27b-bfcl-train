@@ -1,0 +1,95 @@
+{
+  "id": "A3_74_create_with_line_pets",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "pets": {
+            "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+            "food.txt": "kibble 2x/day\n"
+          },
+          "records": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create pets/grooming.txt for grooming appointments and put 'Max: 12.4 kg, chip #985112' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "pets/grooming.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "pets/grooming.txt",
+            "content": "Max: 12.4 kg, chip #985112"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "records": {},
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n",
+              "grooming.txt": "Max: 12.4 kg, chip #985112"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into records.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "pets/grooming.txt",
+            "destination": "records"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "records": {
+              "grooming.txt": "Max: 12.4 kg, chip #985112"
+            },
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n",
+              "grooming.txt": "Max: 12.4 kg, chip #985112"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "pets/grooming.txt",
+          "content": "For grooming appointments\n\nMax: 12.4 kg, chip #985112\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

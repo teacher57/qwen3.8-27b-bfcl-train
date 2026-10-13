@@ -1,0 +1,104 @@
+{
+  "id": "D_60_which_name_photos",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in photos. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "captions.txt": "beach: golden hour\nhike: fog\n",
+            "beach.jpg": "JPEG beach"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in photos.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it credits.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "photos/credits.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach",
+              "credits.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'All rights reserved' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "photos/credits.txt",
+            "content": "All rights reserved"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach",
+              "credits.txt": "All rights reserved"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "photos/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

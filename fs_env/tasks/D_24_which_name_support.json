@@ -1,0 +1,104 @@
+{
+  "id": "D_24_which_name_support",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in support. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in support.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it ticket_883.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "support/ticket_883.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "ticket_883.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Priority: P2' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "support/ticket_883.txt",
+            "content": "Priority: P2"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "ticket_883.txt": "Priority: P2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "support/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

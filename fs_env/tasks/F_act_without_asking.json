@@ -1,0 +1,38 @@
+{
+  "id": "F_act_without_asking",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Deleting sounds risky, so the model asks 'Are you sure?' although the request is complete. Expected: delete exactly the .tmp files, then the empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "cache": {"a.tmp": "x\n", "b.tmp": "y\n", "keep.log": "important\n"},
+      "old_builds": {}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Delete all the .tmp files in the cache folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {"name": "find_files", "arguments": {"name": "*.tmp", "path": "cache"}},
+        {"name": "delete_file", "arguments": {"path": "cache/a.tmp"}},
+        {"name": "delete_file", "arguments": {"path": "cache/b.tmp"}}
+      ],
+      "target": {"home": {"{user}": {
+        "cache": {"keep.log": "important\n"},
+        "old_builds": {}
+      }}}
+    },
+    {
+      "user": "Also remove the old_builds folder, it's empty.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "delete_dir", "arguments": {"path": "old_builds"}}],
+      "target": {"home": {"{user}": {
+        "cache": {"keep.log": "important\n"}
+      }}}
+    }
+  ]
+}

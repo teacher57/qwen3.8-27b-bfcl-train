@@ -1,0 +1,110 @@
+{
+  "id": "D_42_rename_to_what_lab",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "lab": {
+            "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+            "protocol.md": "# Protocol\n"
+          },
+          "reviewed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename lab/results_run1.csv.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "To run_02-B.csv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "lab/results_run1.csv",
+            "destination": "lab/run_02-B.csv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "protocol.md": "# Protocol\n",
+              "run_02-B.csv": "trial,score\n1,0.82\n2,0.79\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into reviewed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "lab/run_02-B.csv",
+            "destination": "reviewed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "protocol.md": "# Protocol\n",
+              "run_02-B.csv": "trial,score\n1,0.82\n2,0.79\n"
+            },
+            "reviewed": {
+              "run_02-B.csv": "trial,score\n1,0.82\n2,0.79\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "lab/results_run1.csv",
+          "destination": "lab/results_run1_renamed.csv"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "D_78_rename_to_what_photos",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "captions.txt": "beach: golden hour\nhike: fog\n",
+            "beach.jpg": "JPEG beach"
+          },
+          "album_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename photos/captions.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "To IMG-0042.JPG.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "photos/captions.txt",
+            "destination": "photos/IMG-0042.JPG"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach",
+              "IMG-0042.JPG": "beach: golden hour\nhike: fog\n"
+            },
+            "album_2026": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into album_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "photos/IMG-0042.JPG",
+            "destination": "album_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach",
+              "IMG-0042.JPG": "beach: golden hour\nhike: fog\n"
+            },
+            "album_2026": {
+              "IMG-0042.JPG": "beach: golden hour\nhike: fog\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "photos/captions.txt",
+          "destination": "photos/captions_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

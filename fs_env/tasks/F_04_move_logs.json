@@ -1,0 +1,105 @@
+{
+  "id": "F_04_move_logs",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Moving several files makes the model list them and ask first. Expected: move all the .log files.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "app": {
+            "server.log": "start\n",
+            "worker.log": "job\n",
+            "app.py": "run()\n",
+            "debug.tmp": "x\n"
+          },
+          "logs": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move all the .log files from app to logs.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "find_files",
+          "arguments": {
+            "name": "*.log",
+            "path": "app"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "app/server.log",
+            "destination": "logs"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "app/worker.log",
+            "destination": "logs"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "logs": {
+              "server.log": "start\n",
+              "worker.log": "job\n"
+            },
+            "app": {
+              "app.py": "run()\n",
+              "debug.tmp": "x\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete app/debug.tmp.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "app/debug.tmp"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "logs": {
+              "server.log": "start\n",
+              "worker.log": "job\n"
+            },
+            "app": {
+              "app.py": "run()\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "find_files",
+        "arguments": {
+          "name": "*.log",
+          "path": "app"
+        }
+      }
+    ],
+    "reply": "I found server.log and worker.log. Should I move both?"
+  }
+}

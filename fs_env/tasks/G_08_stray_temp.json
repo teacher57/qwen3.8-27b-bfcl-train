@@ -1,0 +1,74 @@
+{
+  "id": "G_08_stray_temp",
+  "cause": "G",
+  "cause_title": "Did nothing / just answered when action was expected",
+  "trap": "'It shouldn't be' means delete it, but the model only confirms temp.txt exists. Expected: delete it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "temp.txt": "scratch\n",
+          "main.txt": "keep\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Is temp.txt still around? It shouldn't be.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {}
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "temp.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "main.txt": "keep\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty folder called temp_new.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "temp_new"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "temp_new": {},
+            "main.txt": "keep\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "list_dir",
+        "arguments": {}
+      }
+    ],
+    "reply": "Yes, temp.txt is still there."
+  }
+}

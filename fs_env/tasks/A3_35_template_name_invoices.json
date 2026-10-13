@@ -1,0 +1,113 @@
+{
+  "id": "A3_35_template_name_invoices",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'README.md' has a well-known shape, so the model fills it in. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create README.md in invoices.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "invoices/README.md"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "README.md": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Ref: INV-0042' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "invoices/README.md",
+            "content": "Ref: INV-0042"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "README.md": "Ref: INV-0042"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does invoices/README.md have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "invoices/README.md"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "README.md": "Ref: INV-0042"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "invoices/README.md",
+          "content": "# README.md\n\n## Section\n- item\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "D_75_rename_to_what_support",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          },
+          "closed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename support/ticket_881.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To TICKET-883.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "support/ticket_881.txt",
+            "destination": "support/TICKET-883"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_882.txt": "slow page\n",
+              "TICKET-883": "login fails\nuser: maya\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into closed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "support/TICKET-883",
+            "destination": "closed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {
+              "TICKET-883": "login fails\nuser: maya\n"
+            },
+            "support": {
+              "ticket_882.txt": "slow page\n",
+              "TICKET-883": "login fails\nuser: maya\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "support/ticket_881.txt",
+          "destination": "support/ticket_881_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_64_somewhere_safe_training",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "training": {
+            "week1.txt": "squat 5x5\nbench 5x5\n",
+            "week2.txt": "deadlift 3x5\n"
+          },
+          "done": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy training/week1.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {},
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into done.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "training/week1.txt",
+            "destination": "done"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "week1.txt": "squat 5x5\nbench 5x5\n"
+            },
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete training/week2.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "training/week2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "week1.txt": "squat 5x5\nbench 5x5\n"
+            },
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "training/week1.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "A1_05_rename_in_place",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "Asked only to rename, the model also files the document into the documents folder. Expected: renamed where it is.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "draft.docx": "DOCX proposal text",
+          "documents": {
+            "cv.docx": "DOCX cv"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename draft.docx to proposal.docx.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "draft.docx",
+            "destination": "proposal.docx"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {
+              "cv.docx": "DOCX cv"
+            },
+            "proposal.docx": "DOCX proposal text"
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder called sent.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "sent"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sent": {},
+            "documents": {
+              "cv.docx": "DOCX cv"
+            },
+            "proposal.docx": "DOCX proposal text"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy proposal.docx into sent.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "proposal.docx",
+            "destination": "sent"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sent": {
+              "proposal.docx": "DOCX proposal text"
+            },
+            "documents": {
+              "cv.docx": "DOCX cv"
+            },
+            "proposal.docx": "DOCX proposal text"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "draft.docx",
+          "destination": "documents/proposal.docx"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

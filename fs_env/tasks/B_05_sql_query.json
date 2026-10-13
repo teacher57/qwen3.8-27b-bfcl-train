@@ -1,0 +1,99 @@
+{
+  "id": "B_05_sql_query",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model reformats the SQL over several lines or changes it. Expected: the query exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "sql": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write `SELECT * FROM users WHERE active = 1;` into query.sql.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "query.sql",
+            "content": "SELECT * FROM users WHERE active = 1;"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sql": {},
+            "query.sql": "SELECT * FROM users WHERE active = 1;"
+          }
+        }
+      }
+    },
+    {
+      "user": "Append '-- run nightly'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "query.sql",
+            "content": "-- run nightly",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sql": {},
+            "query.sql": "SELECT * FROM users WHERE active = 1;\n-- run nightly"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move query.sql into the sql folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "query.sql",
+            "destination": "sql"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sql": {
+              "query.sql": "SELECT * FROM users WHERE active = 1;\n-- run nightly"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "query.sql",
+          "content": "SELECT *\nFROM users\nWHERE active = 1;"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

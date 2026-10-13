@@ -1,0 +1,35 @@
+{
+  "id": "C_exact_names",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model adds an extension ('Q3-Summary_FINAL.txt'), changes the case, or drops the '@' from '@design-team'. Expected: names exactly as the user wrote them.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "notes.txt": "Q3 went well\n",
+      "shared": {"readme.txt": "shared space\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Rename notes.txt to Q3-Summary_FINAL.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "move", "arguments": {"source": "notes.txt", "destination": "Q3-Summary_FINAL"}}],
+      "target": {"home": {"{user}": {
+        "Q3-Summary_FINAL": "Q3 went well\n",
+        "shared": {"readme.txt": "shared space\n"}
+      }}}
+    },
+    {
+      "user": "Inside shared, make a folder called @design-team.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "make_dir", "arguments": {"path": "shared/@design-team"}}],
+      "target": {"home": {"{user}": {
+        "Q3-Summary_FINAL": "Q3 went well\n",
+        "shared": {"readme.txt": "shared space\n", "@design-team": {}}
+      }}}
+    }
+  ]
+}

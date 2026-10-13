@@ -1,0 +1,93 @@
+{
+  "id": "C_10_agent_id",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model drops the leading zeros ('7'). Expected: '007' exactly, and the new name 'agent-ID.txt'.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write '007' into agent_id.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "agent_id.txt",
+            "content": "007"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "agent_id.txt": "007"
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'clearance: A-1'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "agent_id.txt",
+            "content": "clearance: A-1",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "agent_id.txt": "007\nclearance: A-1"
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename agent_id.txt to agent-ID.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "agent_id.txt",
+            "destination": "agent-ID.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "agent-ID.txt": "007\nclearance: A-1"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "agent_id.txt",
+          "content": "7"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

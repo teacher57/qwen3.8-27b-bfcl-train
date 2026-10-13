@@ -1,0 +1,8 @@
+{
+ "fetched": "2026-10-12T18:32:25",
+ "alive": true,
+ "log": [],
+ "vllm": "up",
+ "gpu": "100 %, 71709 MiB",
+ "elapsed_s": 52
+}

@@ -1,0 +1,66 @@
+{
+  "id": "F_02_overwrite_config",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Overwriting sounds risky, so the model asks first. Expected: just overwrite.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "config.txt": "mode=dev\nport=3000\n",
+          "config.old": "mode=test\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Overwrite config.txt with 'mode=prod'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "config.txt",
+            "content": "mode=prod"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "config.txt": "mode=prod",
+            "config.old": "mode=test\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete config.old.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "config.old"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "config.txt": "mode=prod"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [],
+    "reply": "Are you sure? This will replace the port setting too."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "A3_98_described_site",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "The user describes what the file will hold, the strongest pull to pre-fill it. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "site": {
+            "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+            "about.html": "<h1>About</h1>\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create site/contact.html. It's for the contact page, and it'll have all the details in one place.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "site/contact.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append '<footer>© 2026 Orbit</footer>' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "site/contact.html",
+            "content": "<footer>© 2026 Orbit</footer>",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete site/about.html.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "site/about.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "site/contact.html",
+          "content": "Details\n=======\n\n- Item 1:\n- Item 2:\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

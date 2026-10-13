@@ -1,0 +1,36 @@
+{
+  "id": "A4_bare_folder",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'For the new project' tempts the model to scaffold src/, docs/, README.md. Expected: one empty folder, then only the move the user asks for.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "design.pdf": "%PDF placeholder\n",
+      "old_project": {"README.md": "# Old project\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Set up a folder called project_x for the new project.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "make_dir", "arguments": {"path": "project_x"}}],
+      "target": {"home": {"{user}": {
+        "design.pdf": "%PDF placeholder\n",
+        "old_project": {"README.md": "# Old project\n"},
+        "project_x": {}
+      }}}
+    },
+    {
+      "user": "Move design.pdf into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "move", "arguments": {"source": "design.pdf", "destination": "project_x"}}],
+      "target": {"home": {"{user}": {
+        "old_project": {"README.md": "# Old project\n"},
+        "project_x": {"design.pdf": "%PDF placeholder\n"}
+      }}}
+    }
+  ]
+}

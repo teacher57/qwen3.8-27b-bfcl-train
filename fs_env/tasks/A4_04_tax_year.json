@@ -1,0 +1,120 @@
+{
+  "id": "A4_04_tax_year",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'Inside taxes' tempts the model to add monthly or receipts subfolders. Expected: one empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "taxes": {
+            "receipt_jan.pdf": "PDF jan",
+            "receipt_feb.pdf": "PDF feb",
+            "2025": {}
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder named 2026 inside taxes.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "taxes/2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "taxes": {
+              "2026": {},
+              "2025": {},
+              "receipt_jan.pdf": "PDF jan",
+              "receipt_feb.pdf": "PDF feb"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Move receipt_jan.pdf into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "taxes/receipt_jan.pdf",
+            "destination": "taxes/2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "taxes": {
+              "2026": {
+                "receipt_jan.pdf": "PDF jan"
+              },
+              "2025": {},
+              "receipt_feb.pdf": "PDF feb"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy receipt_feb.pdf into it as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "taxes/receipt_feb.pdf",
+            "destination": "taxes/2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "taxes": {
+              "2026": {
+                "receipt_jan.pdf": "PDF jan",
+                "receipt_feb.pdf": "PDF feb"
+              },
+              "2025": {},
+              "receipt_feb.pdf": "PDF feb"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "taxes/2026"
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "taxes/2026/receipts"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

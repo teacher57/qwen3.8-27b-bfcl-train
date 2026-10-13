@@ -1,0 +1,127 @@
+{
+  "id": "A3_89_folder_with_file_invoices",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Two steps with a stated purpose; the model makes both but seeds reminders.txt. Expected: folder + empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder paid with a file reminders.txt inside it, for payment reminders.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "paid"
+          }
+        },
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "paid/reminders.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "reminders.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Ref: INV-0042' into paid/reminders.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "paid/reminders.txt",
+            "content": "Ref: INV-0042"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "reminders.txt": "Ref: INV-0042"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy invoices/ledger.csv into paid too.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "invoices/ledger.csv",
+            "destination": "paid"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "reminders.txt": "Ref: INV-0042",
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "paid"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "paid/reminders.txt",
+          "content": "For payment reminders:\n- \n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

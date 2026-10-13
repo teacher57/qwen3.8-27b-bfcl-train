@@ -1,0 +1,107 @@
+{
+  "id": "A4_08_q4_planning",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'For Q4' tempts the model to add goals/timeline files. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "roadmap.txt": "Q4: launch v3\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a folder called planning. It's for the Q4 work.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "planning"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "planning": {},
+            "roadmap.txt": "Q4: launch v3\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy roadmap.txt into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "roadmap.txt",
+            "destination": "planning"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "planning": {
+              "roadmap.txt": "Q4: launch v3\n"
+            },
+            "roadmap.txt": "Q4: launch v3\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Kickoff: Oct 3' into planning/kickoff.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "planning/kickoff.txt",
+            "content": "Kickoff: Oct 3"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "planning": {
+              "roadmap.txt": "Q4: launch v3\n",
+              "kickoff.txt": "Kickoff: Oct 3"
+            },
+            "roadmap.txt": "Q4: launch v3\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "planning"
+        }
+      },
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "planning/q4_goals.md"
+        }
+      }
+    ],
+    "reply": ""
+  },
+  "fixed": "Was 'Create a folder called planning for Q4.', which reads fairly as a folder named 'planning for Q4'."
+}

@@ -1,0 +1,16 @@
+{
+    "core_memory": {
+        "user_name": "Michael",
+        "user_profile": "Michael, 35, lives in Seattle. Freelance graphic designer, works from home. Big coffee lover. Values design aesthetics; prefers sleek, modern, stainless-steel finishes. Sensitive to brew temperature \u2014 past drip machines didn't get hot enough. Referred by a friend who praised customer support."
+    },
+    "archival_memory": {
+        "first_interaction": "Michael's first interaction with the company. He introduced himself and expressed interest in learning about products before asking questions.",
+        "coffee_machine_inquiry": "Michael is looking to upgrade his morning routine with a high-quality coffee machine that matches his design aesthetic. He's interested in both standard drip coffee makers and espresso machines and asked for details on both categories.",
+        "coffee_machine_preferences": "Michael wants a caf\u00e9-like coffee experience at home but is not a professional barista. He's torn between a simple drip coffee maker and a steam-based espresso system. Strong design preference: sleek, modern, stainless-steel finish.",
+        "pricing_and_promo_interest": "Michael asked about pricing ranges for espresso machines and drip coffee makers, and about first-time buyer discounts. He saw a 'New Customer Discount' banner on the homepage but didn't click it in time. He's also interested in bundle deals and limited-time promos.",
+        "shipping_and_deadline": "Michael asked about shipping logistics: whether orders ship from a local(Seattle-area) warehouse or out of state, and expected time frames. He is hosting a small family gathering later this month and wants the coffee machine delivered before then. He noted Seattle rainy weather as a potential delivery concern.",
+        "routine_fit_criteria": "Michael wants the coffee machine to match his daily routine exactly. Key criteria he cares about: (1) brewing frequency/flexibility, (2) cleaning complexity, (3) counter space footprint. He's a big coffee lover who likely drinks throughout the day.",
+        "counter_space_constraints": "Michael's kitchen has a fair amount of appliances already on the counter, including a toaster oven and a spice rack. He's willing to rearrange('kitchen Tetris') but wants exact machine dimensions before buying to plan the layout.",
+        "warranty_concern": "Michael asked about warranties and quality guarantees on coffee machines. He's had bad experiences with other brands: very short warranty periods and difficult service processes. He hopes our policy is more accommodating, especially for higher-end models. He's considering investing in a higher-end model."
+    }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "D_09_log_line",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No log line is given; the model invents one ('Log entry'). Expected: ask what to write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "deploy.log": "deploy started 13:58\n",
+          "logs_archive": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to the log.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "logs_archive": {},
+            "deploy.log": "deploy started 13:58\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'deploy ok 14:02' to deploy.log.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "deploy.log",
+            "content": "deploy ok 14:02",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "logs_archive": {},
+            "deploy.log": "deploy started 13:58\ndeploy ok 14:02"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy deploy.log to logs_archive/deploy_1012.log.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "deploy.log",
+            "destination": "logs_archive/deploy_1012.log"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "logs_archive": {
+              "deploy_1012.log": "deploy started 13:58\ndeploy ok 14:02"
+            },
+            "deploy.log": "deploy started 13:58\ndeploy ok 14:02"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "deploy.log",
+          "content": "Log entry",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

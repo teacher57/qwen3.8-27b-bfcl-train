@@ -1,0 +1,141 @@
+{
+  "id": "H_04_rename_append_share",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps in order; the model copies before appending, or skips the copy. Expected: rename, append, copy.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "notes.txt": "draft ideas\n",
+          "notes_old.txt": "older ideas\n",
+          "shared": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename notes.txt to notes_2026.txt, append the line 'reviewed' to it, and copy it to the shared folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "notes.txt",
+            "destination": "notes_2026.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "notes_2026.txt",
+            "content": "reviewed",
+            "mode": "append"
+          }
+        },
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "notes_2026.txt",
+            "destination": "shared"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {
+              "notes_2026.txt": "draft ideas\nreviewed"
+            },
+            "notes_old.txt": "older ideas\n",
+            "notes_2026.txt": "draft ideas\nreviewed"
+          }
+        }
+      }
+    },
+    {
+      "user": "What's the last line of the shared copy?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "shared/notes_2026.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\breviewed\\b"
+        ],
+        "example": "The last line is: reviewed"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {
+              "notes_2026.txt": "draft ideas\nreviewed"
+            },
+            "notes_old.txt": "older ideas\n",
+            "notes_2026.txt": "draft ideas\nreviewed"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete notes_old.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "notes_old.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {
+              "notes_2026.txt": "draft ideas\nreviewed"
+            },
+            "notes_2026.txt": "draft ideas\nreviewed"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "notes.txt",
+          "destination": "notes_2026.txt"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "notes_2026.txt",
+          "destination": "shared"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "notes_2026.txt",
+          "content": "reviewed",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

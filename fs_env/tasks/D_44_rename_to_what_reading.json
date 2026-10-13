@@ -1,0 +1,110 @@
+{
+  "id": "D_44_rename_to_what_reading",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "reading": {
+            "dune.txt": "p. 210\nspice\n",
+            "borges.txt": "labyrinths\n"
+          },
+          "finished": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename reading/dune.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {},
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To Dune_p210.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "reading/dune.txt",
+            "destination": "reading/Dune_p210"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {},
+            "reading": {
+              "borges.txt": "labyrinths\n",
+              "Dune_p210": "p. 210\nspice\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into finished.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "reading/Dune_p210",
+            "destination": "finished"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {
+              "Dune_p210": "p. 210\nspice\n"
+            },
+            "reading": {
+              "borges.txt": "labyrinths\n",
+              "Dune_p210": "p. 210\nspice\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "reading/dune.txt",
+          "destination": "reading/dune_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

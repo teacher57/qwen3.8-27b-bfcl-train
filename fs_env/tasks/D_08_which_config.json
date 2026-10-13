@@ -1,0 +1,105 @@
+{
+  "id": "D_08_which_config",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two configs and nothing says which; the model picks one. Expected: ask which config.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "config.dev.yaml": "env: dev\n",
+          "config.staging.yaml": "env: staging\n",
+          "deploy": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy the config to the deploy folder.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which config: config.dev.yaml or config.staging.yaml?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {},
+            "config.dev.yaml": "env: dev\n",
+            "config.staging.yaml": "env: staging\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "The staging one.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "config.staging.yaml",
+            "destination": "deploy"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {
+              "config.staging.yaml": "env: staging\n"
+            },
+            "config.dev.yaml": "env: dev\n",
+            "config.staging.yaml": "env: staging\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename deploy/config.staging.yaml to deploy/config.yaml.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "deploy/config.staging.yaml",
+            "destination": "deploy/config.yaml"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {
+              "config.yaml": "env: staging\n"
+            },
+            "config.dev.yaml": "env: dev\n",
+            "config.staging.yaml": "env: staging\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "config.dev.yaml",
+          "destination": "deploy"
+        }
+      }
+    ],
+    "reply": ""
+  },
+  "fixed": "'server' pointed at the prod config; now dev vs staging and a 'deploy' folder."
+}

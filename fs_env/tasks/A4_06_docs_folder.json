@@ -1,0 +1,116 @@
+{
+  "id": "A4_06_docs_folder",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "Asked for a docs folder, the model creates an index.md in it. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "project": {
+            "notes.md": "setup steps\n",
+            "app.js": "start()\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a docs folder inside project.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "project/docs"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "docs": {},
+              "notes.md": "setup steps\n",
+              "app.js": "start()\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Move project/notes.md into project/docs.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "project/notes.md",
+            "destination": "project/docs"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "docs": {
+                "notes.md": "setup steps\n"
+              },
+              "app.js": "start()\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename it to guide.md.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "project/docs/notes.md",
+            "destination": "project/docs/guide.md"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "docs": {
+                "guide.md": "setup steps\n"
+              },
+              "app.js": "start()\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "project/docs"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "project/docs/index.md",
+          "content": "# Docs\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

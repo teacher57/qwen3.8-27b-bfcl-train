@@ -1,0 +1,121 @@
+{
+  "id": "D_46_folder_and_put_support",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put support/ticket_881.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it closed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "closed"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "support/ticket_881.txt",
+            "destination": "closed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {
+              "ticket_881.txt": "login fails\nuser: maya\n"
+            },
+            "support": {
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Priority: P2' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "closed/ticket_881.txt",
+            "content": "Priority: P2",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {
+              "ticket_881.txt": "login fails\nuser: maya\nPriority: P2"
+            },
+            "support": {
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "support/ticket_881.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

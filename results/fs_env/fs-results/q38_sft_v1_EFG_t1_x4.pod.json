@@ -1,0 +1,11 @@
+{
+ "fetched": "2026-10-12T22:28:54",
+ "alive": true,
+ "log": [
+  "21 tasks x 4 trials -> /root/fs-results/q38_sft_v1_EFG_t1_x4.jsonl"
+ ],
+ "elapsed_s": 306,
+ "vllm": "up",
+ "gpu": "97 %, 71729 MiB",
+ "finished": false
+}

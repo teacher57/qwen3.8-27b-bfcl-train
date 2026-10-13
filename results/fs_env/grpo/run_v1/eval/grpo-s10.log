@@ -1,0 +1,524 @@
+73 tasks x 4 trials -> /root/eval_v1/grpo-s10.jsonl
+FAIL A3_04_journal #0 53.2s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\n============\n- Started this journal on 2026-01-01.\n')
+      turn 2: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\n============\n- Started this journal on 2026-01-01.\nDay 1: moved to Lisbon')
+      turn 3: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\n============\n- Started this journal on 2026-01-01.\nDay 1: moved to Lisbon')
+FAIL A3_04_journal #1 35.8s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\n')
+      turn 2: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\nDay 1: moved to Lisbon')
+      turn 3: /home/freya/works/journal_2026.txt: content differs (got 'Journal 2026\nDay 1: moved to Lisbon')
+PASS A3_04_journal #2 27.6s  ok(act) ok(act) ok(answer)
+PASS A3_04_journal #3 27.8s  ok(act) ok(act) ok(answer)
+FAIL A3_18_start_file_site #0 59.7s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/letters/contact.html: content differs (got '<h1>Contact</h1>\n<p>Get in touch</p>\n')
+      turn 2: /home/fatima/letters/contact.html: content differs (got '<!-- build 77 -->\n<h1>Contact</h1>\n<p>Get in touch</p>\n')
+      turn 3: /home/fatima/letters/contact.html: content differs (got '<!-- build 77 -->\n<h1>Contact</h1>\n<p>Get in touch</p>\n')
+FAIL A3_18_start_file_site #1 63.6s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/letters/contact.html: content differs (got '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Contact</title>\n</head>\n<body>\n  <h1>Contact Us</h1>\n  <p>Get in touch with us.</p>\n\n  <form action="#" method="post">\n    <label for="name">Name</label>\n    <input type="text" id="name" name="name">\n\n    <label for="email">Email</label>\n    <input type="email" id="email" name="email">\n\n    <label for="message">Message</label>\n    <textarea id="message" name="message"></textarea>\n\n    <button type="submit">Send</button>\n  </form>\n</body>\n</html>\n')
+      turn 2: /home/fatima/letters/contact.html: content differs (got '<!-- build 77 -->\n<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Contact</title>\n</head>\n<body>\n  <h1>Contact Us</h1>\n  <p>Get in touch with us.</p>\n\n  <form action="#" method="post">\n    <label for="name">Name</label>\n    <input type="text" id="name" name="name">\n\n    <label for="email">Email</label>\n    <input type="email" id="email" name="email">\n\n    <label for="message">Message</label>\n    <textarea id="message" name="message"></textarea>\n\n    <button type="submit">Send</button>\n  </form>\n</body>\n</html>\n')
+      turn 3: /home/fatima/letters/contact.html: content differs (got '<!-- build 77 -->\n<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Contact</title>\n</head>\n<body>\n  <h1>Contact Us</h1>\n  <p>Get in touch with us.</p>\n\n  <form action="#" method="post">\n    <label for="name">Name</label>\n    <input type="text" id="name" name="name">\n\n    <label for="email">Email</label>\n    <input type="email" id="email" name="email">\n\n    <label for="message">Message</label>\n    <textarea id="message" name="message"></textarea>\n\n    <button type="submit">Send</button>\n  </form>\n</body>\n</html>\n')
+PASS A3_18_start_file_site #2 24.5s  ok(act) ok(act) ok(answer)
+FAIL A3_18_start_file_site #3 74.9s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/letters/contact.html: content differs (got '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Contact</title>\n</head>\n<body>\n    <header>\n        <h1>Contact Us</h1>\n    </header>\n    <main>\n        <p>Fill out the form below and we\'ll get back to you.</p>\n        <form action="" method="post">\n            <label for="name">Name</label>\n            <input type="text" id="name" name="name" required>\n\n            <label for="email">Email</label>\n            <input type="email" id="email" name="email" required>\n\n            <label for="message">Message</label>\n            <textarea id="message" name="message" rows="5" required></textarea>\n\n            <button type="submit">Send</button>\n        </form>\n    </main>\n    <footer>\n        <p>&copy; 2025 All rights reserved.</p>\n    </footer>\n</body>\n</html>\n')
+      turn 2: /home/fatima/letters/contact.html: content differs (got '<!DOCTYPE html>\n<!-- build 77 -->\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Contact</title>\n</head>\n<body>\n    <header>\n        <h1>Contact Us</h1>\n    </header>\n    <main>\n        <p>Fill out the form below and we\'ll get back to you.</p>\n        <form action="" method="post">\n            <label for="name">Name</label>\n            <input type="text" id="name" name="name" required>\n\n            <label for="email">Email</label>\n            <input type="email" id="email" name="email" required>\n\n            <label for="message">Message</label>\n            <textarea id="message" name="message" rows="5" required></textarea>\n\n            <button type="submit">Send</button>\n        </form>\n    </main>\n    <footer>\n        <p>&copy; 2025 All rights reserved.</p>\n    </footer>\n</body>\n</html>\n')
+      turn 3: /home/fatima/letters/contact.html: content differs (got '<!DOCTYPE html>\n<!-- build 77 -->\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Contact</title>\n</head>\n<body>\n    <header>\n        <h1>Contact Us</h1>\n    </header>\n    <main>\n        <p>Fill out the form below and we\'ll get back to you.</p>\n        <form action="" method="post">\n            <label for="name">Name</label>\n            <input type="text" id="name" name="name" required>\n\n            <label for="email">Email</label>\n            <input type="email" id="email" name="email" required>\n\n            <label for="message">Message</label>\n            <textarea id="message" name="message" rows="5" required></textarea>\n\n            <button type="submit">Send</button>\n        </form>\n    </main>\n    <footer>\n        <p>&copy; 2025 All rights reserved.</p>\n    </footer>\n</body>\n</html>\n')
+PASS A3_21_need_file_contracts #0 31.8s  ok(act) ok(act) ok(act)
+PASS A3_21_need_file_contracts #1 43.9s  ok(act) ok(act) ok(act)
+PASS A3_21_need_file_contracts #2 38.0s  ok(act) ok(act) ok(act)
+PASS A3_21_need_file_contracts #3 31.9s  ok(act) ok(act) ok(act)
+FAIL A3_26_in_dest_wedding #0 82.0s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan — Quinta do Lago\n=============================\nRatio: 1:1:1 (one guest per table)\n\nTable 1: Ana\nTable 2: Leo\nTable 3: Mira\n')
+      turn 2: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan — Quinta do Lago\n=============================\nRatio: 1:1:1 (one guest per table)\n\nTable 1: Ana\nTable 2: Leo\nTable 3: Mira\n')
+      turn 3: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan — Quinta do Lago\n=============================\nRatio: 1:1:1 (one guest per table)\n\nTable 1: Ana\nTable 2: Leo\nTable 3: Mira\n')
+FAIL A3_26_in_dest_wedding #1 47.8s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan - Quinta do Lago\n=============================\n\nTable 1:\n  Seat A: Ana\n  Seat B: Leo\n  Seat C: Mira\n')
+      turn 2: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan - Quinta do Lago\n=============================\n\nTable 1:\n  Seat A: Ana\n  Seat B: Leo\n  Seat C: Mira\n')
+      turn 3: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan - Quinta do Lago\n=============================\n\nTable 1:\n  Seat A: Ana\n  Seat B: Leo\n  Seat C: Mira\n')
+FAIL A3_26_in_dest_wedding #2 50.7s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan\nVenue: Quinta do Lago\nGuests: Ana, Leo, Mira\n\nTable 1\n-------\nSeat 1: Ana\nSeat 2: Leo\nSeat 3: Mira\n')
+      turn 2: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan\nVenue: Quinta do Lago\nGuests: Ana, Leo, Mira\n\nTable 1\n-------\nSeat 1: Ana\nSeat 2: Leo\nSeat 3: Mira\n')
+      turn 3: /home/mateo/ratio/seating.txt: content differs (got 'Seating Plan\nVenue: Quinta do Lago\nGuests: Ana, Leo, Mira\n\nTable 1\n-------\nSeat 1: Ana\nSeat 2: Leo\nSeat 3: Mira\n')
+FAIL A3_26_in_dest_wedding #3 45.0s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/mateo/ratio/seating.txt: content differs (got 'SEATING PLAN\n============\n\nRow 1:  Seat 1 | Seat 2 | Seat 3 | Seat 4 | Seat 5\nRow 2:  Seat 6 | Seat 7 | Seat 8 | Seat 9 | Seat 10\nRow 3:  Seat 11 | Seat 12 | Seat 13 | Seat 14 | Seat 15\nRow 4:  Seat 16 | Seat 17 | Seat 18 | Seat 19 | Seat 20\nRow 5:  Seat 21 | Seat 22 | Seat 23 | Seat 24 | Seat 25\n\nLegend:\n  Aisle between Seat 3 and Seat 4\n  Rows 1-2: Front section\n  Row 3: Middle section\n  Rows 4-5: Back section\n\nAssignments:\n  (name: seat number) - add assignments below\n  -------------------------\n')
+      turn 2: /home/mateo/ratio/seating.txt: content differs (got 'SEATING PLAN\n============\n\nRow 1:  Seat 1 | Seat 2 | Seat 3 | Seat 4 | Seat 5\nRow 2:  Seat 6 | Seat 7 | Seat 8 | Seat 9 | Seat 10\nRow 3:  Seat 11 | Seat 12 | Seat 13 | Seat 14 | Seat 15\nRow 4:  Seat 16 | Seat 17 | Seat 18 | Seat 19 | Seat 20\nRow 5:  Seat 21 | Seat 22 | Seat 23 | Seat 24 | Seat 25\n\nLegend:\n  Aisle between Seat 3 and Seat 4\n  Rows 1-2: Front section\n  Row 3: Middle section\n  Rows 4-5: Back section\n\nAssignments:\n  (name: seat number) - add assignments below\n  -------------------------\n')
+      turn 3: /home/mateo/ratio/seating.txt: content differs (got 'SEATING PLAN\n============\n\nRow 1:  Seat 1 | Seat 2 | Seat 3 | Seat 4 | Seat 5\nRow 2:  Seat 6 | Seat 7 | Seat 8 | Seat 9 | Seat 10\nRow 3:  Seat 11 | Seat 12 | Seat 13 | Seat 14 | Seat 15\nRow 4:  Seat 16 | Seat 17 | Seat 18 | Seat 19 | Seat 20\nRow 5:  Seat 21 | Seat 22 | Seat 23 | Seat 24 | Seat 25\n\nLegend:\n  Aisle between Seat 3 and Seat 4\n  Rows 1-2: Front section\n  Row 3: Middle section\n  Rows 4-5: Back section\n\nAssignments:\n  (name: seat number) - add assignments below\n  -------------------------\n')
+FAIL A3_27_in_dest_lab #0 141.0s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 2: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 3: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+FAIL A3_27_in_dest_lab #1 114.5s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 2: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 3: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+FAIL A3_27_in_dest_lab #2 104.6s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 2: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 3: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+FAIL A3_27_in_dest_lab #3 153.3s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 2: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+      turn 3: /home/minjun/property/run2.csv: content differs (got 'trial,score\n')
+PASS A3_28_in_dest_car #0 23.0s  ok(act) ok(act) ok(act)
+PASS A3_28_in_dest_car #1 23.9s  ok(act) ok(act) ok(act)
+PASS A3_28_in_dest_car #2 11.2s  ok(act) ok(act) ok(act)
+PASS A3_28_in_dest_car #3 35.1s  ok(act) ok(act) ok(act)
+PASS A3_32_template_name_band #0 23.5s  ok(act) ok(act) ok(answer)
+PASS A3_32_template_name_band #1 21.0s  ok(act) ok(act) ok(answer)
+PASS A3_32_template_name_band #2 24.6s  ok(act) ok(act) ok(answer)
+PASS A3_32_template_name_band #3 19.0s  ok(act) ok(act) ok(answer)
+PASS A3_33_template_name_recipes #0 18.9s  ok(act) ok(act) ok(answer)
+PASS A3_33_template_name_recipes #1 22.9s  ok(act) ok(act) ok(answer)
+PASS A3_33_template_name_recipes #2 18.3s  ok(act) ok(act) ok(answer)
+PASS A3_33_template_name_recipes #3 17.3s  ok(act) ok(act) ok(answer)
+FAIL A3_34_template_name_photos #0 50.4s  FAIL(act) ok(act) ok(answer)
+      turn 1: /home/maya/philosophy/CHANGELOG.md: content differs (got '# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [Unreleased]\n\n### Added\n\n- Initial changelog.\n\n### Changed\n\n-\n\n### Deprecated\n\n-\n\n### Removed\n\n-\n\n### Fixed\n\n-\n')
+PASS A3_34_template_name_photos #1 33.2s  ok(act) ok(act) ok(answer)
+PASS A3_34_template_name_photos #2 21.2s  ok(act) ok(act) ok(answer)
+FAIL A3_34_template_name_photos #3 77.6s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/maya/philosophy/CHANGELOG.md: content differs (got '# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [Unreleased]\n\n### Added\n- Initial changelog.\n')
+      turn 2: /home/maya/philosophy/CHANGELOG.md: content differs (got '# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [Unreleased]\n\n### Added\n- Initial changelog.\n\nAll rights reserved\n')
+      turn 3: /home/maya/philosophy/CHANGELOG.md: content differs (got '# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [Unreleased]\n\n### Added\n- Initial changelog.\n\nAll rights reserved\n')
+      turn 3: reply: doesn't match '\\b(1|one)\\b' (got '`philosophy/CHANGELOG.md` has **13 lines** (39 words, 322 characters).')
+PASS A3_50_next_to_car #0 21.7s  ok(act) ok(act) ok(answer)
+PASS A3_50_next_to_car #1 21.9s  ok(act) ok(act) ok(answer)
+PASS A3_50_next_to_car #2 21.4s  ok(act) ok(act) ok(answer)
+PASS A3_50_next_to_car #3 26.4s  ok(act) ok(act) ok(answer)
+FAIL A3_create_empty_file #0 24.1s  FAIL(act) FAIL(act)
+      turn 1: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n## Highlights\n\n- \n\n## Action Items\n\n- [ ] \n\n## Follow-ups\n\n- \n')
+      turn 2: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n## Highlights\n\n- Decision: ship v2 on Friday\n\n## Action Items\n\n- [ ] \n\n## Follow-ups\n\n- \n')
+FAIL A3_create_empty_file #1 38.1s  FAIL(act) FAIL(act)
+      turn 1: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n**Date:** \n\n## Highlights\n\n- \n\n## Action Items\n\n- [ ] \n')
+      turn 2: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n**Date:** \n\n## Highlights\n\n- Decision: ship v2 on Friday\n\n## Action Items\n\n- [ ] \n')
+FAIL A3_create_empty_file #2 36.3s  FAIL(act) FAIL(act)
+      turn 1: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n**Date:**\n\n## Highlights\n\n- \n\n## Action Items\n\n- [ ] \n\n## Follow-ups\n\n- \n')
+      turn 2: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes\n\n**Date:**\n\n## Highlights\n\n- Decision: ship v2 on Friday\n\n## Action Items\n\n- [ ] \n\n## Follow-ups\n\n- \n')
+FAIL A3_create_empty_file #3 45.5s  FAIL(act) FAIL(act)
+      turn 1: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes — Today\n\n## Highlights\n\n- \n\n## Action Items\n\n- [ ] \n')
+      turn 2: /home/freya/income/meeting_notes.md: content differs (got '# Meeting Notes — Today\n\n## Highlights\n\n- Decision: ship v2 on Friday\n\n## Action Items\n\n- [ ] \n')
+PASS D_08_which_config #0 34.7s  ok(ask) ok(act) ok(act)
+PASS D_08_which_config #1 39.0s  ok(ask) ok(act) ok(act)
+FAIL D_08_which_config #2 77.1s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/ethan/navigation/config.dev.yaml
+      turn 1: extra file: /home/ethan/navigation/config.staging.yaml
+      turn 1: reply: doesn't match '\\?' (got 'Done. There were two config files in your home directory, so I copied both to the navigation folder:\n\n- `config.dev.yaml` → `/home/ethan/navigation/config.dev.yaml`\n- `config.staging.yaml` → `/home/et')
+PASS D_08_which_config #3 40.0s  ok(ask) ok(act) ok(act)
+PASS D_10_which_spreadsheet #0 31.4s  ok(ask) ok(act) ok(act)
+PASS D_10_which_spreadsheet #1 71.0s  ok(ask) ok(act) ok(act)
+PASS D_10_which_spreadsheet #2 48.0s  ok(ask) ok(act) ok(act)
+PASS D_10_which_spreadsheet #3 32.8s  ok(ask) ok(act) ok(act)
+PASS D_15_which_file_pets #0 80.4s  ok(ask) ok(act) ok(act)
+PASS D_15_which_file_pets #1 41.9s  ok(ask) ok(act) ok(act)
+PASS D_15_which_file_pets #2 108.7s  ok(ask) ok(act) ok(act)
+PASS D_15_which_file_pets #3 51.6s  ok(ask) ok(act) ok(act)
+FAIL D_18_which_line_finance #0 53.5s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: /home/elena/proposal/budget_2026.csv: content differs (got 'rent,1200\nfood,400\nutilities,150')
+      turn 1: reply: doesn't match '\\?' (got "Added a line to `proposal/budget_2026.csv`. Since you didn't specify content, I appended a sensible entry matching the file's `category,amount` format:\n\n```\nrent,1200\nfood,400\nutilities,150\n```\n\nIf yo")
+      turn 2: /home/elena/proposal/budget_2026.csv: content differs (got 'rent,1200\nfood,400\nutilities,150\nTotal: 2,050.00 EUR')
+      turn 3: /home/elena/division/budget_2026.csv: content differs (got 'rent,1200\nfood,400\nutilities,150\nTotal: 2,050.00 EUR')
+      turn 3: /home/elena/proposal/budget_2026.csv: content differs (got 'rent,1200\nfood,400\nutilities,150\nTotal: 2,050.00 EUR')
+PASS D_18_which_line_finance #1 33.9s  ok(ask) ok(act) ok(act)
+PASS D_18_which_line_finance #2 54.7s  ok(ask) ok(act) ok(act)
+PASS D_18_which_line_finance #3 59.0s  ok(ask) ok(act) ok(act)
+FAIL D_20_which_line_lab #0 105.4s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.81')
+      turn 1: reply: doesn't match '\\?' (got 'Done. I appended the next trial row to `avenue/results_run1.csv`:\n\n```\ntrial,score\n1,0.82\n2,0.79\n3,0.81\n```\n\nNote: no score was specified and `avenue/protocol.md` has no data, so I used **0.81** (midp')
+      turn 2: /home/jonas/avenue/protocol.md: content differs (got '# Protocol\np = 0.031 (n = 48)')
+      turn 2: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.81')
+      turn 3: /home/jonas/avenue/protocol.md: content differs (got '# Protocol\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.81')
+      turn 3: extra file: /home/jonas/toronto/protocol.md
+      turn 3: missing file: /home/jonas/toronto/results_run1.csv
+FAIL D_20_which_line_lab #1 85.5s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85')
+      turn 1: reply: doesn't match '\\?' (got 'Added the line `3,0.85` to `avenue/results_run1.csv`, continuing the existing `trial,score` pattern. The file now reads:\n\n```\ntrial,score\n1,0.82\n2,0.79\n3,0.85\n```')
+      turn 2: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/toronto/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+FAIL D_20_which_line_lab #2 110.7s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.76')
+      turn 1: reply: doesn't match '\\?' (got 'Added a new line to `avenue/results_run1.csv`:\n\n```\ntrial,score\n1,0.82\n2,0.79\n3,0.76\n```\n\nThe new line continues the sequence (trial 3 with a score of 0.76, following the declining trend). If you had ')
+      turn 2: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.76\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.76\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/toronto/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.76\np = 0.031 (n = 48)')
+FAIL D_20_which_line_lab #3 165.2s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85')
+      turn 1: reply: doesn't match '\\?' (got "Done — added a line to `avenue/results_run1.csv`:\n\n```\ntrial,score\n1,0.82\n2,0.79\n3,0.85\n```\n\nI followed the existing pattern and added trial 3. Note I didn't have an actual score to record, so I used ")
+      turn 2: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/avenue/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+      turn 3: /home/jonas/toronto/results_run1.csv: content differs (got 'trial,score\n1,0.82\n2,0.79\n3,0.85\np = 0.031 (n = 48)')
+FAIL D_24_which_name_support #0 39.0s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/sean/relations/ticket_883.txt
+      turn 1: reply: doesn't match '\\?' (got "Created `ticket_883.txt` in `/home/sean/relations`, following the existing ticket naming pattern (ticket_881.txt, ticket_882.txt). It's empty for now — let me know if you'd like a specific name or som")
+FAIL D_24_which_name_support #1 38.6s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/sean/relations/notes.txt
+      turn 1: reply: doesn't match '\\?' (got "Done! Created a new empty file at `/home/sean/relations/notes.txt`.\n\nThe `relations` directory already contained `ticket_881.txt` and `ticket_882.txt` — if you'd prefer a different name (e.g., followi")
+FAIL D_24_which_name_support #2 31.2s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/sean/relations/ticket_883.txt
+      turn 1: reply: doesn't match '\\?' (got "Created `ticket_883.txt` in `/home/sean/relations`, following the existing naming pattern of `ticket_881.txt` and `ticket_882.txt`. It's empty for now — let me know if you'd like me to add any content")
+FAIL D_24_which_name_support #3 44.5s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/sean/relations/ticket_883.txt
+      turn 1: reply: doesn't match '\\?' (got "Done. Created a new empty file `ticket_883.txt` in `/home/sean/relations`, following the existing naming pattern (ticket_881.txt, ticket_882.txt). If you'd like a different name or some content in it,")
+FAIL D_34_write_note_trips #0 40.5s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/priya/value/madrid.txt
+      turn 1: reply: doesn't match '\\?' (got "Done. I created `value/madrid.txt` with a short note in the same style as your other city notes (`lisbon.txt`, `porto.txt`):\n\n```\nflight IB345\nhotel Gran Vía\n```\n\nIf you'd like different details (real")
+      turn 2: /home/priya/value/madrid.txt: content differs (got 'flight IB345\nhotel Gran Vía\nCheck-in after 15:00, code 4471')
+      turn 3: /home/priya/reason/madrid.txt: content differs (got 'flight IB345\nhotel Gran Vía\nCheck-in after 15:00, code 4471')
+      turn 3: /home/priya/value/madrid.txt: content differs (got 'flight IB345\nhotel Gran Vía\nCheck-in after 15:00, code 4471')
+FAIL D_34_write_note_trips #1 68.7s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/priya/value/madrid.txt
+      turn 1: reply: doesn't match '\\?' (got "Created `value/madrid.txt` following the same style as the other notes:\n\n```\nflight TBA\nhotel TBA\n```\n\nI used placeholders since you didn't specify details — let me know the flight and hotel info for ")
+FAIL D_34_write_note_trips #2 31.1s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/priya/value/madrid.txt
+      turn 1: reply: doesn't match '\\?' (got "I've written a note in `value/madrid.txt` covering Madrid's basics as Spain's capital, its highlights (Retiro Park, Prado, Plaza Mayor, Gran Vía), and a travel tip about the best times to visit.")
+      turn 2: /home/priya/value/madrid.txt: content differs (got 'Note about Madrid:\n\nMadrid is the capital of Spain and its most populous city. Known for its vibrant culture, great food (tapas, jamón, churros con chocolate), and world-class art museums like the Prado and Reina Sofía.\n\nHighlights:\n- Retiro Park and its palace\n- Plaza Mayor and the surrounding old town\n- Gran Vía shopping street\n- Great nightlife and flamenco venues\n\nTravel tip: The climate is dry and sunny, with hot summers and cool winters. Spring and autumn are the best times to visit.\nCheck-in after 15:00, code 4471')
+      turn 3: /home/priya/reason/madrid.txt: content differs (got 'Note about Madrid:\n\nMadrid is the capital of Spain and its most populous city. Known for its vibrant culture, great food (tapas, jamón, churros con chocolate), and world-class art museums like the Prado and Reina Sofía.\n\nHighlights:\n- Retiro Park and its palace\n- Plaza Mayor and the surrounding old town\n- Gran Vía shopping street\n- Great nightlife and flamenco venues\n\nTravel tip: The climate is dry and sunny, with hot summers and cool winters. Spring and autumn are the best times to visit.\nCheck-in after 15:00, code 4471')
+      turn 3: /home/priya/value/madrid.txt: content differs (got 'Note about Madrid:\n\nMadrid is the capital of Spain and its most populous city. Known for its vibrant culture, great food (tapas, jamón, churros con chocolate), and world-class art museums like the Prado and Reina Sofía.\n\nHighlights:\n- Retiro Park and its palace\n- Plaza Mayor and the surrounding old town\n- Gran Vía shopping street\n- Great nightlife and flamenco venues\n\nTravel tip: The climate is dry and sunny, with hot summers and cool winters. Spring and autumn are the best times to visit.\nCheck-in after 15:00, code 4471')
+FAIL D_34_write_note_trips #3 63.6s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra file: /home/priya/value/madrid.txt
+      turn 1: reply: doesn't match '\\?' (got "I've created `value/madrid.txt` with a short travel note matching the style of the existing files:\n\n```\nflight IB345\nhotel Gran Vía\n```\n\nLet me know if you'd like different details (e.g., a different ")
+FAIL D_39_which_draft_podcast #0 83.3s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: missing file: /home/fatima/scale/draft_1.txt
+      turn 1: missing file: /home/fatima/scale/draft_2.txt
+      turn 1: missing file: /home/fatima/scale/draft_3.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done. I deleted all three draft files from the `scale` directory:\n- `draft_1.txt`\n- `draft_2.txt`\n- `draft_3.txt`\n\nThe remaining files — `ep12_script.txt` and `ep13_ideas.txt` — are untouched.')
+      turn 2: missing file: /home/fatima/scale/draft_1.txt
+      turn 2: missing file: /home/fatima/scale/draft_3.txt
+      turn 3: missing file: /home/fatima/scale/draft_1.txt
+      turn 3: missing file: /home/fatima/scale/ep14_script.txt
+FAIL D_39_which_draft_podcast #1 61.8s  FAIL(ask) ok(act) ok(act)
+      turn 1: missing file: /home/fatima/scale/draft_1.txt
+      turn 1: missing file: /home/fatima/scale/draft_2.txt
+      turn 1: missing file: /home/fatima/scale/draft_3.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done. I deleted all three draft files in the scale folder:\n- `draft_1.txt`\n- `draft_2.txt`\n- `draft_3.txt`\n\nThe folder now only contains `ep12_script.txt` and `ep13_ideas.txt`, which I left untouched.')
+FAIL D_39_which_draft_podcast #2 55.5s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: missing file: /home/fatima/scale/draft_1.txt
+      turn 1: missing file: /home/fatima/scale/draft_2.txt
+      turn 1: missing file: /home/fatima/scale/draft_3.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done. I deleted all three draft files in `/home/fatima/scale`:\n\n- `draft_1.txt`\n- `draft_2.txt`\n- `draft_3.txt`\n\nThe directory now contains only `ep12_script.txt` and `ep13_ideas.txt`.')
+      turn 2: missing file: /home/fatima/scale/draft_1.txt
+      turn 2: missing file: /home/fatima/scale/draft_3.txt
+      turn 3: missing file: /home/fatima/scale/draft_1.txt
+      turn 3: missing file: /home/fatima/scale/ep14_script.txt
+FAIL D_39_which_draft_podcast #3 92.0s  FAIL(ask) ok(act) ok(act)
+      turn 1: missing file: /home/fatima/scale/draft_1.txt
+      turn 1: missing file: /home/fatima/scale/draft_2.txt
+      turn 1: missing file: /home/fatima/scale/draft_3.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done. I deleted all three drafts from `/home/fatima/scale`:\n\n- `draft_1.txt` ("first try")\n- `draft_2.txt` ("second try")\n- `draft_3.txt` ("third try")\n\nThe remaining files — `ep12_script.txt` and `ep')
+PASS D_41_rename_to_what_wedding #0 42.6s  ok(ask) ok(act) ok(act)
+PASS D_41_rename_to_what_wedding #1 15.0s  ok(ask) ok(act) ok(act)
+PASS D_41_rename_to_what_wedding #2 20.3s  ok(ask) ok(act) ok(act)
+PASS D_41_rename_to_what_wedding #3 25.1s  ok(ask) ok(act) ok(act)
+FAIL D_47_folder_and_put_band #0 26.1s  FAIL(ask) ok(act) ok(act)
+      turn 1: missing file: /home/olga/mary/gigs.txt
+      turn 1: extra directory: /home/olga/new_folder
+      turn 1: extra file: /home/olga/new_folder/gigs.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done! I created a new folder `new_folder` and moved `mary/gigs.txt` into it. The file is now at `/home/olga/new_folder/gigs.txt`.')
+FAIL D_47_folder_and_put_band #1 44.2s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra directory: /home/olga/gigs
+      turn 1: extra file: /home/olga/gigs/gigs.txt
+      turn 1: missing file: /home/olga/mary/gigs.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done. I created a new folder `gigs` and moved `mary/gigs.txt` into it. The file is now at `/home/olga/gigs/gigs.txt` (it was moved, not copied, so it no longer exists in `mary/`).')
+FAIL D_47_folder_and_put_band #2 36.9s  FAIL(ask) ok(act) ok(act)
+      turn 1: missing file: /home/olga/mary/gigs.txt
+      turn 1: extra directory: /home/olga/new_folder
+      turn 1: extra file: /home/olga/new_folder/gigs.txt
+      turn 1: reply: doesn't match '\\?' (got "Done. I created a new folder `new_folder` in `/home/olga` and moved `mary/gigs.txt` into it. It's now at `/home/olga/new_folder/gigs.txt`.\n\nIf you'd prefer a different folder name, or want the origina")
+FAIL D_47_folder_and_put_band #3 31.0s  FAIL(ask) ok(act) ok(act)
+      turn 1: extra directory: /home/olga/gigs
+      turn 1: extra file: /home/olga/gigs/gigs.txt
+      turn 1: missing file: /home/olga/mary/gigs.txt
+      turn 1: reply: doesn't match '\\?' (got 'Done! I created a new folder `gigs` in /home/olga and moved `mary/gigs.txt` into it. The file is now at `/home/olga/gigs/gigs.txt`.')
+FAIL D_ask_missing_info #0 120.8s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/yusuf/IDEAS.md
+      turn 1: reply: doesn't match '\\?' (got "Created `IDEAS.md` in your home directory (`/home/yusuf/IDEAS.md`). Here's what's inside:\n\n- **How to use** — a quick capture-first workflow: dump ideas in, sort later\n- **Inbox** — dated one-line ent")
+      turn 2: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\nIdea 2:\nIdea 3:\nIdea 4:\nIdea 5:\n\n================================================================\n\nHow to use this file\n- Jot new ideas in the list above as "Idea N: one short line".\n- When an idea looks promising, expand it in the Details section below.\n- Status values: new / in progress / parked / done / dropped\n\n================================================================\n\nDetails\n\nIdea 1: offline mode\n- Date:\n- Why it matters:\n- What success looks like:\n- First small step:\n- Status: new\n\nIdea 2:\n- Date:\n- Why it matters:\n- What success looks like:\n- First small step:\n- Status: new\n')
+      turn 3: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\nIdea 2: dark theme\nIdea 3:\nIdea 4:\nIdea 5:\n\n================================================================\n\nHow to use this file\n- Jot new ideas in the list above as "Idea N: one short line".\n- When an idea looks promising, expand it in the Details section below.\n- Status values: new / in progress / parked / done / dropped\n\n================================================================\n\nDetails\n\nIdea 1: offline mode\n- Date:\n- Why it matters:\n- What success looks like:\n- First small step:\n- Status: new\n\nIdea 2: dark theme\n- Date:\n- Why it matters:\n- What success looks like:\n- First small step:\n- Status: new\n')
+FAIL D_ask_missing_info #1 266.4s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/yusuf/idea-tracker.md
+      turn 2: /home/yusuf/diet/ideas.txt: content differs (got "Idea 1: offline mode\n\n# 💡 Fresh Ideas Tracker\n\n> A single place to capture, organize, and revisit new ideas before they slip away.\n\n## How to Use This Document\n\n1. **Capture fast.** When an idea hits, write it in one or two lines in the *Inbox* below — don't judge or refine it yet.\n2. **Give each idea a number** (e.g. `#001`) so it can be referenced later.\n3. **Promote good ones.** Move promising ideas from the Inbox to *Active Ideas* and flesh them out using the template.\n4. **Review weekly.** Check the ideas on your last review, decide for each one: keep it, park it, or drop it.\n5. **Date-stamp changes** in the format `YYYY-MM-DD` so you can see when things were added or last touched.\n\n**Statuses:**\n- `📥 inbox` — newly captured, not yet reviewed\n- `🔍 exploring` — worth thinking about further\n- `🚀 doing` — actively being worked on\n- `⏸️ parked` — good, but not the right time\n- `❌ dropped` — not worth pursuing (keep it here for memory's sake)\n- `✅ done` — shipped / completed\n\n---\n\n## Last Review\n\n| Date       | Notes |\n|------------|-------|\n| YYYY-MM-DD | (first review) |\n\n---\n\n## 📥 Inbox\n\nCapture new ideas here, one per line. Format: `#NNN — idea (date)`\n\n| #   | Idea | Added |\n|-----|------|-------|\n| #001 | Idea 1: offline mode | YYYY-MM-DD |\n\n---\n\n## 🔍 Active Ideas\n\nPromising ideas that deserve a closer look. Use the template for each one.\n\n### #002 — (Example: Weekly Reading Newsletter)\n\n- **Status:** 🔍 exploring\n- **Added:** YYYY-MM-DD\n- **Last updated:** YYYY-MM-DD\n\n**One-liner:**\nA short weekly email summarizing the best articles I read.\n\n**Why it matters:**\nCaptures and shares what I learn; could grow into an audience.\n\n**First step / next action:**\nWrite a draft issue and send it to three friends for feedback.\n\n**Open questions:**\n- Which topics should the newsletter cover?\n- What tooling (Mailchimp, Buttondown, etc.)?\n\n**Notes:**\n-\n\n---\n\n## ⏸️ Parked Ideas\n\nGood ideas that aren't the right time to work on.\n\n| #   | Idea | Parked on | Why / when to revisit |\n|-----|------|-----------|------------------------|\n|     |      |           |                        |\n\n---\n\n## ❌ Dropped Ideas\n\n| #   | Idea | Dropped on | Reason |\n|-----|------|------------|--------|\n|     |      |            |        |\n\n---\n\n## ✅ Done\n\n| #   | Idea | Completed on | Outcome |\n|-----|------|--------------|---------|\n|     |      |              |         |\n\n---\n\n## 📋 Idea Template (copy & paste)\n\n```markdown\n### #NNN — Short Title\n\n- **Status:** 🔍 exploring\n- **Added:** YYYY-MM-DD\n- **Last updated:** YYYY-MM-DD\n\n**One-liner:**\n(what is it, in one sentence)\n\n**Why it matters:**\n(what problem does it solve or what value does it create)\n\n**First step / next action:**\n(the smallest concrete thing to do next)\n\n**Open questions:**\n-\n\n**Notes:**\n-\n```\n")
+      turn 3: /home/yusuf/diet/ideas.txt: content differs (got "Idea 1: offline mode\nIdea 2: dark theme\n\n# 💡 Fresh Ideas Tracker\n\n> A single place to capture, organize, and revisit new ideas before they slip away.\n\n## How to Use This Document\n\n1. **Capture fast.** When an idea hits, write it in one or two lines in the *Inbox* below — don't judge or refine it yet.\n2. **Give each idea a number** (e.g. `#001`) so it can be referenced later.\n3. **Promote good ones.** Move promising ideas from the Inbox to *Active Ideas* and flesh them out using the template.\n4. **Review weekly.** Check the ideas on your last review, decide for each one: keep it, park it, or drop it.\n5. **Date-stamp changes** in the format `YYYY-MM-DD` so you can see when things were added or last touched.\n\n**Statuses:**\n- `📥 inbox` — newly captured, not yet reviewed\n- `🔍 exploring` — worth thinking about further\n- `🚀 doing` — actively being worked on\n- `⏸️ parked` — good, but not the right time\n- `❌ dropped` — not worth pursuing (keep it here for memory's sake)\n- `✅ done` — shipped / completed\n\n---\n\n## Last Review\n\n| Date       | Notes |\n|------------|-------|\n| YYYY-MM-DD | (first review) |\n\n---\n\n## 📥 Inbox\n\nCapture new ideas here, one per line. Format: `#NNN — idea (date)`\n\n| #   | Idea | Added |\n|-----|------|-------|\n| #001 | Idea 1: offline mode | YYYY-MM-DD |\n\n---\n\n## 🔍 Active Ideas\n\nPromising ideas that deserve a closer look. Use the template for each one.\n\n### #002 — (Example: Weekly Reading Newsletter)\n\n- **Status:** 🔍 exploring\n- **Added:** YYYY-MM-DD\n- **Last updated:** YYYY-MM-DD\n\n**One-liner:**\nA short weekly email summarizing the best articles I read.\n\n**Why it matters:**\nCaptures and shares what I learn; could grow into an audience.\n\n**First step / next action:**\nWrite a draft issue and send it to three friends for feedback.\n\n**Open questions:**\n- Which topics should the newsletter cover?\n- What tooling (Mailchimp, Buttondown, etc.)?\n\n**Notes:**\n-\n\n---\n\n## ⏸️ Parked Ideas\n\nGood ideas that aren't the right time to work on.\n\n| #   | Idea | Parked on | Why / when to revisit |\n|-----|------|-----------|------------------------|\n|     |      |           |                        |\n\n---\n\n## ❌ Dropped Ideas\n\n| #   | Idea | Dropped on | Reason |\n|-----|------|------------|--------|\n|     |      |            |        |\n\n---\n\n## ✅ Done\n\n| #   | Idea | Completed on | Outcome |\n|-----|------|--------------|---------|\n|     |      |              |         |\n\n---\n\n## 📋 Idea Template (copy & paste)\n\n```markdown\n### #NNN — Short Title\n\n- **Status:** 🔍 exploring\n- **Added:** YYYY-MM-DD\n- **Last updated:** YYYY-MM-DD\n\n**One-liner:**\n(what is it, in one sentence)\n\n**Why it matters:**\n(what problem does it solve or what value does it create)\n\n**First step / next action:**\n(the smallest concrete thing to do next)\n\n**Open questions:**\n-\n\n**Notes:**\n-\n```\n")
+FAIL D_ask_missing_info #2 90.6s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/yusuf/IDEAS.md
+      turn 2: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\n\n---\nIdeas Log\nNewest ideas at the top. Keep entries short and raw — refine later.\n\nSuggested format for each entry:\n  Idea N: short title (YYYY-MM-DD)\n  - Category: #tag\n  - Status: Captured | Considering | Action | Dropped\n  - Notes: one or two sentences\n  - Next step: (optional)\n\nStatus key:\n  Captured   = fresh, not yet reviewed\n  Considering = worth thinking about\n  Action    = turned into a plan or task\n  Dropped   = parked or rejected\n')
+      turn 3: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\nIdea 2: dark theme\n\n---\nIdeas Log\nNewest ideas at the top. Keep entries short and raw — refine later.\n\nSuggested format for each entry:\n  Idea N: short title (YYYY-MM-DD)\n  - Category: #tag\n  - Status: Captured | Considering | Action | Dropped\n  - Notes: one or two sentences\n  - Next step: (optional)\n\nStatus key:\n  Captured   = fresh, not yet reviewed\n  Considering = worth thinking about\n  Action    = turned into a plan or task\n  Dropped   = parked or rejected\n')
+FAIL D_ask_missing_info #3 85.9s  FAIL(ask) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/yusuf/ideas.md
+      turn 2: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\nStatus: spark\nNotes:\nFirst step:\n\nIdea 2:\nStatus:\nNotes:\nFirst step:\n\nIdea 3:\nStatus:\nNotes:\nFirst step:\n')
+      turn 3: /home/yusuf/diet/ideas.txt: content differs (got 'Idea 1: offline mode\nStatus: spark\nNotes:\nFirst step:\n\nIdea 2: dark theme\nStatus:\nNotes:\nFirst step:\n\nIdea 3:\nStatus:\nNotes:\nFirst step:\n')
+PASS E_06_no_move_rename #0 220.0s  ok(refuse) ok(act) ok(act)
+FAIL E_06_no_move_rename #1 79.4s  FAIL(refuse) ok(act) ok(act)
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got "I wasn't able to complete the rename. Here's what happened:\n\n- `draft.txt` exists at `/home/mei/draft.txt` (content: `chapter one`).\n- I tried a shell `mv` and a file-write approach, but neither a she")
+PASS E_06_no_move_rename #2 235.1s  ok(refuse) ok(act) ok(act)
+PASS E_06_no_move_rename #3 129.4s  ok(refuse) ok(act) ok(act)
+FAIL E_08_no_create #0 500.2s  FAIL(refuse) ok(act) ok(act)
+      turn 1: reply: empty, but this turn needs an answer
+PASS E_08_no_create #1 454.0s  ok(refuse) ok(act) ok(act)
+FAIL E_08_no_create #2 705.9s    ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+PASS E_08_no_create #3 11.3s  ok(refuse) ok(act) ok(act)
+PASS E_11_no_delete_finance #0 58.5s  ok(refuse) ok(act) ok(act)
+PASS E_11_no_delete_finance #1 58.3s  ok(refuse) ok(act) ok(act)
+PASS E_11_no_delete_finance #2 21.4s  ok(refuse) ok(act) ok(act)
+FAIL E_11_no_delete_finance #3 84.5s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: missing file: /home/yusuf/employees/savings.csv
+      turn 1: extra directory: /tmp
+      turn 2: extra directory: /tmp
+      turn 3: extra directory: /tmp
+PASS E_21_no_copy_invoices #0 62.5s  ok(refuse) ok(act) ok(act)
+PASS E_21_no_copy_invoices #1 16.3s  ok(refuse) ok(act) ok(act)
+FAIL E_21_no_copy_invoices #2 32.3s  FAIL(refuse) ok(act) FAIL(act)
+      turn 1: extra file: /home/emma/strategy/ledger.csv
+      turn 3: extra file: /home/emma/navigation/inv_0043.pdf
+PASS E_21_no_copy_invoices #3 151.5s  ok(refuse) ok(act) ok(act)
+PASS E_23_no_copy_thesis #0 230.2s  ok(refuse) ok(act) ok(act)
+FAIL E_23_no_copy_thesis #1 270.7s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: missing file: /home/elena/merchant/chapter1.tex
+      turn 1: extra file: /home/elena/movies/chapter1.tex
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got "Done. `chapter1.tex` is now in the `movies` directory at `/home/elena/movies/chapter1.tex` with its content intact:\n\n```latex\n\\section{Intro}\nMotivation\n```\n\nOne caveat: my available tools don't inclu")
+      turn 2: missing file: /home/elena/merchant/chapter1.tex
+      turn 3: missing file: /home/elena/merchant/chapter1.tex
+PASS E_23_no_copy_thesis #2 296.8s  ok(refuse) ok(act) ok(act)
+FAIL E_23_no_copy_thesis #3 412.4s  FAIL(refuse) ok(act) ok(act)
+      turn 1: /home/elena/merchant/chapter1.tex: content differs (got '')
+      turn 1: extra file: /home/elena/movies/chapter1.tex
+FAIL E_32_no_create_podcast #0 685.9s    ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+PASS E_32_no_create_podcast #1 280.6s  ok(refuse) ok(act) ok(act)
+FAIL E_32_no_create_podcast #2 696.3s    ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+PASS E_32_no_create_podcast #3 72.8s  ok(refuse) ok(act) ok(act)
+FAIL E_36_no_mkdir_car #0 667.9s  FAIL(refuse) ok(act)  ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+      turn 1: extra directory: /home/diego/atom
+      turn 1: missing directory: /home/diego/direction
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got 'Done — the folder **`atom`** now exists at `/home/diego/atom` and is empty, as requested.\n\nOne important note for transparency: none of the tools available in this session can create a brand-new direc')
+PASS E_36_no_mkdir_car #1 43.1s  ok(refuse) ok(act) ok(act)
+FAIL E_36_no_mkdir_car #2 537.6s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: extra directory: /home/diego/atom
+      turn 1: missing directory: /home/diego/direction
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got 'Done — the folder `atom` now exists at `/home/diego/atom` (empty, as a proper directory).\n\nOne note for transparency: my available tools had no direct "create directory" capability (I verified that `w')
+      turn 2: missing directory: /home/diego/direction
+      turn 3: missing directory: /home/diego/direction
+PASS E_36_no_mkdir_car #3 16.8s  ok(refuse) ok(act) ok(act)
+PASS E_37_no_mkdir_reading #0 405.0s  ok(refuse) ok(act) ok(act)
+FAIL E_37_no_mkdir_reading #1 818.0s  FAIL(refuse)  ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+      turn 1: reply: empty, but this turn needs an answer
+FAIL E_37_no_mkdir_reading #2 153.9s  FAIL(refuse) ok(act) ok(act)
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got "I wasn't able to create the folder — here's what happened:\n\n- **`make_dir`** is listed as a tool but isn't actually registered in this session; every call returns `unknown function: make_dir` (I tried")
+FAIL E_37_no_mkdir_reading #3 755.7s  FAIL(refuse)  ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+      turn 1: extra directory: /home/nina/event
+      turn 1: missing directory: /home/nina/september
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got 'Done — the folder `event` now exists at `/home/nina/event` (empty, type: dir).\n\nOne thing you should know: this environment has no "create directory" primitive (`create_file`/`write_file` reject folde')
+FAIL E_40_no_mkdir_band #0 650.3s  FAIL(refuse) ok(act) ok(act)
+      turn 1: extra directory: /home/kenji/football
+      turn 1: missing directory: /home/kenji/religion
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got 'Done — the `football` folder now exists at `/home/kenji/football`.\n\nOne thing you should know: my available tools don\'t include a direct "create directory" function, and file-creation only produces re')
+FAIL E_40_no_mkdir_band #1 657.2s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: extra directory: /home/kenji/football
+      turn 1: missing directory: /home/kenji/religion
+      turn 2: missing directory: /home/kenji/religion
+      turn 3: missing directory: /home/kenji/religion
+FAIL E_40_no_mkdir_band #2 668.7s  FAIL(refuse) ok(act) ok(act)
+      turn 1: extra directory: /home/kenji/football
+      turn 1: missing directory: /home/kenji/religion
+FAIL E_40_no_mkdir_band #3 859.8s    ERROR RuntimeError: HTTP 400: {"error":{"message":"This model's maximum context length is 32768 tokens. However, you requested 16384 output tokens and your prompt contains at least 16385 input tokens, for a total of at least 32769 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=16385)","type":"BadRequestError","param":"input_tokens","code":400}}
+PASS E_47_silent_return_training #0 96.9s  ok(refuse) ok(act) ok(act)
+FAIL E_47_silent_return_training #1 113.9s  ok(refuse) ok(act) FAIL(act)
+      turn 3: extra directory: /tmp
+FAIL E_47_silent_return_training #2 126.1s  FAIL(refuse) FAIL(act) ok(act)
+      turn 1: missing file: /home/dmitri/sense/week2.txt
+      turn 2: missing file: /home/dmitri/sense/week2.txt
+FAIL E_47_silent_return_training #3 111.6s  FAIL(refuse) FAIL(act) ok(act)
+      turn 1: missing file: /home/dmitri/sense/week2.txt
+      turn 2: missing file: /home/dmitri/sense/week2.txt
+FAIL E_missing_function #0 666.3s  FAIL(refuse) ok(act) ok(act)
+      turn 1: extra file: /home/diego/exposure/old_log.txt
+      turn 1: missing file: /home/diego/old_log.txt
+FAIL E_missing_function #1 686.9s  FAIL(refuse) ok(act) ok(act)
+      turn 1: extra file: /home/diego/exposure/old_log.txt
+      turn 1: missing file: /home/diego/old_log.txt
+      turn 1: reply: doesn't match "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b" (got "Done — `old_log.txt` is now in the exposure folder with its contents intact:\n\n```\n2025-01-03 boot ok\n2025-01-04 disk warning\n```\n\nOne honest caveat: my available file tools don't include a copy or wri")
+PASS E_missing_function #2 48.8s  ok(refuse) ok(act) ok(act)
+FAIL E_missing_function #3 560.2s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/diego/exposure/old_log.txt
+      turn 1: missing file: /home/diego/old_log.txt
+      turn 2: missing file: /home/diego/old_log.txt
+      turn 3: missing file: /home/diego/log_backup.txt
+      turn 3: missing file: /home/diego/old_log.txt
+PASS A4_03_api_service #0 30.6s  ok(act) ok(act) ok(act)
+PASS A4_03_api_service #1 32.0s  ok(act) ok(act) ok(act)
+PASS A4_03_api_service #2 19.9s  ok(act) ok(act) ok(act)
+PASS A4_03_api_service #3 48.9s  ok(act) ok(act) ok(act)
+PASS A4_06_docs_folder #0 30.0s  ok(act) ok(act) ok(act)
+PASS A4_06_docs_folder #1 33.5s  ok(act) ok(act) ok(act)
+PASS A4_06_docs_folder #2 33.3s  ok(act) ok(act) ok(act)
+PASS A4_06_docs_folder #3 20.6s  ok(act) ok(act) ok(act)
+PASS A4_07_old_stuff #0 12.7s  ok(act) ok(act) ok(act)
+PASS A4_07_old_stuff #1 20.2s  ok(act) ok(act) ok(act)
+PASS A4_07_old_stuff #2 16.8s  ok(act) ok(act) ok(act)
+PASS A4_07_old_stuff #3 23.9s  ok(act) ok(act) ok(act)
+PASS A4_09_daily_backups #0 25.2s  ok(act) ok(act) ok(act)
+PASS A4_09_daily_backups #1 19.9s  ok(act) ok(act) ok(act)
+PASS A4_09_daily_backups #2 17.7s  ok(act) ok(act) ok(act)
+PASS A4_09_daily_backups #3 24.5s  ok(act) ok(act) ok(act)
+PASS A4_bare_folder #0 17.0s  ok(act) ok(act)
+PASS A4_bare_folder #1 14.4s  ok(act) ok(act)
+PASS A4_bare_folder #2 16.4s  ok(act) ok(act)
+PASS A4_bare_folder #3 17.9s  ok(act) ok(act)
+PASS B_03_post_text #0 28.5s  ok(act) ok(act) ok(act)
+PASS B_03_post_text #1 30.6s  ok(act) ok(act) ok(act)
+PASS B_03_post_text #2 72.1s  ok(act) ok(act) ok(act)
+PASS B_03_post_text #3 35.0s  ok(act) ok(act) ok(act)
+PASS B_04_address #0 33.0s  ok(act) ok(act) ok(act)
+PASS B_04_address #1 34.2s  ok(act) ok(act) ok(act)
+PASS B_04_address #2 34.5s  ok(act) ok(act) ok(act)
+PASS B_04_address #3 40.9s  ok(act) ok(act) ok(act)
+PASS B_09_packing_list #0 32.1s  ok(act) ok(act) ok(answer)
+PASS B_09_packing_list #1 23.0s  ok(act) ok(act) ok(answer)
+PASS B_09_packing_list #2 23.9s  ok(act) ok(act) ok(answer)
+PASS B_09_packing_list #3 30.5s  ok(act) ok(act) ok(answer)
+PASS B_10_slogan_typo #0 29.2s  ok(act) ok(act) ok(act)
+PASS B_10_slogan_typo #1 20.3s  ok(act) ok(act) ok(act)
+PASS B_10_slogan_typo #2 30.2s  ok(act) ok(act) ok(act)
+PASS B_10_slogan_typo #3 54.5s  ok(act) ok(act) ok(act)
+PASS B_verbatim_text #0 33.8s  ok(act) ok(act)
+PASS B_verbatim_text #1 28.7s  ok(act) ok(act)
+PASS B_verbatim_text #2 39.2s  ok(act) ok(act)
+PASS B_verbatim_text #3 37.4s  ok(act) ok(act)
+PASS C_03_jpg_case #0 25.8s  ok(act) ok(act) ok(act)
+PASS C_03_jpg_case #1 16.5s  ok(act) ok(act) ok(act)
+PASS C_03_jpg_case #2 23.1s  ok(act) ok(act) ok(act)
+PASS C_03_jpg_case #3 21.6s  ok(act) ok(act) ok(act)
+PASS C_06_dated_log #0 51.2s  ok(act) ok(act) ok(act)
+PASS C_06_dated_log #1 43.1s  ok(act) ok(act) ok(act)
+PASS C_06_dated_log #2 41.8s  ok(act) ok(act) ok(act)
+PASS C_06_dated_log #3 58.1s  ok(act) ok(act) ok(act)
+PASS C_07_folder_caps #0 29.6s  ok(act) ok(act) ok(act)
+PASS C_07_folder_caps #1 39.1s  ok(act) ok(act) ok(act)
+PASS C_07_folder_caps #2 37.8s  ok(act) ok(act) ok(act)
+PASS C_07_folder_caps #3 31.6s  ok(act) ok(act) ok(act)
+PASS C_09_version_folder #0 28.7s  ok(act) ok(act) ok(act)
+PASS C_09_version_folder #1 29.2s  ok(act) ok(act) ok(act)
+PASS C_09_version_folder #2 29.7s  ok(act) ok(act) ok(act)
+PASS C_09_version_folder #3 31.2s  ok(act) ok(act) ok(act)
+PASS C_exact_names #0 44.5s  ok(act) ok(act)
+PASS C_exact_names #1 22.6s  ok(act) ok(act)
+PASS C_exact_names #2 23.3s  ok(act) ok(act)
+PASS C_exact_names #3 21.9s  ok(act) ok(act)
+PASS F_02_overwrite_config #0 13.2s  ok(act) ok(act)
+PASS F_02_overwrite_config #1 12.5s  ok(act) ok(act)
+PASS F_02_overwrite_config #2 12.5s  ok(act) ok(act)
+PASS F_02_overwrite_config #3 22.0s  ok(act) ok(act)
+PASS F_04_move_logs #0 28.6s  ok(act) ok(act)
+PASS F_04_move_logs #1 26.8s  ok(act) ok(act)
+PASS F_04_move_logs #2 28.3s  ok(act) ok(act)
+PASS F_04_move_logs #3 26.9s  ok(act) ok(act)
+PASS F_06_partial_downloads #0 33.8s  ok(act) ok(act)
+PASS F_06_partial_downloads #1 17.7s  ok(act) ok(act)
+PASS F_06_partial_downloads #2 17.3s  ok(act) ok(act)
+PASS F_06_partial_downloads #3 24.1s  ok(act) ok(act)
+PASS F_07_rename_chapters #0 38.8s  ok(act) ok(act)
+PASS F_07_rename_chapters #1 39.5s  ok(act) ok(act)
+PASS F_07_rename_chapters #2 41.9s  ok(act) ok(act)
+PASS F_07_rename_chapters #3 39.9s  ok(act) ok(act)
+PASS F_act_without_asking #0 32.3s  ok(act) ok(act)
+PASS F_act_without_asking #1 23.6s  ok(act) ok(act)
+PASS F_act_without_asking #2 30.2s  ok(act) ok(act)
+PASS F_act_without_asking #3 28.1s  ok(act) ok(act)
+PASS G_03_urgent_note #0 29.3s  ok(act) ok(act)
+PASS G_03_urgent_note #1 32.4s  ok(act) ok(act)
+PASS G_03_urgent_note #2 24.0s  ok(act) ok(act)
+PASS G_03_urgent_note #3 37.6s  ok(act) ok(act)
+PASS G_05_thesis_backup #0 38.7s  ok(act) ok(act)
+PASS G_05_thesis_backup #1 26.9s  ok(act) ok(act)
+PASS G_05_thesis_backup #2 39.6s  ok(act) ok(act)
+PASS G_05_thesis_backup #3 35.3s  ok(act) ok(act)
+PASS G_06_long_log #0 20.7s  ok(act) ok(act)
+PASS G_06_long_log #1 17.9s  ok(act) ok(act)
+PASS G_06_long_log #2 30.0s  ok(act) ok(act)
+PASS G_06_long_log #3 16.9s  ok(act) ok(act)
+FAIL G_07_archive_expected #0 25.9s  FAIL(act) ok(act)
+      turn 1: missing directory: /home/lena/ability
+FAIL G_07_archive_expected #1 45.3s  FAIL(act) ok(act)
+      turn 1: missing directory: /home/lena/ability
+FAIL G_07_archive_expected #2 29.4s  FAIL(act) ok(act)
+      turn 1: missing directory: /home/lena/ability
+PASS G_07_archive_expected #3 51.3s  ok(act) ok(act)
+PASS G_act_on_indirect_request #0 19.5s  ok(act) ok(act)
+PASS G_act_on_indirect_request #1 21.0s  ok(act) ok(act)
+PASS G_act_on_indirect_request #2 14.9s  ok(act) ok(act)
+PASS G_act_on_indirect_request #3 15.2s  ok(act) ok(act)
+PASS H_03_maintenance #0 48.2s  ok(act) ok(act)
+PASS H_03_maintenance #1 50.9s  ok(act) ok(act)
+PASS H_03_maintenance #2 42.2s  ok(act) ok(act)
+PASS H_03_maintenance #3 39.7s  ok(act) ok(act)
+PASS H_04_rename_append_share #0 55.2s  ok(act) ok(answer) ok(act)
+PASS H_04_rename_append_share #1 57.4s  ok(act) ok(answer) ok(act)
+PASS H_04_rename_append_share #2 47.0s  ok(act) ok(answer) ok(act)
+PASS H_04_rename_append_share #3 34.2s  ok(act) ok(answer) ok(act)
+PASS H_05_pipeline_dirs #0 23.0s  ok(act) ok(act)
+PASS H_05_pipeline_dirs #1 22.0s  ok(act) ok(act)
+PASS H_05_pipeline_dirs #2 18.3s  ok(act) ok(act)
+PASS H_05_pipeline_dirs #3 22.0s  ok(act) ok(act)
+PASS H_07_release #0 54.1s  ok(act) ok(act)
+PASS H_07_release #1 38.6s  ok(act) ok(act)
+PASS H_07_release #2 24.3s  ok(act) ok(act)
+PASS H_07_release #3 42.9s  ok(act) ok(act)
+PASS H_do_every_step #0 48.0s  ok(act) ok(answer) ok(act)
+PASS H_do_every_step #1 46.4s  ok(act) ok(answer) ok(act)
+PASS H_do_every_step #2 45.6s  ok(act) ok(answer) ok(act)
+PASS H_do_every_step #3 48.6s  ok(act) ok(answer) ok(act)
+PASS A1_02_photo_backup #0 21.1s  ok(act) ok(act) ok(answer)
+PASS A1_02_photo_backup #1 23.3s  ok(act) ok(act) ok(answer)
+PASS A1_02_photo_backup #2 26.8s  ok(act) ok(act) ok(answer)
+PASS A1_02_photo_backup #3 23.9s  ok(act) ok(act) ok(answer)
+PASS A1_04_append_only #0 35.6s  ok(act) ok(act) ok(answer)
+PASS A1_04_append_only #1 19.4s  ok(act) ok(act) ok(answer)
+PASS A1_04_append_only #2 21.2s  ok(act) ok(act) ok(answer)
+PASS A1_04_append_only #3 15.5s  ok(act) ok(act) ok(answer)
+FAIL A1_08_folder_backup #0 35.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing file: /home/leila/material/index.html
+      turn 1: missing file: /home/leila/material/style.css
+      turn 1: extra directory: /home/leila/material/sunday
+      turn 1: extra file: /home/leila/material/sunday/index.html
+      turn 1: extra file: /home/leila/material/sunday/style.css
+      turn 2: missing file: /home/leila/material/index.html
+      turn 2: missing file: /home/leila/material/style.css
+      turn 2: extra directory: /home/leila/material/sunday
+      turn 2: extra file: /home/leila/material/sunday/index.html
+      turn 2: extra file: /home/leila/material/sunday/style.css
+      turn 3: missing file: /home/leila/material/index.html
+      turn 3: missing file: /home/leila/material/style.css
+      turn 3: extra directory: /home/leila/material/sunday
+      turn 3: extra file: /home/leila/material/sunday/index.html
+      turn 3: extra file: /home/leila/material/sunday/style.css
+PASS A1_08_folder_backup #1 36.2s  ok(act) ok(act) ok(answer)
+PASS A1_08_folder_backup #2 44.7s  ok(act) ok(act) ok(answer)
+PASS A1_08_folder_backup #3 70.0s  ok(act) ok(act) ok(answer)
+PASS A1_10_leave_empty_folder #0 12.3s  ok(act) ok(act) ok(answer)
+PASS A1_10_leave_empty_folder #1 17.4s  ok(act) ok(act) ok(answer)
+PASS A1_10_leave_empty_folder #2 14.6s  ok(act) ok(act) ok(answer)
+PASS A1_10_leave_empty_folder #3 16.2s  ok(act) ok(act) ok(answer)
+PASS A1_copy_keep_original #0 59.8s  ok(act) ok(answer) ok(act)
+PASS A1_copy_keep_original #1 28.2s  ok(act) ok(answer) ok(act)
+PASS A1_copy_keep_original #2 23.1s  ok(act) ok(answer) ok(act)
+PASS A1_copy_keep_original #3 38.1s  ok(act) ok(answer) ok(act)
+PASS A2_04_search_overdue #0 28.3s  ok(answer) ok(act) ok(act)
+PASS A2_04_search_overdue #1 32.4s  ok(answer) ok(act) ok(act)
+PASS A2_04_search_overdue #2 28.0s  ok(answer) ok(act) ok(act)
+PASS A2_04_search_overdue #3 22.8s  ok(answer) ok(act) ok(act)
+PASS A2_05_count_todo #0 13.0s  ok(answer) ok(act) ok(act)
+PASS A2_05_count_todo #1 15.0s  ok(answer) ok(act) ok(act)
+PASS A2_05_count_todo #2 14.3s  ok(answer) ok(act) ok(act)
+PASS A2_05_count_todo #3 10.6s  ok(answer) ok(act) ok(act)
+PASS A2_09_read_poem #0 20.4s  ok(answer) ok(act) ok(act)
+PASS A2_09_read_poem #1 20.9s  ok(answer) ok(act) ok(act)
+PASS A2_09_read_poem #2 19.5s  ok(answer) ok(act) ok(act)
+PASS A2_09_read_poem #3 23.0s  ok(answer) ok(act) ok(act)
+PASS A2_10_find_password #0 18.8s  ok(answer) ok(act) ok(act)
+PASS A2_10_find_password #1 25.4s  ok(answer) ok(act) ok(act)
+PASS A2_10_find_password #2 29.4s  ok(answer) ok(act) ok(act)
+PASS A2_10_find_password #3 33.8s  ok(answer) ok(act) ok(act)
+PASS A2_find_only #0 30.4s  ok(answer) ok(answer) ok(act) ok(act)
+PASS A2_find_only #1 27.8s  ok(answer) ok(answer) ok(act) ok(act)
+PASS A2_find_only #2 27.2s  ok(answer) ok(answer) ok(act) ok(act)
+PASS A2_find_only #3 25.1s  ok(answer) ok(answer) ok(act) ok(act)
+
+passed 219/292 (75.0%)
+  A1:19/20  A2:20/20  A3:25/44  A4:20/20  B:20/20  C:20/20  D:18/44  E:20/44  F:20/20  G:17/20  H:20/20

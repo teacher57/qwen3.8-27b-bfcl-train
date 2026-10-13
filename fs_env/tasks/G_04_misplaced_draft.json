@@ -1,0 +1,80 @@
+{
+  "id": "G_04_misplaced_draft",
+  "cause": "G",
+  "cause_title": "Did nothing / just answered when action was expected",
+  "trap": "'It should really be in drafts' is a request, but the model only confirms the file is here. Expected: move it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "draft.txt": "intro paragraph\n",
+          "drafts": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "I wonder if there's a file called draft.txt here. If so, it should really be in the drafts folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {}
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "draft.txt",
+            "destination": "drafts"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "drafts": {
+              "draft.txt": "intro paragraph\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a copy of it named draft_v2.txt in drafts.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "drafts/draft.txt",
+            "destination": "drafts/draft_v2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "drafts": {
+              "draft.txt": "intro paragraph\n",
+              "draft_v2.txt": "intro paragraph\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "list_dir",
+        "arguments": {}
+      }
+    ],
+    "reply": "Yes, draft.txt is here."
+  }
+}

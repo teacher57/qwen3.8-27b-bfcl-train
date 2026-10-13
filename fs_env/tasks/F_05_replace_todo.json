@@ -1,0 +1,70 @@
+{
+  "id": "F_05_replace_todo",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Replacing a whole file makes the model ask whether to keep the old items. Expected: replace it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "todo.txt": "write report\nbook flights\n",
+          "done": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Replace the contents of todo.txt with 'nothing left'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "todo.txt",
+            "content": "nothing left"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {},
+            "todo.txt": "nothing left"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it to done/todo_final.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "todo.txt",
+            "destination": "done/todo_final.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "todo_final.txt": "nothing left"
+            },
+            "todo.txt": "nothing left"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [],
+    "reply": "todo.txt still has 2 items. Do you want to remove them?"
+  }
+}

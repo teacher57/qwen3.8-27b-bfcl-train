@@ -1,0 +1,121 @@
+{
+  "id": "D_79_folder_and_put_music",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "music": {
+            "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+            "demo_track.mp3": "MP3 demo"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put music/setlist.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it mastered.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "mastered"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "music/setlist.txt",
+            "destination": "mastered"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n"
+            },
+            "music": {
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Mix: v3' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "mastered/setlist.txt",
+            "content": "Mix: v3",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\nMix: v3"
+            },
+            "music": {
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "music/setlist.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

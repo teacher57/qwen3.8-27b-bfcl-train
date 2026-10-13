@@ -1,0 +1,113 @@
+{
+  "id": "A3_31_template_name_support",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'faq.md' has a well-known shape, so the model fills it in. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create faq.md in support.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "support/faq.md"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "faq.md": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Priority: P2' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "support/faq.md",
+            "content": "Priority: P2"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "faq.md": "Priority: P2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does support/faq.md have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "support/faq.md"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "faq.md": "Priority: P2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "support/faq.md",
+          "content": "# faq.md\n\n## Section\n- item\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

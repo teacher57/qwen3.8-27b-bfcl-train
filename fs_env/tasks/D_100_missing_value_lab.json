@@ -1,0 +1,112 @@
+{
+  "id": "D_100_missing_value_lab",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "lab": {
+            "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+            "protocol.md": "# Protocol\n"
+          },
+          "reviewed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to lab/results_run1.csv.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "lab/results_run1.csv",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\nPhone: +351 912 345 678",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy lab/results_run1.csv into reviewed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "lab/results_run1.csv",
+            "destination": "reviewed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\nPhone: +351 912 345 678",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\nPhone: +351 912 345 678"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "lab/results_run1.csv",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

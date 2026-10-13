@@ -1,0 +1,106 @@
+{
+  "id": "B_02_meeting_notice",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model rephrases the notice ('Thursday at 3 PM in Room B'). Expected: the text exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "notices": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'Meeting moved to Thursday, 3 PM. Room B.' to notices/notice.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "notices/notice.txt",
+            "content": "Meeting moved to Thursday, 3 PM. Room B."
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "notices": {
+              "notice.txt": "Meeting moved to Thursday, 3 PM. Room B."
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Bring laptops.'",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "notices/notice.txt",
+            "content": "Bring laptops.",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "notices": {
+              "notice.txt": "Meeting moved to Thursday, 3 PM. Room B.\nBring laptops."
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "What's the second line of the notice?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "notices/notice.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "Bring laptops"
+        ],
+        "example": "The second line is: Bring laptops."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "notices": {
+              "notice.txt": "Meeting moved to Thursday, 3 PM. Room B.\nBring laptops."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "notices/notice.txt",
+          "content": "The meeting has been moved to Thursday at 3 PM in Room B."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

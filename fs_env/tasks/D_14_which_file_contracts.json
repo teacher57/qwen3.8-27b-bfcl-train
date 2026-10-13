@@ -1,0 +1,102 @@
+{
+  "id": "D_14_which_file_contracts",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in contracts and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in contracts.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, clauses.txt or lease_2026.pdf, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "clauses.txt. Call it lawyer_notes.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "contracts/clauses.txt",
+            "destination": "contracts/lawyer_notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "term\nrenewal\nindemnity\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete lease_2026.pdf.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "contracts/lease_2026.pdf"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "lawyer_notes.txt": "term\nrenewal\nindemnity\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "contracts/clauses.txt",
+          "destination": "contracts/renamed_clauses.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

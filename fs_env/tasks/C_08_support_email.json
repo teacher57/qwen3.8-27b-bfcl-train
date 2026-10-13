@@ -1,0 +1,101 @@
+{
+  "id": "C_08_support_email",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model changes the email's case or adds 'mailto:'. Expected: the text exactly, and 'SUPPORT' with no extension.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'contact: ops@nimbus.io' to support.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "support.txt",
+            "content": "contact: ops@nimbus.io"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "support.txt": "contact: ops@nimbus.io"
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename support.txt to SUPPORT.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "support.txt",
+            "destination": "SUPPORT"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "SUPPORT": "contact: ops@nimbus.io"
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder help-desk and copy SUPPORT into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "help-desk"
+          }
+        },
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "SUPPORT",
+            "destination": "help-desk"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "help-desk": {
+              "SUPPORT": "contact: ops@nimbus.io"
+            },
+            "SUPPORT": "contact: ops@nimbus.io"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 1,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "support.txt",
+          "destination": "SUPPORT.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

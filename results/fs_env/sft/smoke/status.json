@@ -1,0 +1,33 @@
+{
+ "stage": "finished",
+ "started": "2026-10-12T16:59:15",
+ "args": {
+  "data": "/root/sft/train_v1.jsonl",
+  "model": "/dev/shm/q38",
+  "out": "/root/sft/smoke",
+  "epochs": 1.0,
+  "lr": 5e-05,
+  "rank": 16,
+  "alpha": 32,
+  "grad_accum": 8,
+  "max_len": 8192,
+  "probe_every": 10,
+  "max_act_drop": 0.1,
+  "smoke": true
+ },
+ "elapsed_s": 427,
+ "updated": "2026-10-12T17:06:22",
+ "gpu_mem_gb": 37.2,
+ "data": {
+  "examples": 688,
+  "dropped": {},
+  "tokens": 1348472,
+  "trained_tokens": 132660
+ },
+ "model_class": "AutoModelForCausalLM",
+ "trainable_params": 116727808,
+ "step": 3,
+ "max_steps": 3,
+ "eta_s": 0,
+ "last_loss": 0.3145509958267212
+}

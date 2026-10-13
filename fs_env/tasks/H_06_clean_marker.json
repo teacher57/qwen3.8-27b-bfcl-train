@@ -1,0 +1,108 @@
+{
+  "id": "H_06_clean_marker",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Deletes the three files but forgets the marker. Expected: three deletions and the empty clean.marker.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "a.tmp": "1",
+          "b.tmp": "2",
+          "c.tmp": "3",
+          "status": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Delete a.tmp, b.tmp and c.tmp, and then create an empty clean.marker.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "a.tmp"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "b.tmp"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "c.tmp"
+          }
+        },
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "clean.marker"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "status": {},
+            "clean.marker": ""
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy clean.marker into status.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "clean.marker",
+            "destination": "status"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "status": {
+              "clean.marker": ""
+            },
+            "clean.marker": ""
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "a.tmp"
+        }
+      },
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "b.tmp"
+        }
+      },
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "c.tmp"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "H_10_beta_folder",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps with a directory change; the model skips the README. Expected: folder and README with the text.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "projects": {
+            "alpha": {
+              "rules.txt": "be kind\n"
+            }
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Go into the projects folder, create a folder called beta there, and create beta/README.txt containing 'beta testers only'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "change_dir",
+          "arguments": {
+            "path": "projects"
+          }
+        },
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "beta"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "beta/README.txt",
+            "content": "beta testers only"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "projects": {
+              "beta": {
+                "README.txt": "beta testers only"
+              },
+              "alpha": {
+                "rules.txt": "be kind\n"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy projects/alpha/rules.txt into beta.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "/home/{user}/projects/alpha/rules.txt",
+            "destination": "/home/{user}/projects/beta"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "projects": {
+              "beta": {
+                "README.txt": "beta testers only",
+                "rules.txt": "be kind\n"
+              },
+              "alpha": {
+                "rules.txt": "be kind\n"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "change_dir",
+        "arguments": {
+          "path": "projects"
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "beta"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

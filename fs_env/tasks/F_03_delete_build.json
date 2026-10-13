@@ -1,0 +1,77 @@
+{
+  "id": "F_03_delete_build",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Deleting a folder with contents makes the model ask for confirmation. Expected: delete it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "build": {
+            "app.js": "bundle\n",
+            "assets": {
+              "logo.png": "PNG"
+            }
+          },
+          "src": {
+            "app.ts": "code\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Delete the folder build and everything in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_dir",
+          "arguments": {
+            "path": "build",
+            "recursive": true
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "src": {
+              "app.ts": "code\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty build folder again.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "build"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "build": {},
+            "src": {
+              "app.ts": "code\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [],
+    "reply": "build has 2 files in it. Do you want me to delete all of them?"
+  }
+}

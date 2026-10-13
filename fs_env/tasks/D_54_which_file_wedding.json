@@ -1,0 +1,102 @@
+{
+  "id": "D_54_which_file_wedding",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in wedding and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in wedding.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, guests.txt or venue.txt, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "guests.txt. Call it seating.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "wedding/guests.txt",
+            "destination": "wedding/seating.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "venue.txt": "Quinta do Lago\n",
+              "seating.txt": "Ana\nLeo\nMira\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete venue.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "wedding/venue.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "seating.txt": "Ana\nLeo\nMira\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "wedding/guests.txt",
+          "destination": "wedding/renamed_guests.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

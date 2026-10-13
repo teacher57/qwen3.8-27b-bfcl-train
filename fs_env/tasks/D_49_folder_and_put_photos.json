@@ -1,0 +1,121 @@
+{
+  "id": "D_49_folder_and_put_photos",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "captions.txt": "beach: golden hour\nhike: fog\n",
+            "beach.jpg": "JPEG beach"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put photos/captions.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it album_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "album_2026"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "photos/captions.txt",
+            "destination": "album_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "captions.txt": "beach: golden hour\nhike: fog\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'All rights reserved' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "album_2026/captions.txt",
+            "content": "All rights reserved",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "captions.txt": "beach: golden hour\nhike: fog\nAll rights reserved"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "photos/captions.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

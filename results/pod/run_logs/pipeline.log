@@ -1,0 +1,72 @@
+2026-10-11T07:56:06Z setup: start
+2026-10-11T07:59:39Z SETUP_DONE (model 52G)
+2026-10-11T08:00:37Z vllm: starting
+2026-10-11T08:08:48Z run: start (qwen3.8-27b-FC, threads 32)
+2026-10-11T08:08:48Z generate: simple_python
+2026-10-11T08:11:09Z done: simple_python
+2026-10-11T08:11:09Z generate: simple_java
+2026-10-11T08:29:03Z run: stopped to restart as one generate pass with max_tokens 16384 (simple_java entry stuck in a thinking loop)
+2026-10-11T08:29:41Z run: start (qwen3.8-27b-FC, threads 32, max_tokens 16384)
+2026-10-11T08:30:15Z scored: simple_python
+2026-10-11T08:51:20Z scored: irrelevance
+2026-10-11T10:03:28Z scored: live_parallel
+2026-10-11T10:04:33Z scored: live_parallel_multiple
+2026-10-11T10:05:37Z scored: live_irrelevance
+2026-10-11T10:06:43Z scored: live_relevance
+2026-10-11T10:10:48Z scored: live_multiple
+2026-10-11T10:14:53Z scored: multiple
+2026-10-11T10:16:58Z scored: live_simple
+2026-10-11T10:23:04Z scored: parallel
+2026-10-11T10:33:09Z scored: parallel_multiple
+2026-10-11T11:15:15Z scored: simple_java
+2026-10-11T11:19:20Z scored: simple_javascript
+2026-10-11T13:03:28Z scored: multi_turn_base
+2026-10-11T18:21:39Z scored: multi_turn_long_context
+2026-10-11T18:28:40Z run: stopped to restart with 16 threads (32 overflowed the KV cache on multi-turn: 98% used, prefix-cache hits 2%)
+2026-10-11T18:28:58Z run: start (qwen3.8-27b-FC, threads 16, max_tokens 16384)
+2026-10-11T18:29:33Z scored: simple_python
+2026-10-11T18:29:37Z scored: simple_java
+2026-10-11T18:29:42Z scored: simple_javascript
+2026-10-11T18:29:46Z scored: parallel
+2026-10-11T18:29:51Z scored: multiple
+2026-10-11T18:29:55Z scored: parallel_multiple
+2026-10-11T18:30:00Z scored: irrelevance
+2026-10-11T18:30:05Z scored: live_simple
+2026-10-11T18:30:09Z scored: live_multiple
+2026-10-11T18:30:14Z scored: live_parallel
+2026-10-11T18:30:18Z scored: live_parallel_multiple
+2026-10-11T18:30:23Z scored: live_irrelevance
+2026-10-11T18:30:27Z scored: live_relevance
+2026-10-11T18:30:33Z scored: multi_turn_base
+2026-10-11T18:30:38Z scored: multi_turn_long_context
+2026-10-11T20:38:45Z scored: multi_turn_miss_func
+2026-10-11T21:51:52Z scored: multi_turn_miss_param
+2026-10-11T22:18:57Z scored: memory_vector
+2026-10-11T22:42:02Z scored: memory_kv
+2026-10-11T23:08:48Z run: stopped; skipped the 2 blocking rec_sum setup conversations (student-8, student-9), placeholders written; restarting for the 50 student questions
+2026-10-11T23:08:55Z run: start (qwen3.8-27b-FC, threads 16, max_tokens 16384)
+2026-10-11T23:09:29Z scored: simple_python
+2026-10-11T23:09:33Z scored: simple_java
+2026-10-11T23:09:37Z scored: simple_javascript
+2026-10-11T23:09:42Z scored: parallel
+2026-10-11T23:09:46Z scored: multiple
+2026-10-11T23:09:50Z scored: parallel_multiple
+2026-10-11T23:09:54Z scored: irrelevance
+2026-10-11T23:09:59Z scored: live_simple
+2026-10-11T23:10:03Z scored: live_multiple
+2026-10-11T23:10:07Z scored: live_parallel
+2026-10-11T23:10:12Z scored: live_parallel_multiple
+2026-10-11T23:10:16Z scored: live_irrelevance
+2026-10-11T23:10:20Z scored: live_relevance
+2026-10-11T23:10:25Z scored: multi_turn_base
+2026-10-11T23:10:30Z scored: multi_turn_miss_func
+2026-10-11T23:10:35Z scored: multi_turn_miss_param
+2026-10-11T23:10:40Z scored: multi_turn_long_context
+2026-10-11T23:10:45Z scored: memory_kv
+2026-10-11T23:10:47Z generate: finished
+2026-10-11T23:10:49Z scored: memory_vector
+2026-10-11T23:10:54Z scored: memory_rec_sum
+2026-10-11T23:12:02Z evaluate: all
+2026-10-11T23:12:02Z RUN_DONE
+2026-10-11T23:16:04Z fix: regenerating the 4 no-tool live_irrelevance entries
+2026-10-11T23:19:04Z fix: done (4 no-tool entries regenerated, live_irrelevance rescored, overall re-evaluated)

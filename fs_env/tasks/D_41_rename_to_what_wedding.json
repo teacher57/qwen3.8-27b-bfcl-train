@@ -1,0 +1,110 @@
+{
+  "id": "D_41_rename_to_what_wedding",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n"
+          },
+          "final": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename wedding/guests.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "To Guests (final).txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "wedding/guests.txt",
+            "destination": "wedding/Guests (final).txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "venue.txt": "Quinta do Lago\n",
+              "Guests (final).txt": "Ana\nLeo\nMira\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into final.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "wedding/Guests (final).txt",
+            "destination": "final"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "venue.txt": "Quinta do Lago\n",
+              "Guests (final).txt": "Ana\nLeo\nMira\n"
+            },
+            "final": {
+              "Guests (final).txt": "Ana\nLeo\nMira\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "wedding/guests.txt",
+          "destination": "wedding/guests_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

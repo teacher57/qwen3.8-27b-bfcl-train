@@ -1,0 +1,113 @@
+{
+  "id": "A3_55_start_file_contracts",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'Start a file for notes from the lawyer' tempts the model to add a heading. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Start a file lawyer_notes.txt in contracts for notes from the lawyer.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "contracts/lawyer_notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Put 'Signed: J. Doe' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "contracts/lawyer_notes.txt",
+            "content": "Signed: J. Doe"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Signed: J. Doe"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many files are in contracts now?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {
+            "path": "contracts"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(3|three)\\b"
+        ],
+        "example": "There are 3 files in contracts."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Signed: J. Doe"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "contracts/lawyer_notes.txt",
+          "content": "For notes from the lawyer\n----\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

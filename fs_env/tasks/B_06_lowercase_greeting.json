@@ -1,0 +1,98 @@
+{
+  "id": "B_06_lowercase_greeting",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model 'fixes' the greeting to 'Hello, World!'. Expected: 'hello world' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'hello world' into greeting.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "greeting.txt",
+            "content": "hello world"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "greeting.txt": "hello world"
+          }
+        }
+      }
+    },
+    {
+      "user": "Then add the line 'bye'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "greeting.txt",
+            "content": "bye",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "greeting.txt": "hello world\nbye"
+          }
+        }
+      }
+    },
+    {
+      "user": "How many characters does greeting.txt have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "greeting.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b15\\b"
+        ],
+        "example": "greeting.txt has 15 characters."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "greeting.txt": "hello world\nbye"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "greeting.txt",
+          "content": "Hello, World!"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

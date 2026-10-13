@@ -1,0 +1,121 @@
+{
+  "id": "A3_77_two_files_wedding",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Two new files with a stated purpose; the model seeds one or both with content. Expected: both empty.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create two files in wedding, seating.txt and wedding_notes.txt, for the seating plan.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "wedding/seating.txt"
+          }
+        },
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "wedding/wedding_notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n",
+              "seating.txt": "",
+              "wedding_notes.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Dress code: garden formal' into seating.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "wedding/seating.txt",
+            "content": "Dress code: garden formal"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n",
+              "seating.txt": "Dress code: garden formal",
+              "wedding_notes.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete wedding/venue.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "wedding/venue.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "seating.txt": "Dress code: garden formal",
+              "wedding_notes.txt": ""
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "wedding/seating.txt"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "wedding/wedding_notes.txt",
+          "content": "Notes\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

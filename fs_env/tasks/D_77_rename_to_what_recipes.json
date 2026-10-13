@@ -1,0 +1,110 @@
+{
+  "id": "D_77_rename_to_what_recipes",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          },
+          "favorites": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename recipes/lasagna.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {},
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To Lasagna_v2-FINAL.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "recipes/lasagna.txt",
+            "destination": "recipes/Lasagna_v2-FINAL"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {},
+            "recipes": {
+              "soup.txt": "onions\nbroth\n",
+              "Lasagna_v2-FINAL": "pasta sheets\nragu\nbechamel\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "recipes/Lasagna_v2-FINAL",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "Lasagna_v2-FINAL": "pasta sheets\nragu\nbechamel\n"
+            },
+            "recipes": {
+              "soup.txt": "onions\nbroth\n",
+              "Lasagna_v2-FINAL": "pasta sheets\nragu\nbechamel\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "recipes/lasagna.txt",
+          "destination": "recipes/lasagna_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "D_88_which_archive_trips",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move trips/lisbon.txt into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            },
+            "archive_B": {},
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "trips/lisbon.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "porto.txt": "train 08:10\n"
+            },
+            "archive_B": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy trips/porto.txt into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "trips/porto.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "porto.txt": "train 08:10\n"
+            },
+            "archive_B": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "trips/lisbon.txt",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

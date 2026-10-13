@@ -1,0 +1,605 @@
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 24.47it/s]
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 24.57it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 79.17%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 30.91it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel
+✅ Test completed: live_parallel. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 40.90it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel_multiple
+✅ Test completed: live_parallel_multiple. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 36.33it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.82it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_relevance
+✅ Test completed: live_relevance. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 40.47it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_multiple
+✅ Test completed: live_multiple. 🎯 Accuracy: 79.11%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.65it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  2.65it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multiple
+✅ Test completed: multiple. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 28.67it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_simple
+✅ Test completed: live_simple. 🎯 Accuracy: 86.43%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 25.97it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel
+✅ Test completed: parallel. 🎯 Accuracy: 92.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 24.93it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 85.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 20.73it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_java
+✅ Test completed: simple_java. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 31.30it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_javascript
+✅ Test completed: simple_javascript. 🎯 Accuracy: 70.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 33.66it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 72.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.37it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.37it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.16it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.16it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 24.01it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_java
+✅ Test completed: simple_java. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 31.18it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_javascript
+✅ Test completed: simple_javascript. 🎯 Accuracy: 70.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 35.04it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel
+✅ Test completed: parallel. 🎯 Accuracy: 92.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 25.39it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multiple
+✅ Test completed: multiple. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 28.32it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 85.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 20.87it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 79.17%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 30.29it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_simple
+✅ Test completed: live_simple. 🎯 Accuracy: 86.43%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 26.28it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_multiple
+✅ Test completed: live_multiple. 🎯 Accuracy: 79.11%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.55it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel
+✅ Test completed: live_parallel. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 40.82it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel_multiple
+✅ Test completed: live_parallel_multiple. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 35.75it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.32it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_relevance
+✅ Test completed: live_relevance. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 41.08it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 72.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.30it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.30it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.15it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.15it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 53.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 51.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: memory_vector
+✅ Test completed: memory_vector. 🎯 Accuracy: 82.58%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.85it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: memory_kv
+✅ Test completed: memory_kv. 🎯 Accuracy: 72.90%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  9.42it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  9.40it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 23.86it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_java
+✅ Test completed: simple_java. 🎯 Accuracy: 59.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 31.32it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_javascript
+✅ Test completed: simple_javascript. 🎯 Accuracy: 70.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 35.44it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel
+✅ Test completed: parallel. 🎯 Accuracy: 92.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 25.36it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multiple
+✅ Test completed: multiple. 🎯 Accuracy: 92.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 28.41it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 85.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 20.86it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 79.17%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 30.26it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_simple
+✅ Test completed: live_simple. 🎯 Accuracy: 86.43%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 26.21it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_multiple
+✅ Test completed: live_multiple. 🎯 Accuracy: 79.11%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.44it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.44it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel
+✅ Test completed: live_parallel. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 40.24it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_parallel_multiple
+✅ Test completed: live_parallel_multiple. 🎯 Accuracy: 75.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 36.16it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.66it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_relevance
+✅ Test completed: live_relevance. 🎯 Accuracy: 81.25%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 41.32it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 72.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.56it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.56it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 53.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 51.50%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.15it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  1.15it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: memory_kv
+✅ Test completed: memory_kv. 🎯 Accuracy: 72.90%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  9.34it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  9.33it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: memory_vector
+✅ Test completed: memory_vector. 🎯 Accuracy: 82.58%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.56it/s]
+🦍 Model: qwen3.8-27b-FC
+🔍 Running test: memory_rec_sum
+✅ Test completed: memory_rec_sum. 🎯 Accuracy: 61.29%
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.04it/s]
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+🔍 Running test: simple_java
+✅ Test completed: simple_java. 🎯 Accuracy: 59.00%
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 79.17%
+🔍 Running test: multiple
+✅ Test completed: multiple. 🎯 Accuracy: 92.50%
+🔍 Running test: parallel
+✅ Test completed: parallel. 🎯 Accuracy: 92.00%
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 85.00%
+🔍 Running test: simple_javascript
+✅ Test completed: simple_javascript. 🎯 Accuracy: 70.00%
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+🔍 Running test: live_multiple
+✅ Test completed: live_multiple. 🎯 Accuracy: 79.11%
+🔍 Running test: live_parallel
+✅ Test completed: live_parallel. 🎯 Accuracy: 81.25%
+🔍 Running test: live_parallel_multiple
+✅ Test completed: live_parallel_multiple. 🎯 Accuracy: 75.00%
+🔍 Running test: live_relevance
+✅ Test completed: live_relevance. 🎯 Accuracy: 81.25%
+🔍 Running test: live_simple
+✅ Test completed: live_simple. 🎯 Accuracy: 86.43%
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 72.50%
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 53.00%
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 51.50%
+🔍 Running test: memory_kv
+✅ Test completed: memory_kv. 🎯 Accuracy: 72.90%
+🔍 Running test: memory_rec_sum
+✅ Test completed: memory_rec_sum. 🎯 Accuracy: 61.29%
+🔍 Running test: memory_vector
+✅ Test completed: memory_vector. 🎯 Accuracy: 82.58%
+Number of models evaluated: 100%|██████████| 1/1 [00:03<00:00,  3.63s/it]Number of models evaluated: 100%|██████████| 1/1 [00:03<00:00,  3.63s/it]
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]🦍 Model: qwen3.8-27b-FC
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00, 10.14it/s]
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 92.50%
+🔍 Running test: simple_java
+✅ Test completed: simple_java. 🎯 Accuracy: 59.00%
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 79.17%
+🔍 Running test: multiple
+✅ Test completed: multiple. 🎯 Accuracy: 92.50%
+🔍 Running test: parallel
+✅ Test completed: parallel. 🎯 Accuracy: 92.00%
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 85.00%
+🔍 Running test: simple_javascript
+✅ Test completed: simple_javascript. 🎯 Accuracy: 70.00%
+🔍 Running test: live_irrelevance
+✅ Test completed: live_irrelevance. 🎯 Accuracy: 74.89%
+🔍 Running test: live_multiple
+✅ Test completed: live_multiple. 🎯 Accuracy: 79.11%
+🔍 Running test: live_parallel
+✅ Test completed: live_parallel. 🎯 Accuracy: 81.25%
+🔍 Running test: live_parallel_multiple
+✅ Test completed: live_parallel_multiple. 🎯 Accuracy: 75.00%
+🔍 Running test: live_relevance
+✅ Test completed: live_relevance. 🎯 Accuracy: 81.25%
+🔍 Running test: live_simple
+✅ Test completed: live_simple. 🎯 Accuracy: 86.43%
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 72.50%
+🔍 Running test: multi_turn_long_context
+✅ Test completed: multi_turn_long_context. 🎯 Accuracy: 64.00%
+🔍 Running test: multi_turn_miss_func
+✅ Test completed: multi_turn_miss_func. 🎯 Accuracy: 53.00%
+🔍 Running test: multi_turn_miss_param
+✅ Test completed: multi_turn_miss_param. 🎯 Accuracy: 51.50%
+🔍 Running test: memory_kv
+✅ Test completed: memory_kv. 🎯 Accuracy: 72.90%
+🔍 Running test: memory_rec_sum
+✅ Test completed: memory_rec_sum. 🎯 Accuracy: 61.29%
+🔍 Running test: memory_vector
+✅ Test completed: memory_vector. 🎯 Accuracy: 82.58%
+Number of models evaluated: 100%|██████████| 1/1 [00:03<00:00,  3.65s/it]Number of models evaluated: 100%|██████████| 1/1 [00:03<00:00,  3.65s/it]
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-results/score/data_overall.csv for overall evaluation results on BFCL V4.
+See /root/bfcl-results/score/data_live.csv, /root/bfcl-results/score/data_non_live.csv, /root/bfcl-results/score/data_multi_turn.csv, /root/bfcl-results/score/data_agentic.csv and /root/bfcl-results/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.

@@ -1,0 +1,1 @@
+"I can't directly create files on your computer, as I don't have access to your file system. However, you can easily create the file yourself using one of these methods:\n\n### Option 1: Using Terminal/Command Line\nOpen your terminal (macOS/Linux) or Command Prompt/PowerShell (Windows) and run:\n\n**macO"

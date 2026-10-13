@@ -1,0 +1,112 @@
+{
+  "id": "D_16_which_line_service",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for server.py. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "service": {
+            "server.py": "import app\napp.run()\n",
+            "config.toml": "port = 8080\n"
+          },
+          "deploy": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to service/server.py.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {},
+            "service": {
+              "server.py": "import app\napp.run()\n",
+              "config.toml": "port = 8080\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'PORT=8443 ./start.sh --prod'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "service/server.py",
+            "content": "PORT=8443 ./start.sh --prod",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {},
+            "service": {
+              "server.py": "import app\napp.run()\nPORT=8443 ./start.sh --prod",
+              "config.toml": "port = 8080\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into deploy.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "service/server.py",
+            "destination": "deploy"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {
+              "server.py": "import app\napp.run()\nPORT=8443 ./start.sh --prod"
+            },
+            "service": {
+              "server.py": "import app\napp.run()\nPORT=8443 ./start.sh --prod",
+              "config.toml": "port = 8080\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "service/server.py",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "E_17_no_write_support",
+  "cause": "E",
+  "cause_title": "Worked around a missing function instead of saying it can't",
+  "trap": "With write_file withheld, the model creates an empty ticket_883.txt as a partial step. Expected: say it can't write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          },
+          "closed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'Reset link sent; ETA 24h.' into support/ticket_883.txt.",
+      "expect": "refuse",
+      "withheld_tools": [
+        "write_file"
+      ],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b"
+        ],
+        "example": "I'm unable to write to files at the moment."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Okay, you should be able to now.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "support/ticket_883.txt",
+            "content": "Reset link sent; ETA 24h."
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "ticket_883.txt": "Reset link sent; ETA 24h."
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into closed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "support/ticket_883.txt",
+            "destination": "closed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {
+              "ticket_883.txt": "Reset link sent; ETA 24h."
+            },
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n",
+              "ticket_883.txt": "Reset link sent; ETA 24h."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "support/ticket_883.txt"
+        }
+      }
+    ],
+    "reply": "I created the file but couldn't write the text."
+  }
+}

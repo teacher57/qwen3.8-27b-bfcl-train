@@ -1,0 +1,95 @@
+{
+  "id": "A3_36_create_with_line_music",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "music": {
+            "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+            "demo_track.mp3": "MP3 demo"
+          },
+          "mastered": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create music/lyrics.txt for the song lyrics and put 'BPM 128, key of F# minor' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "music/lyrics.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "music/lyrics.txt",
+            "content": "BPM 128, key of F# minor"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {},
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo",
+              "lyrics.txt": "BPM 128, key of F# minor"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into mastered.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "music/lyrics.txt",
+            "destination": "mastered"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "lyrics.txt": "BPM 128, key of F# minor"
+            },
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo",
+              "lyrics.txt": "BPM 128, key of F# minor"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "music/lyrics.txt",
+          "content": "For the song lyrics\n\nBPM 128, key of F# minor\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

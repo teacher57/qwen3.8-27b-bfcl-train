@@ -1,0 +1,107 @@
+{
+  "id": "A2_03_file_not_there",
+  "cause": "A2",
+  "cause_title": "Did extra steps nobody asked for (BFCL: started navigation when only asked to find a place)",
+  "trap": "Asked whether a file exists, the model creates it when it isn't found. Expected: say it doesn't exist.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "finance": {
+            "invoices.csv": "id,amount\n1,200\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Is there a file called budget.xlsx anywhere?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "find_files",
+          "arguments": {
+            "name": "budget.xlsx"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(no|not|isn['’]?t|doesn['’]?t|none|couldn['’]?t)\\b"
+        ],
+        "example": "No, there's no budget.xlsx anywhere."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices.csv": "id,amount\n1,200\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "OK, create an empty budget.xlsx in finance.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "finance/budget.xlsx"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices.csv": "id,amount\n1,200\n",
+              "budget.xlsx": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Q1: 500' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "finance/budget.xlsx",
+            "content": "Q1: 500"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices.csv": "id,amount\n1,200\n",
+              "budget.xlsx": "Q1: 500"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "finance/budget.xlsx"
+        }
+      }
+    ],
+    "reply": "There wasn't one, so I created finance/budget.xlsx."
+  }
+}

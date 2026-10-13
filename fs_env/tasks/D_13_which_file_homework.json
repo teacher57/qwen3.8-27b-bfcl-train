@@ -1,0 +1,102 @@
+{
+  "id": "D_13_which_file_homework",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in homework and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "homework": {
+            "math.txt": "ex 1-10\nproofs\n",
+            "history.txt": "essay WW1\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in homework.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, math.txt or history.txt, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "math.txt. Call it physics.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "homework/math.txt",
+            "destination": "homework/physics.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "homework": {
+              "history.txt": "essay WW1\n",
+              "physics.txt": "ex 1-10\nproofs\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete history.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "homework/history.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "homework": {
+              "physics.txt": "ex 1-10\nproofs\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "homework/math.txt",
+          "destination": "homework/renamed_math.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

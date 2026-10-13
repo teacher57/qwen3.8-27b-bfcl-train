@@ -1,0 +1,118 @@
+{
+  "id": "A4_10_exports",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "Asked for an exports folder, the model also exports files into it. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "report.csv": "a,b\n1,2\n",
+          "summary.csv": "total\n3\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a folder called exports.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "exports"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "exports": {},
+            "report.csv": "a,b\n1,2\n",
+            "summary.csv": "total\n3\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy report.csv into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "report.csv",
+            "destination": "exports"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "exports": {
+              "report.csv": "a,b\n1,2\n"
+            },
+            "report.csv": "a,b\n1,2\n",
+            "summary.csv": "total\n3\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy summary.csv into it as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "summary.csv",
+            "destination": "exports"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "exports": {
+              "report.csv": "a,b\n1,2\n",
+              "summary.csv": "total\n3\n"
+            },
+            "report.csv": "a,b\n1,2\n",
+            "summary.csv": "total\n3\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "exports"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "report.csv",
+          "destination": "exports"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "summary.csv",
+          "destination": "exports"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

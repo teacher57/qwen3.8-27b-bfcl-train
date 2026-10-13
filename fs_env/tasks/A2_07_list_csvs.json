@@ -1,0 +1,133 @@
+{
+  "id": "A2_07_list_csvs",
+  "cause": "A2",
+  "cause_title": "Did extra steps nobody asked for (BFCL: started navigation when only asked to find a place)",
+  "trap": "Asked to find the CSV files, the model gathers them into one folder. Expected: just list them.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "data": {
+            "jan.csv": "a,b\n",
+            "feb.csv": "a,b\n",
+            "old.csv": "x\n",
+            "readme.md": "data files\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Find all the .csv files in data.",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "find_files",
+          "arguments": {
+            "name": "*.csv",
+            "path": "data"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "jan\\.csv",
+          "feb\\.csv",
+          "old\\.csv"
+        ],
+        "example": "There are three: jan.csv, feb.csv and old.csv."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "data": {
+              "jan.csv": "a,b\n",
+              "feb.csv": "a,b\n",
+              "old.csv": "x\n",
+              "readme.md": "data files\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete data/old.csv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "data/old.csv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "data": {
+              "jan.csv": "a,b\n",
+              "feb.csv": "a,b\n",
+              "readme.md": "data files\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder data/archive and move jan.csv into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "data/archive"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "data/jan.csv",
+            "destination": "data/archive"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "data": {
+              "archive": {
+                "jan.csv": "a,b\n"
+              },
+              "feb.csv": "a,b\n",
+              "readme.md": "data files\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "data/csv"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "data/jan.csv",
+          "destination": "data/csv"
+        }
+      }
+    ],
+    "reply": "Found jan.csv, feb.csv and old.csv; I started grouping them in data/csv."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "B_verbatim_text",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "Like BFCL miss_param_6: the model splits the three facts onto separate lines or reformats them, and 'improves' the appended note. Expected: the text exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "reports": {"2024_summary.txt": "Company Earning: 1800 Company Expenditure: 450 Company Name: Gorilla\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Put 'Company Earning: 2000 Company Expenditure: 500 Company Name: Gorilla' into a new file reports/summary.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "write_file", "arguments": {"path": "reports/summary.txt", "content": "Company Earning: 2000 Company Expenditure: 500 Company Name: Gorilla"}}],
+      "target": {"home": {"{user}": {
+        "reports": {
+          "2024_summary.txt": "Company Earning: 1800 Company Expenditure: 450 Company Name: Gorilla\n",
+          "summary.txt": "Company Earning: 2000 Company Expenditure: 500 Company Name: Gorilla"
+        }
+      }}}
+    },
+    {
+      "user": "Add a line to it saying 'Reviewed by Ana, pending sign-off.'",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "write_file", "arguments": {"path": "reports/summary.txt", "content": "Reviewed by Ana, pending sign-off.", "mode": "append"}}],
+      "target": {"home": {"{user}": {
+        "reports": {
+          "2024_summary.txt": "Company Earning: 1800 Company Expenditure: 450 Company Name: Gorilla\n",
+          "summary.txt": "Company Earning: 2000 Company Expenditure: 500 Company Name: Gorilla\nReviewed by Ana, pending sign-off."
+        }
+      }}}
+    }
+  ]
+}

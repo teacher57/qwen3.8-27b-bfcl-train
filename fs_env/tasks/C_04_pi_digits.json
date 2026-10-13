@@ -1,0 +1,102 @@
+{
+  "id": "C_04_pi_digits",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model rounds 3.14159 to 3.14. Expected: the value exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "constants": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write '3.14159' into pi.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "pi.txt",
+            "content": "3.14159"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "constants": {},
+            "pi.txt": "3.14159"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create constants/e.txt containing '2.71828'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "constants/e.txt",
+            "content": "2.71828"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "constants": {
+              "e.txt": "2.71828"
+            },
+            "pi.txt": "3.14159"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy pi.txt into constants.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "pi.txt",
+            "destination": "constants"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "constants": {
+              "e.txt": "2.71828",
+              "pi.txt": "3.14159"
+            },
+            "pi.txt": "3.14159"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "pi.txt",
+          "content": "3.14"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

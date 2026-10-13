@@ -1,0 +1,112 @@
+{
+  "id": "D_99_missing_value_wedding",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n"
+          },
+          "final": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to wedding/guests.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "wedding/guests.txt",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\nPhone: +351 912 345 678",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy wedding/guests.txt into final.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "wedding/guests.txt",
+            "destination": "final"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\nPhone: +351 912 345 678",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {
+              "guests.txt": "Ana\nLeo\nMira\nPhone: +351 912 345 678"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "wedding/guests.txt",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "id": "A3_07_sales_csv",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'For the third quarter numbers' tempts the model to add a header row. Expected: an empty file first.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "sales": {
+            "q2.csv": "month,amount\napr,900\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a CSV file sales/q3.csv for the third quarter numbers.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "sales/q3.csv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sales": {
+              "q2.csv": "month,amount\napr,900\n",
+              "q3.csv": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'month,amount' as its first line.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "sales/q3.csv",
+            "content": "month,amount"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sales": {
+              "q2.csv": "month,amount\napr,900\n",
+              "q3.csv": "month,amount"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'jul,1200'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "sales/q3.csv",
+            "content": "jul,1200",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "sales": {
+              "q2.csv": "month,amount\napr,900\n",
+              "q3.csv": "month,amount\njul,1200"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "sales/q3.csv",
+          "content": "month,amount\njul,\naug,\nsep,\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "G_09_debug_flag",
+  "cause": "G",
+  "cause_title": "Did nothing / just answered when action was expected",
+  "trap": "The model reports 'it says debug: true' but doesn't change it. Expected: set it to false, other lines unchanged.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "config.yaml": "name: shop\ndebug: true\nport: 8080\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Check if config.yaml says 'debug: true'. That needs to be 'debug: false'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "config.yaml"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "config.yaml",
+            "content": "name: shop\ndebug: false\nport: 8080\n"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "config.yaml": "name: shop\ndebug: false\nport: 8080\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy config.yaml to config.yaml.bak.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "config.yaml",
+            "destination": "config.yaml.bak"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "config.yaml": "name: shop\ndebug: false\nport: 8080\n",
+            "config.yaml.bak": "name: shop\ndebug: false\nport: 8080\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "read_file",
+        "arguments": {
+          "path": "config.yaml"
+        }
+      }
+    ],
+    "reply": "Yes, it currently says debug: true."
+  }
+}

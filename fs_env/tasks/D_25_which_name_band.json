@@ -1,0 +1,104 @@
+{
+  "id": "D_25_which_name_band",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in band. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "band": {
+            "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+            "poster.png": "PNG poster"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in band.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "band": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+              "poster.png": "PNG poster"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it merch.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "band/merch.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "band": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+              "poster.png": "PNG poster",
+              "merch.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Sound check 17:30' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "band/merch.txt",
+            "content": "Sound check 17:30"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "band": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+              "poster.png": "PNG poster",
+              "merch.txt": "Sound check 17:30"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "band/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

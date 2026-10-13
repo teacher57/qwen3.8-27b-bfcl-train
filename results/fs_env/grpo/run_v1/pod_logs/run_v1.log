@@ -1,0 +1,36 @@
+No prebuilt binary for CUDA 12.9, loading CUDA 12.8 instead. Set BNB_CUDA_VERSION to override.
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:   0%|          | 1/851 [00:00<03:25,  4.15it/s]Loading weights:   0%|          | 2/851 [00:00<04:09,  3.40it/s]Loading weights:   2%|▏         | 15/851 [00:00<00:27, 30.65it/s]Loading weights:   4%|▍         | 38/851 [00:00<00:10, 77.26it/s]Loading weights:   6%|▌         | 51/851 [00:00<00:09, 85.96it/s]Loading weights:   8%|▊         | 67/851 [00:01<00:07, 101.06it/s]Loading weights:  10%|▉         | 81/851 [00:01<00:07, 108.16it/s]Loading weights:  11%|█         | 95/851 [00:01<00:06, 115.81it/s]Loading weights:  13%|█▎        | 108/851 [00:01<00:06, 113.37it/s]Loading weights:  14%|█▍        | 121/851 [00:01<00:06, 116.71it/s]Loading weights:  17%|█▋        | 143/851 [00:01<00:04, 143.24it/s]Loading weights:  19%|█▊        | 158/851 [00:01<00:05, 132.92it/s]Loading weights:  21%|██▏       | 182/851 [00:01<00:04, 159.29it/s]Loading weights:  24%|██▎       | 200/851 [00:01<00:04, 161.44it/s]Loading weights:  25%|██▌       | 217/851 [00:02<00:04, 151.15it/s]Loading weights:  28%|██▊       | 236/851 [00:02<00:03, 160.00it/s]Loading weights:  30%|██▉       | 254/851 [00:02<00:03, 158.50it/s]Loading weights:  32%|███▏      | 274/851 [00:02<00:03, 167.48it/s]Loading weights:  34%|███▍      | 292/851 [00:02<00:03, 168.07it/s]Loading weights:  36%|███▋      | 309/851 [00:02<00:03, 151.84it/s]Loading weights:  39%|███▊      | 328/851 [00:02<00:03, 161.78it/s]Loading weights:  41%|████      | 346/851 [00:02<00:03, 159.54it/s]Loading weights:  43%|████▎     | 364/851 [00:02<00:03, 160.35it/s]Loading weights:  45%|████▌     | 385/851 [00:03<00:02, 166.78it/s]Loading weights:  47%|████▋     | 402/851 [00:03<00:02, 164.71it/s]Loading weights:  49%|████▉     | 419/851 [00:03<00:02, 146.46it/s]Loading weights:  52%|█████▏    | 439/851 [00:03<00:02, 155.62it/s]Loading weights:  54%|█████▍    | 461/851 [00:03<00:02, 171.88it/s]Loading weights:  56%|█████▋    | 479/851 [00:03<00:02, 149.93it/s]Loading weights:  59%|█████▉    | 501/851 [00:03<00:02, 164.82it/s]Loading weights:  61%|██████    | 519/851 [00:03<00:02, 160.46it/s]Loading weights:  63%|██████▎   | 539/851 [00:04<00:01, 169.77it/s]Loading weights:  65%|██████▌   | 557/851 [00:04<00:01, 164.31it/s]Loading weights:  67%|██████▋   | 574/851 [00:04<00:01, 156.86it/s]Loading weights:  70%|███████   | 596/851 [00:04<00:01, 167.34it/s]Loading weights:  72%|███████▏  | 613/851 [00:04<00:01, 158.42it/s]Loading weights:  74%|███████▍  | 630/851 [00:04<00:01, 152.04it/s]Loading weights:  76%|███████▋  | 650/851 [00:04<00:01, 163.84it/s]Loading weights:  79%|███████▉  | 673/851 [00:04<00:00, 179.82it/s]Loading weights:  81%|████████▏ | 692/851 [00:04<00:00, 166.00it/s]Loading weights:  84%|████████▍ | 716/851 [00:05<00:00, 180.25it/s]Loading weights:  86%|████████▋ | 735/851 [00:05<00:00, 172.33it/s]Loading weights:  89%|████████▊ | 755/851 [00:05<00:00, 175.86it/s]Loading weights:  91%|█████████ | 773/851 [00:05<00:00, 165.95it/s]Loading weights:  93%|█████████▎| 790/851 [00:05<00:00, 148.77it/s]Loading weights:  95%|█████████▌| 810/851 [00:05<00:00, 156.55it/s]Loading weights:  98%|█████████▊| 833/851 [00:05<00:00, 174.68it/s]Loading weights: 100%|██████████| 851/851 [00:05<00:00, 153.48it/s]Loading weights: 100%|██████████| 851/851 [00:05<00:00, 143.33it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+step 1: reward 0.60, mixed groups 9, items 72, 385s
+step 2: reward 0.64, mixed groups 8, items 61, 577s
+step 3: reward 0.64, mixed groups 8, items 64, 232s
+step 4: reward 0.78, mixed groups 7, items 53, 509s
+step 5: reward 0.84, mixed groups 8, items 62, 487s
+step 6: reward 0.69, mixed groups 9, items 72, 293s
+step 7: reward 0.85, mixed groups 6, items 48, 263s
+step 8: reward 0.85, mixed groups 3, items 24, 299s
+step 9: reward 0.69, mixed groups 10, items 78, 516s
+[W1012 23:16:23.203252100 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 8128561152 bytes (free: 7161643008, total: 150120759296).
+step 10: reward 0.38, mixed groups 9, items 71, 480s
+step 11: reward 0.74, mixed groups 4, items 32, 304s
+step 12: reward 0.50, mixed groups 10, items 78, 581s
+step 13: reward 0.74, mixed groups 8, items 64, 369s
+step 14: reward 0.73, mixed groups 7, items 55, 410s
+step 15: reward 0.73, mixed groups 7, items 55, 410s
+step 16: reward 0.76, mixed groups 8, items 64, 323s
+step 17: reward 0.69, mixed groups 4, items 32, 169s
+step 18: reward 0.88, mixed groups 5, items 40, 262s
+step 19: reward 0.54, mixed groups 6, items 48, 259s
+step 20: reward 0.45, mixed groups 8, items 64, 300s
+step 21: reward 0.32, mixed groups 11, items 88, 405s
+step 22: reward 0.58, mixed groups 8, items 62, 462s
+step 23: reward 0.74, mixed groups 6, items 48, 343s
+step 24: reward 0.66, mixed groups 12, items 91, 593s
+step 25: reward 0.50, mixed groups 11, items 85, 580s
+step 26: reward 0.46, mixed groups 4, items 32, 272s
+step 27: reward 0.74, mixed groups 6, items 40, 601s
+step 28: reward 0.53, mixed groups 10, items 80, 343s
+step 29: reward 0.74, mixed groups 5, items 39, 463s
+step 30: reward 0.80, mixed groups 8, items 64, 366s
+done

@@ -1,0 +1,108 @@
+{
+  "id": "A1_04_append_only",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "Asked to append one line, the model rewrites the log or clears the old lines. Expected: old lines kept, one line added.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "log.txt": "08:00 backup started\n08:05 copying files\n",
+          "archive": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Append the line 'backup finished' to log.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "log.txt",
+            "content": "backup finished",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {},
+            "log.txt": "08:00 backup started\n08:05 copying files\nbackup finished"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy log.txt into the archive folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "log.txt",
+            "destination": "archive"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {
+              "log.txt": "08:00 backup started\n08:05 copying files\nbackup finished"
+            },
+            "log.txt": "08:00 backup started\n08:05 copying files\nbackup finished"
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does log.txt have now?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "log.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(3|three)\\b"
+        ],
+        "example": "log.txt has 3 lines."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {
+              "log.txt": "08:00 backup started\n08:05 copying files\nbackup finished"
+            },
+            "log.txt": "08:00 backup started\n08:05 copying files\nbackup finished"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "log.txt",
+          "content": "backup finished"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

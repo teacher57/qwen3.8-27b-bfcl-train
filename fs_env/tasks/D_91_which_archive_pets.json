@@ -1,0 +1,115 @@
+{
+  "id": "D_91_which_archive_pets",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "pets": {
+            "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+            "food.txt": "kibble 2x/day\n"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move pets/vet_visits.txt into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {},
+            "archive_A": {},
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "pets/vet_visits.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n"
+            },
+            "archive_A": {},
+            "pets": {
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy pets/food.txt into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "pets/food.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n"
+            },
+            "archive_A": {},
+            "pets": {
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "pets/vet_visits.txt",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

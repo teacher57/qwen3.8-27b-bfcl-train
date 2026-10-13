@@ -1,0 +1,6 @@
+2026-10-12T22:19:34Z waiting for GRPO to end
+2026-10-13T01:33:36Z GRPO ended: stage=finished
+2026-10-13T01:33:36Z final adapter: step_30
+2026-10-13T01:33:36Z load grpo-final: Success: LoRA adapter 'grpo-final' added successfully.
+2026-10-13T01:33:36Z load sft-v1: Success: LoRA adapter 'sft-v1' added successfully.
+2026-10-13T01:58:43Z eval done: grpo-final passed 212/292 (72.6%)   A1:16/20  A2:20/20  A3:20/44  A4:20/20  B:20/20  C:20/20  D:19/44  E:19/44  F:20/20  G:18/20  H:20/20  | sft-v1 passed 207/292 (70.9%)   A1:15/20  A2:20/20  A3:23/44  A4:20/20  B:20/20  C:20/20  D:21/44  E:14/44  F:19/20  G:15/20  H:20/20 

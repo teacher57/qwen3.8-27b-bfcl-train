@@ -1,0 +1,28 @@
+{
+ "name": "train_v1",
+ "examples": 688,
+ "sources": {
+  "e_refusals": 89,
+  "e_tool_back": 178,
+  "baseline_passes": 421
+ },
+ "about": {
+  "e_refusals": "E turn 1: refuse at once",
+  "e_tool_back": "E turns 2-3: tool is back, act",
+  "baseline_passes": "already-correct conversations (no prompt)"
+ },
+ "refusal_share": 0.12936046511627908,
+ "by_cause": {
+  "E": 270,
+  "A1": 57,
+  "A2": 15,
+  "A3": 3,
+  "A4": 51,
+  "B": 60,
+  "C": 60,
+  "D": 48,
+  "F": 40,
+  "G": 40,
+  "H": 44
+ }
+}

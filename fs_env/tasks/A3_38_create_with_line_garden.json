@@ -1,0 +1,95 @@
+{
+  "id": "A3_38_create_with_line_garden",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "garden": {
+            "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+            "tools.txt": "rake\nshovel\n"
+          },
+          "season_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create garden/harvest.txt for the harvest log and put 'Water every 2 days, not more' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "garden/harvest.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "garden/harvest.txt",
+            "content": "Water every 2 days, not more"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {},
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n",
+              "harvest.txt": "Water every 2 days, not more"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into season_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "garden/harvest.txt",
+            "destination": "season_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {
+              "harvest.txt": "Water every 2 days, not more"
+            },
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n",
+              "harvest.txt": "Water every 2 days, not more"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "garden/harvest.txt",
+          "content": "For the harvest log\n\nWater every 2 days, not more\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

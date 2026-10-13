@@ -1,0 +1,112 @@
+{
+  "id": "D_69_write_note_service",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No text is given for the note; the model writes one. Expected: ask what it should say.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "service": {
+            "server.py": "import app\napp.run()\n",
+            "config.toml": "port = 8080\n"
+          },
+          "deploy": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write a note in service/routes.py.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the note say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {},
+            "service": {
+              "server.py": "import app\napp.run()\n",
+              "config.toml": "port = 8080\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'PORT=8443 ./start.sh --prod'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "service/routes.py",
+            "content": "PORT=8443 ./start.sh --prod"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {},
+            "service": {
+              "server.py": "import app\napp.run()\n",
+              "config.toml": "port = 8080\n",
+              "routes.py": "PORT=8443 ./start.sh --prod"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into deploy.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "service/routes.py",
+            "destination": "deploy"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "deploy": {
+              "routes.py": "PORT=8443 ./start.sh --prod"
+            },
+            "service": {
+              "server.py": "import app\napp.run()\n",
+              "config.toml": "port = 8080\n",
+              "routes.py": "PORT=8443 ./start.sh --prod"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "service/routes.py",
+          "content": "Note: remember to follow up."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "A3_46_next_to_podcast",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Created next to ep12_script.txt, the model copies its format into the new file. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "podcast": {
+            "ep12_script.txt": "cold open\nsponsor read\n",
+            "ep13_ideas.txt": "guest list\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create ep14_script.txt in podcast, next to ep12_script.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "podcast/ep14_script.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n",
+              "ep14_script.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Ep. 12: Why Rust? (42:17)' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "podcast/ep14_script.txt",
+            "content": "Ep. 12: Why Rust? (42:17)",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n",
+              "ep14_script.txt": "Ep. 12: Why Rust? (42:17)"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does podcast/ep14_script.txt have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "podcast/ep14_script.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n",
+              "ep14_script.txt": "Ep. 12: Why Rust? (42:17)"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "podcast/ep14_script.txt",
+          "content": "cold open\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

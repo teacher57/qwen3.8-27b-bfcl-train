@@ -1,0 +1,23 @@
+{
+    "core_memory": {
+        "next_id": 7,
+        "store": {
+            "0": "URGENT: Change passwords ASAP(IT updated security protocols).",
+            "1": "Q1 budget report \u2014 finalized(Fri), awaiting final approval.",
+            "3": "DEADLINE(next month): Review updated HR benefits package.",
+            "4": "DEADLINE(approaching): Project deadline \u2014 check in with Dev team.",
+            "5": "OPEN TASKS: Tweak leadership slides(before next week's review); send client proposal for legal approval; onboard new hire(schedule 1-on-1); brainstorm cost-cutting ideas for Finance; fix mistake in last month's sales data.",
+            "6": "SCHEDULE(next Monday): Training session \u2014 prep materials this weekend."
+        }
+    },
+    "archival_memory": {
+        "next_id": 5,
+        "store": {
+            "0": "Weekly notes(logged Monday): (1) Team meeting ran over by 30 minutes. (2) Q1 budget report must be finalized before Friday. (3) IT updated security protocols \u2014 user needs to change passwords ASAP. (4) Client call with Jacob was delayed and is now scheduled for Wednesday.",
+            "1": "Weekly notes(logged Tuesday): (1) System downtime 10 AM\u201312 PM slowed workflow. (2) HR sent an updated benefits package \u2014 user needs to review it before next month's deadline. (3) Follow-up emails sent to vendors; currently waiting on their response.",
+            "2": "Weekly notes(logged Wednesday): (1) Presentation to leadership went well, but a few slides need tweaking for next week's review. (2) Client proposal draft is ready \u2014 needs to be sent for legal approval. (3) New hire to onboard \u2014 need to schedule a one-on-one.",
+            "3": "Weekly notes(logged Thursday): (1) Finance wants cost-cutting recommendations \u2014 need to brainstorm ideas. (2) Project deadline approaching \u2014 check in with Dev team. (3) Caught a mistake in last month's sales data \u2014 needs correction.",
+            "4": "Weekly notes(logged Friday): (1) Wrapped up pending reports, but still waiting for final approval(likely includes the Q1 budget report). (2) Followed up with vendors \u2014 two have responded, one still pending. (3) Training session scheduled for next Monday \u2014 need to prep materials this weekend."
+        }
+    }
+}

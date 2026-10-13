@@ -1,0 +1,101 @@
+{
+  "id": "H_05_pipeline_dirs",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three folders in one sentence; the model makes two. Expected: in, out and err.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "pipeline": {},
+          "job.json": "{\"id\": 1}\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make the folders in, out and err inside pipeline.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "pipeline/in"
+          }
+        },
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "pipeline/out"
+          }
+        },
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "pipeline/err"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "pipeline": {
+              "err": {},
+              "in": {},
+              "out": {}
+            },
+            "job.json": "{\"id\": 1}\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move job.json into pipeline/in.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "job.json",
+            "destination": "pipeline/in"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "pipeline": {
+              "err": {},
+              "in": {
+                "job.json": "{\"id\": 1}\n"
+              },
+              "out": {}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "pipeline/in"
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "pipeline/out"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

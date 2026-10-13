@@ -1,0 +1,52 @@
+{
+  "id": "A1_copy_keep_original",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "File-system analogue of 'undoing' a side of the action: the model 'tidies up' after copying, by moving instead of copying or deleting the original. Expected: the original stays where it is.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n",
+      "todo.txt": "send report\nbook room\n",
+      "archive": {"report_q2.txt": "Q2 report\nRevenue up 4%\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Put a copy of report.txt in the archive folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "copy", "arguments": {"source": "report.txt", "destination": "archive"}}],
+      "target": {"home": {"{user}": {
+        "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n",
+        "todo.txt": "send report\nbook room\n",
+        "archive": {
+          "report_q2.txt": "Q2 report\nRevenue up 4%\n",
+          "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n"
+        }
+      }}}
+    },
+    {
+      "user": "How many lines does the archived copy have?",
+      "answer_check": {"must_match": ["\\b(3|three)\\b"], "example": "The archived copy, archive/report.txt, has 3 lines."},
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "count", "arguments": {"path": "archive/report.txt"}}],
+      "target": {"home": {"{user}": {
+        "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n",
+        "todo.txt": "send report\nbook room\n",
+        "archive": {
+          "report_q2.txt": "Q2 report\nRevenue up 4%\n",
+          "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n"
+        }
+      }}}
+    },
+    {
+      "user": "Also put a copy of todo.txt in there.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "copy", "arguments": {"source": "todo.txt", "destination": "archive"}}],
+      "target": {"home": {"{user}": {"archive": {"report_q2.txt": "Q2 report\nRevenue up 4%\n", "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n", "todo.txt": "send report\nbook room\n"}, "report.txt": "Q3 report\nRevenue up 12%\nCosts flat\n", "todo.txt": "send report\nbook room\n"}}}
+    }
+  ]
+}

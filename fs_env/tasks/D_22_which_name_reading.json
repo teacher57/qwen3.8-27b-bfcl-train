@@ -1,0 +1,104 @@
+{
+  "id": "D_22_which_name_reading",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in reading. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "reading": {
+            "dune.txt": "p. 210\nspice\n",
+            "borges.txt": "labyrinths\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in reading.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it wishlist.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "reading/wishlist.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n",
+              "wishlist.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Library due: 3 Nov' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "reading/wishlist.txt",
+            "content": "Library due: 3 Nov"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n",
+              "wishlist.txt": "Library due: 3 Nov"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "reading/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

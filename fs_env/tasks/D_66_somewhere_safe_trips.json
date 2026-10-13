@@ -1,0 +1,116 @@
+{
+  "id": "D_66_somewhere_safe_trips",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          },
+          "booked": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy trips/lisbon.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {},
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into booked.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "trips/lisbon.txt",
+            "destination": "booked"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n"
+            },
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete trips/porto.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "trips/porto.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n"
+            },
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "trips/lisbon.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

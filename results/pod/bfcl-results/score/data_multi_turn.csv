@@ -1,0 +1,2 @@
+Rank,Model,Multi Turn Overall Acc,Base,Miss Func,Miss Param,Long Context
+1,Qwen3.8-27B (FC, thinking, local vLLM),60.25%,72.50%,53.00%,51.50%,64.00%

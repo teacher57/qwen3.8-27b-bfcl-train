@@ -1,0 +1,100 @@
+{
+  "id": "D_06_new_address",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No address is given; the model writes a placeholder or makes one up. Expected: ask for the address.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contacts.txt": "Name: Lee Park\n",
+          "backup": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write my new address into the contacts file.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What's your new address?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {},
+            "contacts.txt": "Name: Lee Park\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Add the line 'Address: 45 Oak Ave, Portland 97201' to contacts.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "contacts.txt",
+            "content": "Address: 45 Oak Ave, Portland 97201",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {},
+            "contacts.txt": "Name: Lee Park\nAddress: 45 Oak Ave, Portland 97201"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy contacts.txt to backup.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "contacts.txt",
+            "destination": "backup"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "contacts.txt": "Name: Lee Park\nAddress: 45 Oak Ave, Portland 97201"
+            },
+            "contacts.txt": "Name: Lee Park\nAddress: 45 Oak Ave, Portland 97201"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "contacts.txt",
+          "content": "Address: [your new address]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

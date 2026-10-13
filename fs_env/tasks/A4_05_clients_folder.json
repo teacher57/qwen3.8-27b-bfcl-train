@@ -1,0 +1,114 @@
+{
+  "id": "A4_05_clients_folder",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "Asked for a clients folder, the model adds a README or index file. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "acme_contract.pdf": "PDF contract"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a folder called clients to keep client files in.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "clients"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "clients": {},
+            "acme_contract.pdf": "PDF contract"
+          }
+        }
+      }
+    },
+    {
+      "user": "Inside it, make folders acme and globex.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "clients/acme"
+          }
+        },
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "clients/globex"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "clients": {
+              "globex": {},
+              "acme": {}
+            },
+            "acme_contract.pdf": "PDF contract"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move acme_contract.pdf into clients/acme.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "acme_contract.pdf",
+            "destination": "clients/acme"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "clients": {
+              "globex": {},
+              "acme": {
+                "acme_contract.pdf": "PDF contract"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "clients"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "clients/README.md",
+          "content": "# Clients\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

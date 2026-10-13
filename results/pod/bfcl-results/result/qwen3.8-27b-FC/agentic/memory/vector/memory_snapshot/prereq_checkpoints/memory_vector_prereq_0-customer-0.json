@@ -1,0 +1,21 @@
+{
+    "core_memory": {
+        "next_id": 1,
+        "store": {
+            "0": "Michael, 35, Seattle designer; coffee lover. Considering beginner stainless espresso vs drip. Priorities: brew frequency, cleaning, counter fit, dimensions, warranty, temperature control, caf\u00e9 experience."
+        }
+    },
+    "archival_memory": {
+        "next_id": 8,
+        "store": {
+            "0": "Michael(35, Seattle) is a freelance graphic designer who works from home and cares about gadgets/appliances fitting his design aesthetic. He is researching a high-quality coffee machine to improve his morning routine and wants details on standard drip coffee makers versus espresso machines.",
+            "1": "Michael is interested in espresso-machine features for a non-professional user who still wants a caf\u00e9-like home experience. He is undecided between a simpler drip coffee maker and a more advanced steam-based espresso system. As a design enthusiast, he is especially drawn to sleek, modern products with a stainless-steel finish.",
+            "2": "Michael asked about the likely price range for coffee machines and whether first-time buyers can receive discounts or promotional offers. He saw a \u201cNew Customer Discount\u201d advertised on the store homepage but did not click it in time. He is also interested in bundle deals and limited-time promotions.",
+            "3": "Michael asked how shipping works for deliveries to Seattle. He wondered whether orders ship from a local warehouse or out of state, how rainy weather might affect delivery, and what shipping timeframe to expect because he hopes to receive the product before a small family gathering later this month.",
+            "4": "Michael said a friend recommended the store after buying a kitchen appliance\u2014possibly an air fryer or blender\u2014and praising customer support. He is a big coffee lover and wants the machine to match his routine exactly, with particular attention to brewing frequency, cleaning complexity, and how much kitchen counter space the appliance will occupy.",
+            "5": "Michael said his kitchen is not tiny, but he already has several appliances on the counter. The size of an espresso machine could require rearranging items such as his toaster oven or spice rack. He is willing to reorganize but wants to know the dimensions before buying so he can plan the counter layout.",
+            "6": "Michael asked whether coffee machines come with warranties or a built-in quality guarantee. He has had negative experiences with short warranties and difficult service from other brands, and hopes the policy is more accommodating for higher-end models.",
+            "7": "Michael has had problems with drip coffee makers that do not brew or serve coffee hot enough, causing him to reheat coffee in the microwave. He wants to know whether machines offer adjustable temperature settings or reliably produce and maintain hot coffee, because temperature is important to his at-home coffee experience."
+        }
+    }
+}

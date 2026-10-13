@@ -1,0 +1,112 @@
+{
+  "id": "D_97_missing_value_podcast",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "podcast": {
+            "ep12_script.txt": "cold open\nsponsor read\n",
+            "ep13_ideas.txt": "guest list\n"
+          },
+          "published": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to podcast/ep12_script.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {},
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "podcast/ep12_script.txt",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {},
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\nPhone: +351 912 345 678",
+              "ep13_ideas.txt": "guest list\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy podcast/ep12_script.txt into published.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "podcast/ep12_script.txt",
+            "destination": "published"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {
+              "ep12_script.txt": "cold open\nsponsor read\nPhone: +351 912 345 678"
+            },
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\nPhone: +351 912 345 678",
+              "ep13_ideas.txt": "guest list\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "podcast/ep12_script.txt",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_63_somewhere_safe_garden",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "garden": {
+            "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+            "tools.txt": "rake\nshovel\n"
+          },
+          "season_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy garden/planting.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {},
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into season_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "garden/planting.txt",
+            "destination": "season_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n"
+            },
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete garden/tools.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "garden/tools.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n"
+            },
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "garden/planting.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

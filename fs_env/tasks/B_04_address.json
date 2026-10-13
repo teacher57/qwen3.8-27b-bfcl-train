@@ -1,0 +1,100 @@
+{
+  "id": "B_04_address",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model splits the address over lines or drops the zip code. Expected: one line, exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contacts": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Put 'Jane Doe, 12 Elm St, Springfield 62704' into address.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "address.txt",
+            "content": "Jane Doe, 12 Elm St, Springfield 62704"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contacts": {},
+            "address.txt": "Jane Doe, 12 Elm St, Springfield 62704"
+          }
+        }
+      }
+    },
+    {
+      "user": "Add a line 'Phone: 555-0142'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "address.txt",
+            "content": "Phone: 555-0142",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contacts": {},
+            "address.txt": "Jane Doe, 12 Elm St, Springfield 62704\nPhone: 555-0142"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it to contacts/jane.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "address.txt",
+            "destination": "contacts/jane.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contacts": {
+              "jane.txt": "Jane Doe, 12 Elm St, Springfield 62704\nPhone: 555-0142"
+            },
+            "address.txt": "Jane Doe, 12 Elm St, Springfield 62704\nPhone: 555-0142"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "address.txt",
+          "content": "Jane Doe\n12 Elm St\nSpringfield 62704"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

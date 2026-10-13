@@ -1,0 +1,115 @@
+{
+  "id": "D_83_which_archive_music",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "music": {
+            "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+            "demo_track.mp3": "MP3 demo"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move music/setlist.txt into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {},
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "music/setlist.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n"
+            },
+            "music": {
+              "demo_track.mp3": "MP3 demo"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy music/demo_track.mp3 into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "music/demo_track.mp3",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            },
+            "music": {
+              "demo_track.mp3": "MP3 demo"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "music/setlist.txt",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

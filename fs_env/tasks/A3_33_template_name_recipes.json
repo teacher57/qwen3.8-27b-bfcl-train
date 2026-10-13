@@ -1,0 +1,113 @@
+{
+  "id": "A3_33_template_name_recipes",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'TODO.md' has a well-known shape, so the model fills it in. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create TODO.md in recipes.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "recipes/TODO.md"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "TODO.md": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Serves 6' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "recipes/TODO.md",
+            "content": "Serves 6"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "TODO.md": "Serves 6"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does recipes/TODO.md have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "recipes/TODO.md"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "TODO.md": "Serves 6"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "recipes/TODO.md",
+          "content": "# TODO.md\n\n## Section\n- item\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "H_do_every_step",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps in one sentence; the model moves and renames but forgets to delete the drafts folder (or deletes it before moving the file out). Expected: all three steps, in an order that works.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "drafts": {"draft.txt": "The river was quiet that morning.\nNobody spoke.\n"},
+      "final": {"poem.txt": "Roses\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Move drafts/draft.txt into final, rename it to essay.txt, and delete the drafts folder since it'll be empty then.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {"name": "move", "arguments": {"source": "drafts/draft.txt", "destination": "final/essay.txt"}},
+        {"name": "delete_dir", "arguments": {"path": "drafts"}}
+      ],
+      "target": {"home": {"{user}": {
+        "final": {"poem.txt": "Roses\n", "essay.txt": "The river was quiet that morning.\nNobody spoke.\n"}
+      }}}
+    },
+    {
+      "user": "What's the first line of the essay?",
+      "answer_check": {"must_match": ["The river was quiet that morning"], "example": "The first line is: \"The river was quiet that morning.\""},
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "read_file", "arguments": {"path": "final/essay.txt"}}],
+      "target": {"home": {"{user}": {
+        "final": {"poem.txt": "Roses\n", "essay.txt": "The river was quiet that morning.\nNobody spoke.\n"}
+      }}}
+    },
+    {
+      "user": "Add a last line to the essay: 'The End'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "write_file", "arguments": {"path": "final/essay.txt", "content": "The End", "mode": "append"}}],
+      "target": {"home": {"{user}": {"final": {"poem.txt": "Roses\n", "essay.txt": "The river was quiet that morning.\nNobody spoke.\nThe End"}}}}
+    }
+  ]
+}

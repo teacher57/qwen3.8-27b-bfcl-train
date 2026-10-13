@@ -1,0 +1,112 @@
+{
+  "id": "D_19_which_line_wedding",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for guests.txt. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n"
+          },
+          "final": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to wedding/guests.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'RSVP by June 1st to rsvp@lee-park.com'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "wedding/guests.txt",
+            "content": "RSVP by June 1st to rsvp@lee-park.com",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\nRSVP by June 1st to rsvp@lee-park.com",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into final.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "wedding/guests.txt",
+            "destination": "final"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\nRSVP by June 1st to rsvp@lee-park.com",
+              "venue.txt": "Quinta do Lago\n"
+            },
+            "final": {
+              "guests.txt": "Ana\nLeo\nMira\nRSVP by June 1st to rsvp@lee-park.com"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "wedding/guests.txt",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

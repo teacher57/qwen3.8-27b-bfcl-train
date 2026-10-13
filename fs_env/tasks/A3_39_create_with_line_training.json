@@ -1,0 +1,95 @@
+{
+  "id": "A3_39_create_with_line_training",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "training": {
+            "week1.txt": "squat 5x5\nbench 5x5\n",
+            "week2.txt": "deadlift 3x5\n"
+          },
+          "done": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create training/week3.txt for next week's plan and put 'Rest 90 s between sets' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "training/week3.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "training/week3.txt",
+            "content": "Rest 90 s between sets"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {},
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "week3.txt": "Rest 90 s between sets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into done.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "training/week3.txt",
+            "destination": "done"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "week3.txt": "Rest 90 s between sets"
+            },
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "week3.txt": "Rest 90 s between sets"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "training/week3.txt",
+          "content": "For next week's plan\n\nRest 90 s between sets\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

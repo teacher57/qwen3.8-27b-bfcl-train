@@ -1,0 +1,110 @@
+{
+  "id": "D_76_rename_to_what_band",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "band": {
+            "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+            "poster.png": "PNG poster"
+          },
+          "tour_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename band/gigs.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "tour_2026": {},
+            "band": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+              "poster.png": "PNG poster"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To Gig-List_v2.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "band/gigs.txt",
+            "destination": "band/Gig-List_v2"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tour_2026": {},
+            "band": {
+              "poster.png": "PNG poster",
+              "Gig-List_v2": "Lisbon 3 Oct\nPorto 9 Oct\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into tour_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "band/Gig-List_v2",
+            "destination": "tour_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tour_2026": {
+              "Gig-List_v2": "Lisbon 3 Oct\nPorto 9 Oct\n"
+            },
+            "band": {
+              "poster.png": "PNG poster",
+              "Gig-List_v2": "Lisbon 3 Oct\nPorto 9 Oct\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "band/gigs.txt",
+          "destination": "band/gigs_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

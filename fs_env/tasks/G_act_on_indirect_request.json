@@ -1,0 +1,40 @@
+{
+  "id": "G_act_on_indirect_request",
+  "cause": "G",
+  "cause_title": "Did nothing / just answered when action was expected",
+  "trap": "The request is phrased as a question plus a condition, so the model checks, reports 'there is no logs folder', and stops. Expected: check and create it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "app.py": "print('hi')\n",
+      "config": {"settings.json": "{\"debug\": false}\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Can you check whether there's a logs folder here? If there isn't, I need one.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {"name": "list_dir", "arguments": {}},
+        {"name": "make_dir", "arguments": {"path": "logs"}}
+      ],
+      "target": {"home": {"{user}": {
+        "app.py": "print('hi')\n",
+        "config": {"settings.json": "{\"debug\": false}\n"},
+        "logs": {}
+      }}}
+    },
+    {
+      "user": "Great. I'll also want an errors.log in there.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "create_file", "arguments": {"path": "logs/errors.log"}}],
+      "target": {"home": {"{user}": {
+        "app.py": "print('hi')\n",
+        "config": {"settings.json": "{\"debug\": false}\n"},
+        "logs": {"errors.log": ""}
+      }}}
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "A3_70_template_name_training",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'Makefile' has a well-known shape, so the model fills it in. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "training": {
+            "week1.txt": "squat 5x5\nbench 5x5\n",
+            "week2.txt": "deadlift 3x5\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create Makefile in training.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "training/Makefile"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "Makefile": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'RPE 8' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "training/Makefile",
+            "content": "RPE 8"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "Makefile": "RPE 8"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does training/Makefile have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "training/Makefile"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "Makefile": "RPE 8"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "training/Makefile",
+          "content": "# Makefile\n\n## Section\n- item\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

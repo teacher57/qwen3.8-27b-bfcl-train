@@ -1,0 +1,100 @@
+{
+  "id": "C_02_no_extension",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model adds '.txt' or changes the case of 'Report_FINAL_v2', or drops the '#'. Expected: names as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "docs": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a file named Report_FINAL_v2 in docs.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "docs/Report_FINAL_v2"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "docs": {
+              "Report_FINAL_v2": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder docs/#archive.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "docs/#archive"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "docs": {
+              "#archive": {},
+              "Report_FINAL_v2": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Move Report_FINAL_v2 into docs/#archive.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "docs/Report_FINAL_v2",
+            "destination": "docs/#archive"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "docs": {
+              "#archive": {
+                "Report_FINAL_v2": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "docs/Report_FINAL_v2.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

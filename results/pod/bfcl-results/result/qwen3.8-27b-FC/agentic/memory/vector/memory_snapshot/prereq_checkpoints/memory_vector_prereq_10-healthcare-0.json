@@ -1,0 +1,21 @@
+{
+    "core_memory": {
+        "next_id": 1,
+        "store": {
+            "0": "Mid-50s, Kansas. T2D; HTN; OA; hypothyroidism; post-cholecystectomy; spring allergies; prior pneumonia; vaccinated. Care: PCP, endocrinologist, arthritis specialist. Prefers paper notebook; needs appointment/med coordination help. Proactive; values rest and not ignoring symptoms."
+        }
+    },
+    "archival_memory": {
+        "next_id": 8,
+        "store": {
+            "0": "Type 2 diabetes history: diagnosed approximately 10 years ago. Initial management required major diet and lifestyle changes, including reducing sugary snacks, monitoring carbohydrate intake, and increasing physical activity. Patient emphasizes routine blood glucose monitoring and reports that a 30-minute walk after dinner meaningfully helps stabilize glucose levels. Patient feels diabetes is currently well managed and values guidance from their doctor.",
+            "1": "Hypertension history: family history present; managed for some time with medication and lifestyle changes including diet, walking, and yoga. Patient reports stress can worsen blood pressure. During Kansas winters, outdoor exercise is limited, so patient uses indoor workouts or a treadmill. Significant past event: a dangerously high blood pressure spike several years ago led to an ER visit, which reinforced the importance of consistent management.",
+            "2": "Osteoarthritis history: progressive joint pain, worst in knees and hands, with variable daily severity and noticeable worsening during weather changes. Doctor recommended physical therapy, which initially met skepticism but provided meaningful benefit. Patient has tried supplements such as glucosamine with uncertain personal benefit. Most helpful strategies reported include ergonomic chairs, supportive footwear, and pacing activity to avoid overloading joints.",
+            "3": "Hypothyroidism history: diagnosed in early 40s after persistent fatigue and unexplained weight gain, initially attributed to aging. Thyroid testing confirmed abnormal levels. Management required time to optimize medication dosage. Patient reports feeling well when taking thyroid medication consistently and attending regular follow-up monitoring.",
+            "4": "Gallbladder history: lived with gallstones for years before a severe gallbladder attack caused unbearable upper abdominal pain, leading to cholecystectomy a few years ago. Recovery was generally manageable, but digestion has changed since surgery. Patient has learned to tolerate diet better by avoiding fried and greasy foods.",
+            "5": "Respiratory and allergy history: seasonal allergies flare every spring, likely related to high Kansas pollen exposure. Had pneumonia a couple of years ago, which caused several weeks of significant illness. Since then, patient has been diligent about receiving flu shots and pneumonia vaccines and is proactive about preventing small infections from becoming serious, especially with aging and existing chronic conditions.",
+            "6": "Care-coordination challenge: Patient finds it difficult to keep up with multiple medications and appointments across providers, including a primary care doctor, endocrinologist for diabetes, and occasional arthritis specialist. Uses a paper notebook to track appointments, medication changes, and symptoms, and also uses online patient portals, but strongly prefers writing information down manually. This is currently one of the biggest health-management challenges.",
+            "7": "Health mindset and preferences: Patient has shifted from worrying about aging to taking health one step at a time. Emphasizes listening to the body, resting when needed, not ignoring concerning symptoms, and being proactive because no one else will manage their health for them. Values staying informed and maintaining agency over chronic-condition management."
+        }
+    }
+}

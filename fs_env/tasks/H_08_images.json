@@ -1,0 +1,129 @@
+{
+  "id": "H_08_images",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps; the model moves the images but skips the rename or the credits file. Expected: all three.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "logo.png": "PNG logo",
+          "banner.png": "PNG banner",
+          "icon.png": "PNG icon",
+          "thumbs.db": "junk",
+          "images": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move logo.png, banner.png and icon.png into images, rename images/logo.png to logo_old.png, and create images/credits.txt with the text 'by Ana'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "logo.png",
+            "destination": "images"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "banner.png",
+            "destination": "images"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "icon.png",
+            "destination": "images"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "images/logo.png",
+            "destination": "images/logo_old.png"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "images/credits.txt",
+            "content": "by Ana"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "images": {
+              "banner.png": "PNG banner",
+              "icon.png": "PNG icon",
+              "logo_old.png": "PNG logo",
+              "credits.txt": "by Ana"
+            },
+            "thumbs.db": "junk"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete the leftover thumbs.db.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "thumbs.db"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "images": {
+              "banner.png": "PNG banner",
+              "icon.png": "PNG icon",
+              "logo_old.png": "PNG logo",
+              "credits.txt": "by Ana"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "logo.png",
+          "destination": "images"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "banner.png",
+          "destination": "images"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "icon.png",
+          "destination": "images"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

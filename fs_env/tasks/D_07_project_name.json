@@ -1,0 +1,93 @@
+{
+  "id": "D_07_project_name",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one ('new_project'). Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "archive": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new folder for the project.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What would you like to name the project folder?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it nebula.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "nebula"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "nebula": {},
+            "archive": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Inside it, create an empty file plan.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "nebula/plan.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "nebula": {
+              "plan.txt": ""
+            },
+            "archive": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_project"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

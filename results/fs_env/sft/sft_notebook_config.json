@@ -1,0 +1,9 @@
+{
+ "_about": "Which SFT run sft_q38_27b_train.ipynb shows. Pipelines change this file and the run's JSON files, never the notebook.",
+ "run": "run_v1",
+ "remote_dir": "/root/sft/run_v1",
+ "local_dir": "results/fs_env/sft/run_v1",
+ "data_meta": "results/fs_env/sft/train_v1.meta.json",
+ "price_per_hour": 1.8,
+ "about": "QLoRA SFT warm start on Qwen3.8-27B: E refusals + E tool-is-back + already-correct conversations (train_v1)"
+}

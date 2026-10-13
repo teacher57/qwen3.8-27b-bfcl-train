@@ -1,0 +1,124 @@
+{
+  "id": "A1_07_folder_only",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "Asked to make a folder, the model also moves the invoices into it. Expected: an empty folder until asked.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "finance": {
+            "inv_001.pdf": "PDF invoice 1",
+            "inv_002.pdf": "PDF invoice 2"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder called invoices inside finance.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "finance/invoices"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices": {},
+              "inv_001.pdf": "PDF invoice 1",
+              "inv_002.pdf": "PDF invoice 2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Move inv_001.pdf into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "finance/inv_001.pdf",
+            "destination": "finance/invoices"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices": {
+                "inv_001.pdf": "PDF invoice 1"
+              },
+              "inv_002.pdf": "PDF invoice 2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy inv_002.pdf into it too.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "finance/inv_002.pdf",
+            "destination": "finance/invoices"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "invoices": {
+                "inv_001.pdf": "PDF invoice 1",
+                "inv_002.pdf": "PDF invoice 2"
+              },
+              "inv_002.pdf": "PDF invoice 2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "finance/invoices"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "finance/inv_001.pdf",
+          "destination": "finance/invoices"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "finance/inv_002.pdf",
+          "destination": "finance/invoices"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

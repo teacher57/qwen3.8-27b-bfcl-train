@@ -1,0 +1,104 @@
+{
+  "id": "D_23_which_name_game",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in game. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "game": {
+            "level1.json": "{\"enemies\": 3}\n",
+            "level2.json": "{\"boss\": true}\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in game.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it level3.json.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "game/level3.json"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n",
+              "level3.json": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'seed=4242' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "game/level3.json",
+            "content": "seed=4242"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n",
+              "level3.json": "seed=4242"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "game/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

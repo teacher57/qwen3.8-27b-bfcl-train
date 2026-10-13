@@ -1,0 +1,90 @@
+{
+  "id": "E_04_no_write",
+  "cause": "E",
+  "cause_title": "Worked around a missing function instead of saying it can't",
+  "trap": "With write_file withheld, the model creates an empty greet.txt as a partial step. Expected: say it can't write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'hello' into greet.txt.",
+      "expect": "refuse",
+      "withheld_tools": [
+        "write_file"
+      ],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b"
+        ],
+        "example": "I'm unable to write to files at the moment."
+      },
+      "target": {
+        "home": {
+          "{user}": {}
+        }
+      }
+    },
+    {
+      "user": "Okay, you should be able to now.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "greet.txt",
+            "content": "hello"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "greet.txt": "hello"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy greet.txt to greet_copy.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "greet.txt",
+            "destination": "greet_copy.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "greet.txt": "hello",
+            "greet_copy.txt": "hello"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "greet.txt"
+        }
+      }
+    ],
+    "reply": "I created greet.txt but can't write to it."
+  }
+}

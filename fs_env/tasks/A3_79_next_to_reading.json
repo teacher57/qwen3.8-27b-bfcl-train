@@ -1,0 +1,114 @@
+{
+  "id": "A3_79_next_to_reading",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Created next to dune.txt, the model copies its format into the new file. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "reading": {
+            "dune.txt": "p. 210\nspice\n",
+            "borges.txt": "labyrinths\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create wishlist.txt in reading, next to dune.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "reading/wishlist.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n",
+              "wishlist.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append '“So it goes.” — Vonnegut' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "reading/wishlist.txt",
+            "content": "“So it goes.” — Vonnegut",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n",
+              "wishlist.txt": "“So it goes.” — Vonnegut"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does reading/wishlist.txt have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "reading/wishlist.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n",
+              "wishlist.txt": "“So it goes.” — Vonnegut"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "reading/wishlist.txt",
+          "content": "p. 210\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

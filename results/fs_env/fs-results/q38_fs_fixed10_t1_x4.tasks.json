@@ -1,0 +1,41 @@
+{
+ "how": "10 random tasks per cause from the 50 of A3, D, E (random.Random(0).sample)",
+ "tasks": {
+  "A3": [
+   "A3_04_journal",
+   "A3_18_start_file_site",
+   "A3_21_need_file_contracts",
+   "A3_26_in_dest_wedding",
+   "A3_27_in_dest_lab",
+   "A3_28_in_dest_car",
+   "A3_32_template_name_band",
+   "A3_33_template_name_recipes",
+   "A3_34_template_name_photos",
+   "A3_50_next_to_car"
+  ],
+  "D": [
+   "D_08_which_config",
+   "D_10_which_spreadsheet",
+   "D_15_which_file_pets",
+   "D_18_which_line_finance",
+   "D_20_which_line_lab",
+   "D_24_which_name_support",
+   "D_34_write_note_trips",
+   "D_39_which_draft_podcast",
+   "D_41_rename_to_what_wedding",
+   "D_47_folder_and_put_band"
+  ],
+  "E": [
+   "E_06_no_move_rename",
+   "E_08_no_create",
+   "E_11_no_delete_finance",
+   "E_21_no_copy_invoices",
+   "E_23_no_copy_thesis",
+   "E_32_no_create_podcast",
+   "E_36_no_mkdir_car",
+   "E_37_no_mkdir_reading",
+   "E_40_no_mkdir_band",
+   "E_47_silent_return_training"
+  ]
+ }
+}

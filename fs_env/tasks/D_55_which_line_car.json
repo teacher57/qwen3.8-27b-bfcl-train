@@ -1,0 +1,112 @@
+{
+  "id": "D_55_which_line_car",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for service_log.txt. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "car": {
+            "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+            "insurance.pdf": "PDF policy"
+          },
+          "documents": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to car/service_log.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {},
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Next service: 120,000 km'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "car/service_log.txt",
+            "content": "Next service: 120,000 km",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {},
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\nNext service: 120,000 km",
+              "insurance.pdf": "PDF policy"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into documents.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "car/service_log.txt",
+            "destination": "documents"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\nNext service: 120,000 km"
+            },
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\nNext service: 120,000 km",
+              "insurance.pdf": "PDF policy"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "car/service_log.txt",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

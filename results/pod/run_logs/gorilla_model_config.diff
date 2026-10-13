@@ -1,0 +1,31 @@
+diff --git a/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py b/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
+index e42fe1c..174f7fc 100644
+--- a/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
++++ b/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
+@@ -24,6 +24,7 @@ from bfcl_eval.model_handler.api_inference.openai_completion import (
+     OpenAICompletionsHandler,
+ )
+ from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
++from bfcl_eval.model_handler.api_inference.qwen38_vllm import Qwen38VLLMHandler
+ from bfcl_eval.model_handler.api_inference.qwen import (
+     QwenAgentNoThinkHandler,
+     QwenAgentThinkHandler,
+@@ -993,6 +994,18 @@ api_inference_model_map = {
+         is_fc_model=False,
+         underscore_to_dot=False,
+     ),
++    "qwen3.8-27b-FC": ModelConfig(
++        model_name="qwen3.8-27b",
++        display_name="Qwen3.8-27B (FC, thinking, local vLLM)",
++        url="https://huggingface.co/Qwen/Qwen3.8-27B",
++        org="Qwen",
++        license="apache-2.0",
++        model_handler=Qwen38VLLMHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
+     "qwen3-32b-FC": ModelConfig(
+         model_name="qwen3-32b",
+         display_name="Qwen3-32B (FC)",

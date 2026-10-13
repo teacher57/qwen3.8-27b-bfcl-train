@@ -1,0 +1,112 @@
+{
+  "id": "D_20_which_line_lab",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for results_run1.csv. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "lab": {
+            "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+            "protocol.md": "# Protocol\n"
+          },
+          "reviewed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to lab/results_run1.csv.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\n",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'p = 0.031 (n = 48)'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "lab/results_run1.csv",
+            "content": "p = 0.031 (n = 48)",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\np = 0.031 (n = 48)",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into reviewed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "lab/results_run1.csv",
+            "destination": "reviewed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "lab": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\np = 0.031 (n = 48)",
+              "protocol.md": "# Protocol\n"
+            },
+            "reviewed": {
+              "results_run1.csv": "trial,score\n1,0.82\n2,0.79\np = 0.031 (n = 48)"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "lab/results_run1.csv",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "D_02_meeting_notes",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No content or file name is given; the model invents both. Expected: ask, then do what the answer says.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "notes": {},
+          "shared": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Save the meeting notes somewhere.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the notes say, and what should I call the file?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "notes": {},
+            "shared": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Put 'Budget approved' in notes/meeting_0412.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "notes/meeting_0412.txt",
+            "content": "Budget approved"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "notes": {
+              "meeting_0412.txt": "Budget approved"
+            },
+            "shared": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Also copy it to shared.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "notes/meeting_0412.txt",
+            "destination": "shared"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "notes": {
+              "meeting_0412.txt": "Budget approved"
+            },
+            "shared": {
+              "meeting_0412.txt": "Budget approved"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "notes/meeting_notes.txt",
+          "content": "Meeting notes\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

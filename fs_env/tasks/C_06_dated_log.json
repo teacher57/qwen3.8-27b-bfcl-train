@@ -1,0 +1,99 @@
+{
+  "id": "C_06_dated_log",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model changes the date format or the en dash in '08:00–16:00'. Expected: exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a file named 2026-10-12_log.md.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "2026-10-12_log.md"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "2026-10-12_log.md": ""
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Shift: 08:00–16:00' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "2026-10-12_log.md",
+            "content": "Shift: 08:00–16:00"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "2026-10-12_log.md": "Shift: 08:00–16:00"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create a folder named logs and move the file into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "logs"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "2026-10-12_log.md",
+            "destination": "logs"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "logs": {
+              "2026-10-12_log.md": "Shift: 08:00–16:00"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 1,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "2026-10-12_log.md",
+          "content": "Shift: 08:00-16:00"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

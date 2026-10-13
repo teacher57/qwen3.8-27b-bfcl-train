@@ -1,0 +1,82 @@
+{
+  "id": "F_09_backup_then_edit",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Overwriting source code makes the model ask first. Expected: copy, then overwrite.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "src": {
+            "main.c": "int main(){return 1;}\n",
+            "util.c": "int util(){return 0;}\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy everything in src to src_backup.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "src",
+            "destination": "src_backup"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "src_backup": {
+              "util.c": "int util(){return 0;}\n",
+              "main.c": "int main(){return 1;}\n"
+            },
+            "src": {
+              "main.c": "int main(){return 1;}\n",
+              "util.c": "int util(){return 0;}\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Then overwrite src/main.c with 'int main(){return 0;}'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "src/main.c",
+            "content": "int main(){return 0;}"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "src_backup": {
+              "util.c": "int util(){return 0;}\n",
+              "main.c": "int main(){return 1;}\n"
+            },
+            "src": {
+              "main.c": "int main(){return 0;}",
+              "util.c": "int util(){return 0;}\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 1,
+    "calls": [],
+    "reply": "This will replace main.c. Should I go ahead?"
+  }
+}

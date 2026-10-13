@@ -1,0 +1,104 @@
+{
+  "id": "H_07_release",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps across files; the model skips the CHANGELOG line. Expected: all three.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "CHANGELOG.md": "v1.1 fixes\n",
+          "dist": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'v1.2' to VERSION, copy VERSION into dist, and append 'released' to CHANGELOG.md.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "VERSION",
+            "content": "v1.2"
+          }
+        },
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "VERSION",
+            "destination": "dist"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "CHANGELOG.md",
+            "content": "released",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "dist": {
+              "VERSION": "v1.2"
+            },
+            "CHANGELOG.md": "v1.1 fixes\nreleased",
+            "VERSION": "v1.2"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty dist/.done file.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "dist/.done"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "dist": {
+              "VERSION": "v1.2",
+              ".done": ""
+            },
+            "CHANGELOG.md": "v1.1 fixes\nreleased",
+            "VERSION": "v1.2"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "VERSION",
+          "content": "v1.2"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "VERSION",
+          "destination": "dist"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

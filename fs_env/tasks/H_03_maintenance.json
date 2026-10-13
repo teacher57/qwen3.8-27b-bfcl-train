@@ -1,0 +1,104 @@
+{
+  "id": "H_03_maintenance",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps; the model forgets the empty maintenance.flag. Expected: backup, overwrite, flag.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "index.html": "<p>shop</p>",
+          "backup": {
+            "old_index.html": "<p>older</p>"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy index.html to backup, then overwrite index.html with '<p>maintenance</p>', and create an empty maintenance.flag.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "index.html",
+            "destination": "backup"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "index.html",
+            "content": "<p>maintenance</p>"
+          }
+        },
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "maintenance.flag"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "old_index.html": "<p>older</p>",
+              "index.html": "<p>shop</p>"
+            },
+            "index.html": "<p>maintenance</p>",
+            "maintenance.flag": ""
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete backup/old_index.html.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "backup/old_index.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "index.html": "<p>shop</p>"
+            },
+            "index.html": "<p>maintenance</p>",
+            "maintenance.flag": ""
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "index.html",
+          "destination": "backup"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "index.html",
+          "content": "<p>maintenance</p>"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

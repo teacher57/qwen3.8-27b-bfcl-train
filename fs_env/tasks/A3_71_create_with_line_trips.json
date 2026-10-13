@@ -1,0 +1,95 @@
+{
+  "id": "A3_71_create_with_line_trips",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          },
+          "booked": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create trips/madrid.txt for the Madrid trip and put 'Check-in after 15:00, code 4471' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "trips/madrid.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "trips/madrid.txt",
+            "content": "Check-in after 15:00, code 4471"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {},
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into booked.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "trips/madrid.txt",
+            "destination": "booked"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "booked": {
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            },
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Check-in after 15:00, code 4471"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "trips/madrid.txt",
+          "content": "For the madrid trip\n\nCheck-in after 15:00, code 4471\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

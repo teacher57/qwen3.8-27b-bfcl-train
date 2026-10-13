@@ -1,0 +1,116 @@
+{
+  "id": "D_28_somewhere_safe_invoices",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          },
+          "paid": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy invoices/ledger.csv somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Into paid.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "invoices/ledger.csv",
+            "destination": "paid"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete invoices/inv_0043.pdf.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "invoices/inv_0043.pdf"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n"
+            },
+            "paid": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "invoices/ledger.csv",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

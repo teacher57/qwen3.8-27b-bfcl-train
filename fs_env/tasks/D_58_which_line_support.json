@@ -1,0 +1,112 @@
+{
+  "id": "D_58_which_line_support",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for ticket_881.txt. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "support": {
+            "ticket_881.txt": "login fails\nuser: maya\n",
+            "ticket_882.txt": "slow page\n"
+          },
+          "closed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to support/ticket_881.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\n",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Reset link sent; ETA 24h.'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "support/ticket_881.txt",
+            "content": "Reset link sent; ETA 24h.",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {},
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\nReset link sent; ETA 24h.",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into closed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "support/ticket_881.txt",
+            "destination": "closed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "closed": {
+              "ticket_881.txt": "login fails\nuser: maya\nReset link sent; ETA 24h."
+            },
+            "support": {
+              "ticket_881.txt": "login fails\nuser: maya\nReset link sent; ETA 24h.",
+              "ticket_882.txt": "slow page\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "support/ticket_881.txt",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

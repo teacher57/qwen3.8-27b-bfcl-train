@@ -1,0 +1,113 @@
+{
+  "id": "E_56_no_write_music",
+  "cause": "E",
+  "cause_title": "Worked around a missing function instead of saying it can't",
+  "trap": "With write_file withheld, the model creates an empty lyrics.txt as a partial step. Expected: say it can't write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "music": {
+            "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+            "demo_track.mp3": "MP3 demo"
+          },
+          "mastered": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'BPM 128, key of F# minor' into music/lyrics.txt.",
+      "expect": "refuse",
+      "withheld_tools": [
+        "write_file"
+      ],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b"
+        ],
+        "example": "I'm unable to write to files at the moment."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {},
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Okay, you should be able to now.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "music/lyrics.txt",
+            "content": "BPM 128, key of F# minor"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {},
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo",
+              "lyrics.txt": "BPM 128, key of F# minor"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into mastered.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "music/lyrics.txt",
+            "destination": "mastered"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "lyrics.txt": "BPM 128, key of F# minor"
+            },
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo",
+              "lyrics.txt": "BPM 128, key of F# minor"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "music/lyrics.txt"
+        }
+      }
+    ],
+    "reply": "I created the file but couldn't write the text."
+  }
+}

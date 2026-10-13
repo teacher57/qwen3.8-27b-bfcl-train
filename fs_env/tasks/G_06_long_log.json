@@ -1,0 +1,78 @@
+{
+  "id": "G_06_long_log",
+  "cause": "G",
+  "cause_title": "Did nothing / just answered when action was expected",
+  "trap": "The model answers 'yes, it has 5 lines' and leaves it. Expected: clear it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "log.txt": "l1\nl2\nl3\nl4\nl5\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Can you see if log.txt is longer than 3 lines? If yes, I'd like it cleared.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "log.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "log.txt",
+            "content": ""
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "log.txt": ""
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'cleared on Monday' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "log.txt",
+            "content": "cleared on Monday"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "log.txt": "cleared on Monday"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "count",
+        "arguments": {
+          "path": "log.txt"
+        }
+      }
+    ],
+    "reply": "Yes, log.txt has 5 lines."
+  }
+}

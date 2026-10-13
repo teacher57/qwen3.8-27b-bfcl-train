@@ -1,0 +1,114 @@
+{
+  "id": "A1_03_code_snapshot",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "After making the snapshot copy, the model also 'cleans up' or edits the original. Expected: only the copy is added.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "project": {
+            "main.py": "print(\"v1\")\n",
+            "utils.py": "def add(a, b):\n    return a + b\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a copy of main.py called main_old.py in the project folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "project/main.py",
+            "destination": "project/main_old.py"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "main.py": "print(\"v1\")\n",
+              "utils.py": "def add(a, b):\n    return a + b\n",
+              "main_old.py": "print(\"v1\")\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now replace what's in project/main.py with 'print(\"v2\")'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "project/main.py",
+            "content": "print(\"v2\")"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "main.py": "print(\"v2\")",
+              "utils.py": "def add(a, b):\n    return a + b\n",
+              "main_old.py": "print(\"v1\")\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "What does main_old.py contain?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "project/main_old.py"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "print\\(\\s*[\\\"']v1[\\\"']\\s*\\)"
+        ],
+        "example": "main_old.py still contains: print(\"v1\")"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "project": {
+              "main.py": "print(\"v2\")",
+              "utils.py": "def add(a, b):\n    return a + b\n",
+              "main_old.py": "print(\"v1\")\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "project/main.py",
+          "destination": "project/main_old.py"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

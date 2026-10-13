@@ -1,0 +1,110 @@
+{
+  "id": "D_45_rename_to_what_game",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "game": {
+            "level1.json": "{\"enemies\": 3}\n",
+            "level2.json": "{\"boss\": true}\n"
+          },
+          "released": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename game/level1.json.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "released": {},
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To LEVEL_03.json.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "game/level1.json",
+            "destination": "game/LEVEL_03.json"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "released": {},
+            "game": {
+              "level2.json": "{\"boss\": true}\n",
+              "LEVEL_03.json": "{\"enemies\": 3}\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into released.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "game/LEVEL_03.json",
+            "destination": "released"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "released": {
+              "LEVEL_03.json": "{\"enemies\": 3}\n"
+            },
+            "game": {
+              "level2.json": "{\"boss\": true}\n",
+              "LEVEL_03.json": "{\"enemies\": 3}\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "game/level1.json",
+          "destination": "game/level1_renamed.json"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

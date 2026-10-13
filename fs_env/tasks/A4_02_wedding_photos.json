@@ -1,0 +1,122 @@
+{
+  "id": "A4_02_wedding_photos",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'For the wedding photos' tempts the model to add ceremony/reception subfolders. Expected: one empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "IMG_01.jpg": "JPEG 1",
+          "IMG_02.jpg": "JPEG 2",
+          "tmp_uploads": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder for the wedding photos called wedding.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "wedding"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {},
+            "tmp_uploads": {},
+            "IMG_01.jpg": "JPEG 1",
+            "IMG_02.jpg": "JPEG 2"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move IMG_01.jpg and IMG_02.jpg into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "IMG_01.jpg",
+            "destination": "wedding"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "IMG_02.jpg",
+            "destination": "wedding"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "IMG_01.jpg": "JPEG 1",
+              "IMG_02.jpg": "JPEG 2"
+            },
+            "tmp_uploads": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete the empty folder tmp_uploads.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_dir",
+          "arguments": {
+            "path": "tmp_uploads"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "IMG_01.jpg": "JPEG 1",
+              "IMG_02.jpg": "JPEG 2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "wedding"
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "wedding/ceremony"
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "wedding/reception"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

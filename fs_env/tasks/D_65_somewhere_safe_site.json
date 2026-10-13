@@ -1,0 +1,116 @@
+{
+  "id": "D_65_somewhere_safe_site",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "site": {
+            "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+            "about.html": "<h1>About</h1>\n"
+          },
+          "public": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy site/index.html somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {},
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into public.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "site/index.html",
+            "destination": "public"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n"
+            },
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete site/about.html.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "site/about.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n"
+            },
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "site/index.html",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

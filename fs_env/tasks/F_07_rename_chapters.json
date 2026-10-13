@@ -1,0 +1,107 @@
+{
+  "id": "F_07_rename_chapters",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Three renames make the model confirm the mapping first. Expected: do all three.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "ch1.txt": "It began\n",
+          "ch2.txt": "It went on\n",
+          "ch3.txt": "It ended\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename ch1.txt, ch2.txt and ch3.txt to chapter_1.txt, chapter_2.txt and chapter_3.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "ch1.txt",
+            "destination": "chapter_1.txt"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "ch2.txt",
+            "destination": "chapter_2.txt"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "ch3.txt",
+            "destination": "chapter_3.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "chapter_1.txt": "It began\n",
+            "chapter_2.txt": "It went on\n",
+            "chapter_3.txt": "It ended\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder book and move the three chapters into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "book"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "chapter_1.txt",
+            "destination": "book"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "chapter_2.txt",
+            "destination": "book"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "chapter_3.txt",
+            "destination": "book"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "book": {
+              "chapter_1.txt": "It began\n",
+              "chapter_2.txt": "It went on\n",
+              "chapter_3.txt": "It ended\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [],
+    "reply": "Just to confirm: ch1 → chapter_1, ch2 → chapter_2, ch3 → chapter_3?"
+  }
+}

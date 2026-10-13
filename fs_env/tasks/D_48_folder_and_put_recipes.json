@@ -1,0 +1,121 @@
+{
+  "id": "D_48_folder_and_put_recipes",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put recipes/lasagna.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "favorites"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "recipes/lasagna.txt",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n"
+            },
+            "recipes": {
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Serves 6' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "favorites/lasagna.txt",
+            "content": "Serves 6",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\nServes 6"
+            },
+            "recipes": {
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "recipes/lasagna.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

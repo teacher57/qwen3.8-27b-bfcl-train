@@ -1,0 +1,104 @@
+{
+  "id": "D_59_which_name_recipes",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in recipes. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in recipes.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it pie.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "recipes/pie.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "pie.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Serves 6' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "recipes/pie.txt",
+            "content": "Serves 6"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "pie.txt": "Serves 6"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "recipes/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

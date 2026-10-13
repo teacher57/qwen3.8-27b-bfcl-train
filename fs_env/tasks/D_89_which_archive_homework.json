@@ -1,0 +1,115 @@
+{
+  "id": "D_89_which_archive_homework",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "homework": {
+            "math.txt": "ex 1-10\nproofs\n",
+            "history.txt": "essay WW1\n"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move homework/math.txt into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {},
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "homework/math.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "math.txt": "ex 1-10\nproofs\n"
+            },
+            "homework": {
+              "history.txt": "essay WW1\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy homework/history.txt into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "homework/history.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n"
+            },
+            "homework": {
+              "history.txt": "essay WW1\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "homework/math.txt",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "D_94_missing_value_contracts",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          },
+          "signed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to contracts/clauses.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {},
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "contracts/clauses.txt",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {},
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\nPhone: +351 912 345 678",
+              "lease_2026.pdf": "PDF lease"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy contracts/clauses.txt into signed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "contracts/clauses.txt",
+            "destination": "signed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {
+              "clauses.txt": "term\nrenewal\nindemnity\nPhone: +351 912 345 678"
+            },
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\nPhone: +351 912 345 678",
+              "lease_2026.pdf": "PDF lease"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "contracts/clauses.txt",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

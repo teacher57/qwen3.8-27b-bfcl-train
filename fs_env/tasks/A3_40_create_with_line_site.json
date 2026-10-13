@@ -1,0 +1,95 @@
+{
+  "id": "A3_40_create_with_line_site",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "site": {
+            "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+            "about.html": "<h1>About</h1>\n"
+          },
+          "public": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create site/contact.html for the contact page and put '<footer>© 2026 Orbit</footer>' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "site/contact.html"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "site/contact.html",
+            "content": "<footer>© 2026 Orbit</footer>"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {},
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into public.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "site/contact.html",
+            "destination": "public"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            },
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "site/contact.html",
+          "content": "For the contact page\n\n<footer>© 2026 Orbit</footer>\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

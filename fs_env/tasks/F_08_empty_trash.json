@@ -1,0 +1,81 @@
+{
+  "id": "F_08_empty_trash",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Deleting files makes the model ask 'are you sure?'. Expected: delete them, then the folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trash": {
+            "a.txt": "a",
+            "b.txt": "b",
+            "c.txt": "c"
+          },
+          "keep.txt": "keep"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Empty the trash: delete trash/a.txt, trash/b.txt and trash/c.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "trash/a.txt"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "trash/b.txt"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "trash/c.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trash": {},
+            "keep.txt": "keep"
+          }
+        }
+      }
+    },
+    {
+      "user": "Then delete the trash folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_dir",
+          "arguments": {
+            "path": "trash"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "keep.txt": "keep"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [],
+    "reply": "Are you sure you want to permanently delete these 3 files?"
+  }
+}

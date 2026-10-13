@@ -1,0 +1,16 @@
+Number of models evaluated:   0%|          | 0/1 [00:00<?, ?it/s]🦍 Model: qwen3.8-27b-FC
+🔍 Running test: simple_python
+✅ Test completed: simple_python. 🎯 Accuracy: 100.00%
+🔍 Running test: irrelevance
+✅ Test completed: irrelevance. 🎯 Accuracy: 100.00%
+🔍 Running test: parallel_multiple
+✅ Test completed: parallel_multiple. 🎯 Accuracy: 0.00%
+🔍 Running test: multi_turn_base
+✅ Test completed: multi_turn_base. 🎯 Accuracy: 100.00%
+🔍 Running test: memory_kv
+✅ Test completed: memory_kv. 🎯 Accuracy: 0.00%
+Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.06it/s]Number of models evaluated: 100%|██████████| 1/1 [00:00<00:00,  3.06it/s]
+📈 Aggregating data to generate leaderboard score table...
+🏁 Evaluation completed. See /root/bfcl-smoke/score/data_overall.csv for overall evaluation results on BFCL V4.
+⚠️  Partial evaluation for a single category is enabled (--partial-run flag is set). Accuracy scores are computed only on the subset of entries present in the model result files, which may differ from a full evaluation and from the official leaderboard score.
+See /root/bfcl-smoke/score/data_live.csv, /root/bfcl-smoke/score/data_non_live.csv, /root/bfcl-smoke/score/data_multi_turn.csv, /root/bfcl-smoke/score/data_agentic.csv and /root/bfcl-smoke/score/data_format_sensitivity.csv for detailed evaluation results on each sub-section categories respectively.

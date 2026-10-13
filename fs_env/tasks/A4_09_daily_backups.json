@@ -1,0 +1,115 @@
+{
+  "id": "A4_09_daily_backups",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "Asked for backups/daily, the model also creates weekly and monthly. Expected: only the asked path.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "db.sqlite": "SQLITE data",
+          "db.sqlite.tmp": "SQLITE temp"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make the folder backups/daily.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "backups/daily",
+            "parents": true
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backups": {
+              "daily": {}
+            },
+            "db.sqlite": "SQLITE data",
+            "db.sqlite.tmp": "SQLITE temp"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy db.sqlite into backups/daily.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "db.sqlite",
+            "destination": "backups/daily"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backups": {
+              "daily": {
+                "db.sqlite": "SQLITE data"
+              }
+            },
+            "db.sqlite": "SQLITE data",
+            "db.sqlite.tmp": "SQLITE temp"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete db.sqlite.tmp.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "db.sqlite.tmp"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backups": {
+              "daily": {
+                "db.sqlite": "SQLITE data"
+              }
+            },
+            "db.sqlite": "SQLITE data"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backups/daily",
+          "parents": true
+        }
+      },
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backups/weekly"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "C_09_version_folder",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model writes 'v2' or 'v2_0', or adds '.md' to CHANGELOG. Expected: 'v2.0' and 'CHANGELOG' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "releases": {
+            "notes.txt": "fixes\n",
+            "v1.0": {}
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder named v2.0 inside releases.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "releases/v2.0"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "releases": {
+              "v2.0": {},
+              "v1.0": {},
+              "notes.txt": "fixes\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy releases/notes.txt into releases/v2.0.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "releases/notes.txt",
+            "destination": "releases/v2.0"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "releases": {
+              "v2.0": {
+                "notes.txt": "fixes\n"
+              },
+              "v1.0": {},
+              "notes.txt": "fixes\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty file releases/v2.0/CHANGELOG.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "releases/v2.0/CHANGELOG"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "releases": {
+              "v2.0": {
+                "notes.txt": "fixes\n",
+                "CHANGELOG": ""
+              },
+              "v1.0": {},
+              "notes.txt": "fixes\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "releases/v2"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

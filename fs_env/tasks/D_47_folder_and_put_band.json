@@ -1,0 +1,121 @@
+{
+  "id": "D_47_folder_and_put_band",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "band": {
+            "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+            "poster.png": "PNG poster"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put band/gigs.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "band": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n",
+              "poster.png": "PNG poster"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it tour_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "tour_2026"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "band/gigs.txt",
+            "destination": "tour_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tour_2026": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\n"
+            },
+            "band": {
+              "poster.png": "PNG poster"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Sound check 17:30' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "tour_2026/gigs.txt",
+            "content": "Sound check 17:30",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tour_2026": {
+              "gigs.txt": "Lisbon 3 Oct\nPorto 9 Oct\nSound check 17:30"
+            },
+            "band": {
+              "poster.png": "PNG poster"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "band/gigs.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

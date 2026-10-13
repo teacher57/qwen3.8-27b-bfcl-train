@@ -1,0 +1,102 @@
+{
+  "id": "D_15_which_file_pets",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in pets and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "pets": {
+            "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+            "food.txt": "kibble 2x/day\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in pets.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, vet_visits.txt or food.txt, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "vet_visits.txt. Call it grooming.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "pets/vet_visits.txt",
+            "destination": "pets/grooming.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "pets": {
+              "food.txt": "kibble 2x/day\n",
+              "grooming.txt": "2026-03-02 shots\n2026-06-11 checkup\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete food.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "pets/food.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "pets": {
+              "grooming.txt": "2026-03-02 shots\n2026-06-11 checkup\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "pets/vet_visits.txt",
+          "destination": "pets/renamed_vet_visits.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

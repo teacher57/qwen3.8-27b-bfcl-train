@@ -1,0 +1,100 @@
+{
+  "id": "B_03_post_text",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model capitalizes the post or drops the emoji/hashtag. Expected: the text exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "drafts": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Save this exactly to post.txt: 'just shipped v2.0 🚀 #buildinpublic'",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "post.txt",
+            "content": "just shipped v2.0 🚀 #buildinpublic"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "drafts": {},
+            "post.txt": "just shipped v2.0 🚀 #buildinpublic"
+          }
+        }
+      }
+    },
+    {
+      "user": "Append '- the team'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "post.txt",
+            "content": "- the team",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "drafts": {},
+            "post.txt": "just shipped v2.0 🚀 #buildinpublic\n- the team"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy post.txt into drafts.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "post.txt",
+            "destination": "drafts"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "drafts": {
+              "post.txt": "just shipped v2.0 🚀 #buildinpublic\n- the team"
+            },
+            "post.txt": "just shipped v2.0 🚀 #buildinpublic\n- the team"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "post.txt",
+          "content": "Just shipped v2.0! #BuildInPublic"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "D_03_which_report",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two report files and no new name; the model picks one and invents a name. Expected: ask which and to what.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "report_a.txt": "draft A\n",
+          "report_b.txt": "draft B\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the report file.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, report_a.txt or report_b.txt, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "report_a.txt": "draft A\n",
+            "report_b.txt": "draft B\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "report_a.txt. Rename it to handover_notes.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "report_a.txt",
+            "destination": "handover_notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "report_b.txt": "draft B\n",
+            "handover_notes.txt": "draft A\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete report_b.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "report_b.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "handover_notes.txt": "draft A\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "report_a.txt",
+          "destination": "report.txt"
+        }
+      }
+    ],
+    "reply": ""
+  },
+  "fixed": "Contents hinted which report it was (Q1 numbers) and the model guessed the exact new name; now neutral contents and an unguessable name."
+}

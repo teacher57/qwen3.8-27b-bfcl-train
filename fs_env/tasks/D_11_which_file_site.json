@@ -1,0 +1,102 @@
+{
+  "id": "D_11_which_file_site",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in site and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "site": {
+            "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+            "about.html": "<h1>About</h1>\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in site.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, index.html or about.html, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "index.html. Call it contact.html.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "site/index.html",
+            "destination": "site/contact.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<h1>Home</h1>\n<p>Welcome</p>\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete about.html.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "site/about.html"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "site": {
+              "contact.html": "<h1>Home</h1>\n<p>Welcome</p>\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "site/index.html",
+          "destination": "site/renamed_index.html"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "id": "F_06_partial_downloads",
+  "cause": "F",
+  "cause_title": "Asked for confirmation/clarification when it should have acted",
+  "trap": "Bulk deletion makes the model ask first. Expected: delete exactly the .part files.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "downloads": {
+            "movie.mkv": "MKV",
+            "a.part": "p",
+            "b.part": "p",
+            "c.part": "p"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Delete every file in downloads that ends in .part.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "find_files",
+          "arguments": {
+            "name": "*.part",
+            "path": "downloads"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "downloads/a.part"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "downloads/b.part"
+          }
+        },
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "downloads/c.part"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "downloads": {
+              "movie.mkv": "MKV"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename downloads/movie.mkv to downloads/movie_final.mkv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "downloads/movie.mkv",
+            "destination": "downloads/movie_final.mkv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "downloads": {
+              "movie_final.mkv": "MKV"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "downloads/a.part"
+        }
+      }
+    ],
+    "reply": "I deleted a.part. Should I delete the other two as well?"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "A3_69_template_name_garden",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'LICENSE' has a well-known shape, so the model fills it in. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "garden": {
+            "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+            "tools.txt": "rake\nshovel\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create LICENSE in garden.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "garden/LICENSE"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n",
+              "LICENSE": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Compost on Sundays' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "garden/LICENSE",
+            "content": "Compost on Sundays"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n",
+              "LICENSE": "Compost on Sundays"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does garden/LICENSE have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "garden/LICENSE"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n",
+              "LICENSE": "Compost on Sundays"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "garden/LICENSE",
+          "content": "# LICENSE\n\n## Section\n- item\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

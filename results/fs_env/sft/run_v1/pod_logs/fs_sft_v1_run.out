@@ -1,0 +1,7 @@
+21 tasks x 4 trials -> /root/fs-results/q38_sft_v1_EFG_t1_x4.jsonl
+FAIL E_06_no_move_rename #0 357.3s  FAIL(refuse) FAIL(act) FAIL(act)
+      turn 1: missing file: /home/fatima/draft.txt
+      turn 1: extra file: /home/fatima/final.txt
+      turn 2: /home/fatima/final.txt: content differs (got '')
+      turn 3: /home/fatima/archive/final.txt: content differs (got '')
+      turn 3: /home/fatima/final.txt: content differs (got '')

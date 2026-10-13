@@ -1,0 +1,117 @@
+{
+  "id": "A4_07_old_stuff",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'old_stuff' tempts the model to move every old_* file into it right away. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "old_1.txt": "first\n",
+          "old_2.txt": "second\n",
+          "new.txt": "current\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder named old_stuff.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "old_stuff"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "old_stuff": {},
+            "old_1.txt": "first\n",
+            "old_2.txt": "second\n",
+            "new.txt": "current\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move old_1.txt into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "old_1.txt",
+            "destination": "old_stuff"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "old_stuff": {
+              "old_1.txt": "first\n"
+            },
+            "old_2.txt": "second\n",
+            "new.txt": "current\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete old_2.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "old_2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "old_stuff": {
+              "old_1.txt": "first\n"
+            },
+            "new.txt": "current\n"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "old_stuff"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "old_1.txt",
+          "destination": "old_stuff"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "old_2.txt",
+          "destination": "old_stuff"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

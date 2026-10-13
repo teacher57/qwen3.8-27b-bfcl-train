@@ -1,0 +1,93 @@
+{
+  "id": "H_09_report_sections",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three writes; the model writes the title and one section. Expected: all three lines.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "archive": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create report.md with '# Report', then append '## Summary', then append '## Details'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "report.md",
+            "content": "# Report"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "report.md",
+            "content": "## Summary",
+            "mode": "append"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "report.md",
+            "content": "## Details",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {},
+            "report.md": "# Report\n## Summary\n## Details"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy report.md to archive.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "report.md",
+            "destination": "archive"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive": {
+              "report.md": "# Report\n## Summary\n## Details"
+            },
+            "report.md": "# Report\n## Summary\n## Details"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "report.md",
+          "content": "# Report\n## Summary"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

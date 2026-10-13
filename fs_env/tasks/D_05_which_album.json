@@ -1,0 +1,108 @@
+{
+  "id": "D_05_which_album",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two album folders; the model picks one. Expected: ask which album.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photo.jpg": "JPEG photo",
+          "album_paris": {},
+          "album_rome": {},
+          "favorites": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move the photo into the album folder.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which album: album_paris or album_rome?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "album_rome": {},
+            "favorites": {},
+            "album_paris": {},
+            "photo.jpg": "JPEG photo"
+          }
+        }
+      }
+    },
+    {
+      "user": "album_rome.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "photo.jpg",
+            "destination": "album_rome"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "album_rome": {
+              "photo.jpg": "JPEG photo"
+            },
+            "favorites": {},
+            "album_paris": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it to favorites too.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "album_rome/photo.jpg",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "album_rome": {
+              "photo.jpg": "JPEG photo"
+            },
+            "favorites": {
+              "photo.jpg": "JPEG photo"
+            },
+            "album_paris": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "photo.jpg",
+          "destination": "album_paris"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

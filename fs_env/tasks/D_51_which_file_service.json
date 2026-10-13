@@ -1,0 +1,102 @@
+{
+  "id": "D_51_which_file_service",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in service and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "service": {
+            "server.py": "import app\napp.run()\n",
+            "config.toml": "port = 8080\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in service.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, server.py or config.toml, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "service": {
+              "server.py": "import app\napp.run()\n",
+              "config.toml": "port = 8080\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "server.py. Call it routes.py.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "service/server.py",
+            "destination": "service/routes.py"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "service": {
+              "config.toml": "port = 8080\n",
+              "routes.py": "import app\napp.run()\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete config.toml.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "service/config.toml"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "service": {
+              "routes.py": "import app\napp.run()\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "service/server.py",
+          "destination": "service/renamed_server.py"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

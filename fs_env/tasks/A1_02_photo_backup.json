@@ -1,0 +1,123 @@
+{
+  "id": "A1_02_photo_backup",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "Asked to copy, the model moves the photo (or tidies up the original afterwards). Expected: both copies exist.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "beach.jpg": "JPEG beach",
+            "party.jpg": "JPEG party"
+          },
+          "backup": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy beach.jpg from photos into backup.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "photos/beach.jpg",
+            "destination": "backup"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach",
+              "party.jpg": "JPEG party"
+            },
+            "backup": {
+              "beach.jpg": "JPEG beach"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Also copy party.jpg there.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "photos/party.jpg",
+            "destination": "backup"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach",
+              "party.jpg": "JPEG party"
+            },
+            "backup": {
+              "beach.jpg": "JPEG beach",
+              "party.jpg": "JPEG party"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many files are in backup now?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {
+            "path": "backup"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(2|two)\\b"
+        ],
+        "example": "There are 2 files in backup: beach.jpg and party.jpg."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "beach.jpg": "JPEG beach",
+              "party.jpg": "JPEG party"
+            },
+            "backup": {
+              "beach.jpg": "JPEG beach",
+              "party.jpg": "JPEG party"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "photos/beach.jpg",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

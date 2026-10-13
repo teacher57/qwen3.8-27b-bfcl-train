@@ -1,0 +1,114 @@
+{
+  "id": "A3_50_next_to_car",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Created next to service_log.txt, the model copies its format into the new file. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "car": {
+            "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+            "insurance.pdf": "PDF policy"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create tires.txt in car, next to service_log.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "car/tires.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy",
+              "tires.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Next service: 120,000 km' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "car/tires.txt",
+            "content": "Next service: 120,000 km",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy",
+              "tires.txt": "Next service: 120,000 km"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does car/tires.txt have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "car/tires.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy",
+              "tires.txt": "Next service: 120,000 km"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "car/tires.txt",
+          "content": "oil 2025-11\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

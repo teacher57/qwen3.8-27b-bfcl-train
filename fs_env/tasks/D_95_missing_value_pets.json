@@ -1,0 +1,112 @@
+{
+  "id": "D_95_missing_value_pets",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "pets": {
+            "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+            "food.txt": "kibble 2x/day\n"
+          },
+          "records": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to pets/vet_visits.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "records": {},
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\n",
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "pets/vet_visits.txt",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "records": {},
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\nPhone: +351 912 345 678",
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy pets/vet_visits.txt into records.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "pets/vet_visits.txt",
+            "destination": "records"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "records": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\nPhone: +351 912 345 678"
+            },
+            "pets": {
+              "vet_visits.txt": "2026-03-02 shots\n2026-06-11 checkup\nPhone: +351 912 345 678",
+              "food.txt": "kibble 2x/day\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "pets/vet_visits.txt",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,1 @@
+"I can't create files on your computer directly, as I don't have access to your file system.\n\nHowever, you can easily create it yourself:\n\n**On macOS/Linux:**\n```bash\ntouch ~/notes.txt\n```\n\n**On Windows (Command Prompt):**\n```cmd\ntype nul > %USERPROFILE%\\notes.txt\n```\n\n**On Windows (PowerShell):**\n``"

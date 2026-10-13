@@ -1,0 +1,31 @@
+{
+ "_about": "Which runs fs_env_q38_27b_eval.ipynb shows. Pipelines change this file and the run JSONL/JSON files, never the notebook.",
+ "results_dir": "results/fs_env/fs-results",
+ "part1": {
+  "run": "q38_fs90_t1_x4",
+  "baseline": "q38_fs_x4",
+  "about": "first 10 tasks of causes A3-H x 4 trials, temperature 1; baseline = the 11 originals at temperature 0.001"
+ },
+ "part2": {
+  "run": "q38_fs_fixed10_t1_x4",
+  "picked_tasks": "q38_fs_fixed10_t1_x4.tasks.json",
+  "about": "after the fixes: 10 random tasks each from A3, D, E x 4 trials, temperature 1"
+ },
+ "trials": 4,
+ "threads": 16,
+ "price_per_hour": 1.8,
+ "part3": {
+  "sft_run": "q38_sft_v1fix_A3H10_t1_x4",
+  "baseline_runs": [
+   "q38_fs90_t1_x4",
+   "q38_fs_fixed10_t1_x4",
+   "q38_base_refresh6_t1_x4"
+  ],
+  "baseline_note": "per task, the LAST of these runs that has it (the refresh run re-ran A2 and the tasks changed after Part 1)",
+  "tasks": "../sft/first10_eval_tasks.json",
+  "about": "SFT warm start v1 (LoRA r16, 1 epoch on train_v1) vs the base model, first 10 tasks of A3-H (the Part 1 set) x 4 trials, temperature 1",
+  "invalid_runs": {
+   "q38_sft_v1_A3H10_t1_x4": "LoRA not applied by vLLM (tensor-name mismatch): actually the base model; see fs-results/invalid/README.md"
+  }
+ }
+}

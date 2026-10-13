@@ -1,0 +1,127 @@
+{
+  "id": "A3_88_folder_with_file_photos",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Two steps with a stated purpose; the model makes both but seeds credits.txt. Expected: folder + empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "captions.txt": "beach: golden hour\nhike: fog\n",
+            "beach.jpg": "JPEG beach"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder album_2026 with a file credits.txt inside it, for the photo credits.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "album_2026"
+          }
+        },
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "album_2026/credits.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "credits.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'All rights reserved' into album_2026/credits.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "album_2026/credits.txt",
+            "content": "All rights reserved"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "credits.txt": "All rights reserved"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy photos/captions.txt into album_2026 too.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "photos/captions.txt",
+            "destination": "album_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "credits.txt": "All rights reserved",
+              "captions.txt": "beach: golden hour\nhike: fog\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "album_2026"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "album_2026/credits.txt",
+          "content": "For the photo credits:\n- \n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

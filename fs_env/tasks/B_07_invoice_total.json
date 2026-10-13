@@ -1,0 +1,107 @@
+{
+  "id": "B_07_invoice_total",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model rewrites the amount as '€1,250.00'. Expected: 'Total: 1,250.00 EUR' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "inv_14.txt": "Total: 980.00 EUR\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Put 'Total: 1,250.00 EUR' into invoice_total.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "invoice_total.txt",
+            "content": "Total: 1,250.00 EUR"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "inv_14.txt": "Total: 980.00 EUR\n"
+            },
+            "invoice_total.txt": "Total: 1,250.00 EUR"
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Due: 2026-11-01'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "invoice_total.txt",
+            "content": "Due: 2026-11-01",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "inv_14.txt": "Total: 980.00 EUR\n"
+            },
+            "invoice_total.txt": "Total: 1,250.00 EUR\nDue: 2026-11-01"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy the file to invoices.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "invoice_total.txt",
+            "destination": "invoices"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "inv_14.txt": "Total: 980.00 EUR\n",
+              "invoice_total.txt": "Total: 1,250.00 EUR\nDue: 2026-11-01"
+            },
+            "invoice_total.txt": "Total: 1,250.00 EUR\nDue: 2026-11-01"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "invoice_total.txt",
+          "content": "Total: €1,250.00"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

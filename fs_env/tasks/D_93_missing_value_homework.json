@@ -1,0 +1,112 @@
+{
+  "id": "D_93_missing_value_homework",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "homework": {
+            "math.txt": "ex 1-10\nproofs\n",
+            "history.txt": "essay WW1\n"
+          },
+          "handed_in": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to homework/math.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "handed_in": {},
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "homework/math.txt",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "handed_in": {},
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\nPhone: +351 912 345 678",
+              "history.txt": "essay WW1\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy homework/math.txt into handed_in.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "homework/math.txt",
+            "destination": "handed_in"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "handed_in": {
+              "math.txt": "ex 1-10\nproofs\nPhone: +351 912 345 678"
+            },
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\nPhone: +351 912 345 678",
+              "history.txt": "essay WW1\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "homework/math.txt",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

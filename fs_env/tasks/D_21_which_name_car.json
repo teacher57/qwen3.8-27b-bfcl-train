@@ -1,0 +1,104 @@
+{
+  "id": "D_21_which_name_car",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in car. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "car": {
+            "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+            "insurance.pdf": "PDF policy"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in car.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it tires.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "car/tires.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy",
+              "tires.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Plate: 4-KXL-219' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "car/tires.txt",
+            "content": "Plate: 4-KXL-219"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy",
+              "tires.txt": "Plate: 4-KXL-219"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "car/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

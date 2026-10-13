@@ -1,0 +1,95 @@
+{
+  "id": "A3_73_create_with_line_contracts",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          },
+          "signed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create contracts/lawyer_notes.txt for notes from the lawyer and put 'Term: 24 months from 2026-01-01' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "contracts/lawyer_notes.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "contracts/lawyer_notes.txt",
+            "content": "Term: 24 months from 2026-01-01"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {},
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into signed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "contracts/lawyer_notes.txt",
+            "destination": "signed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            },
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "contracts/lawyer_notes.txt",
+          "content": "For notes from the lawyer\n\nTerm: 24 months from 2026-01-01\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

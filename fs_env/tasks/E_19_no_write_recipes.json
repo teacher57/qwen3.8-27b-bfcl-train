@@ -1,0 +1,113 @@
+{
+  "id": "E_19_no_write_recipes",
+  "cause": "E",
+  "cause_title": "Worked around a missing function instead of saying it can't",
+  "trap": "With write_file withheld, the model creates an empty pie.txt as a partial step. Expected: say it can't write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          },
+          "favorites": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'Bake at 180°C for 45 min' into recipes/pie.txt.",
+      "expect": "refuse",
+      "withheld_tools": [
+        "write_file"
+      ],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b"
+        ],
+        "example": "I'm unable to write to files at the moment."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {},
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "It should work now, go ahead.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "recipes/pie.txt",
+            "content": "Bake at 180°C for 45 min"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {},
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "pie.txt": "Bake at 180°C for 45 min"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "recipes/pie.txt",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "pie.txt": "Bake at 180°C for 45 min"
+            },
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n",
+              "pie.txt": "Bake at 180°C for 45 min"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "recipes/pie.txt"
+        }
+      }
+    ],
+    "reply": "I created the file but couldn't write the text."
+  }
+}

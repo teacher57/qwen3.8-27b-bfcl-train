@@ -1,0 +1,100 @@
+{
+  "id": "B_10_slogan_typo",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model corrects the user's 'Their' to 'They're'. Expected: the slogan exactly as given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "marketing": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Put 'Their going to love it' into slogan.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "slogan.txt",
+            "content": "Their going to love it"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "marketing": {},
+            "slogan.txt": "Their going to love it"
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Launch: Monday'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "slogan.txt",
+            "content": "Launch: Monday",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "marketing": {},
+            "slogan.txt": "Their going to love it\nLaunch: Monday"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy slogan.txt to the marketing folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "slogan.txt",
+            "destination": "marketing"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "marketing": {
+              "slogan.txt": "Their going to love it\nLaunch: Monday"
+            },
+            "slogan.txt": "Their going to love it\nLaunch: Monday"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "slogan.txt",
+          "content": "They're going to love it!"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

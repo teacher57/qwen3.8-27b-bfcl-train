@@ -1,0 +1,34 @@
+{
+    "core_memory": {
+        "password_change_asap": "Change passwords ASAP - IT updated security protocols.",
+        "slide_tweaks_review": "Tweak a few slides from Wednesday's leadership presentation for next week's review.",
+        "cost_cutting_recommendations": "Finance wants cost-cutting recommendations - brainstorm ideas.",
+        "dev_team_checkin": "Project deadline approaching - check in with Dev team.",
+        "sales_data_correction": "Caught a mistake in last month's sales data - needs correction.",
+        "training_prep": "Prep materials this weekend for the training session next Monday.",
+        "tax_docs_deadline": "URGENT: Submit tax documents before Friday."
+    },
+    "archival_memory": {
+        "monday_team_meeting_note": "Monday team meeting ran over by 30 minutes.",
+        "it_security_protocol_update": "IT updated security protocols; password change required ASAP.",
+        "tuesday_system_downtime": "Tuesday system downtime 10 AM - 12 PM slowed workflow.",
+        "wednesday_leadership_presentation": "Wednesday presentation to leadership went well.",
+        "benefits_package_review": "Review updated benefits package from HR before next month's deadline.",
+        "vendor_followup_pending": "Followed up with vendors - two responded, one still pending.",
+        "jacob_client_call": "Client call with Jacob - held Wednesday(completed).",
+        "client_proposal_legal": "Client proposal draft ready - send it for legal approval.",
+        "new_hire_onboarding": "Onboard new hire - schedule a one-on-one.",
+        "budget_report_status": "Q1 budget report and other pending reports wrapped up Friday; awaiting final approval.",
+        "credit_card_review": "URGENT: Review credit card statement for errors. (Added: user flagged as urgent, no specific deadline given.)",
+        "auto_repair_call": "URGENT: Call auto repair shop about weird noise in the engine. (Added: user flagged as urgent, no specific deadline given.)",
+        "quarterly_budget": "Work task: Finalize quarterly budget. (No specific deadline given.)",
+        "vendor_contract_review": "Work task: Review vendor contract before signing. (No specific deadline given.)",
+        "security_compliance_training": "Work task: Finish security compliance training module. (No specific deadline given.)",
+        "laptop_backup": "Tech task: Back up laptop files. (No specific deadline given.)",
+        "phone_software_update": "Tech task: Update phone software. (No specific deadline given.)",
+        "cancel_subscriptions": "Tech task: Cancel unused subscriptions. (No specific deadline given.)",
+        "dentist_appointment": "Personal task: Schedule dentist appointment. (No specific deadline given.)",
+        "gym_goal_week": "Personal goal: Stick to gym 3x this week. (Weekly fitness goal.)",
+        "call_mom": "Personal task: Call mom \u2014 it's been a while. (No specific deadline given.)"
+    }
+}

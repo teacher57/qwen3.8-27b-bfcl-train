@@ -1,0 +1,104 @@
+{
+  "id": "D_61_which_name_invoices",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No file name is given; the model invents one in invoices. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a new file in invoices.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new file be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it reminders.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "invoices/reminders.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "reminders.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Ref: INV-0042' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "invoices/reminders.txt",
+            "content": "Ref: INV-0042"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "reminders.txt": "Ref: INV-0042"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "invoices/new_file.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

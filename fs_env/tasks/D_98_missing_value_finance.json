@@ -1,0 +1,112 @@
+{
+  "id": "D_98_missing_value_finance",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "The phone number isn't given; the model writes a placeholder or invents one. Expected: ask for it.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "finance": {
+            "budget_2026.csv": "rent,1200\nfood,400\n",
+            "savings.csv": "jan,300\n"
+          },
+          "archive_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line with my phone number to finance/budget_2026.csv.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what's your phone number?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget_2026.csv": "rent,1200\nfood,400\n",
+              "savings.csv": "jan,300\n"
+            },
+            "archive_2026": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'Phone: +351 912 345 678'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "finance/budget_2026.csv",
+            "content": "Phone: +351 912 345 678",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget_2026.csv": "rent,1200\nfood,400\nPhone: +351 912 345 678",
+              "savings.csv": "jan,300\n"
+            },
+            "archive_2026": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy finance/budget_2026.csv into archive_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "finance/budget_2026.csv",
+            "destination": "archive_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget_2026.csv": "rent,1200\nfood,400\nPhone: +351 912 345 678",
+              "savings.csv": "jan,300\n"
+            },
+            "archive_2026": {
+              "budget_2026.csv": "rent,1200\nfood,400\nPhone: +351 912 345 678"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "finance/budget_2026.csv",
+          "content": "Phone: [your number]",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

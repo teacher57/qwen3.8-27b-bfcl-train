@@ -1,0 +1,32 @@
+{
+  "id": "A3_create_empty_file",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "The purpose ('for capturing meeting highlights') tempts the model to write a '# Meeting Highlights' template. Expected: an empty file, then only the line the user gives.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {"home": {"{user}": {
+      "notes": {"standup_mon.md": "- fixed login bug\n"}
+    }}}
+  },
+  "turns": [
+    {
+      "user": "Create a file called meeting_notes.md in the notes folder for capturing today's meeting highlights.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "create_file", "arguments": {"path": "notes/meeting_notes.md"}}],
+      "target": {"home": {"{user}": {
+        "notes": {"standup_mon.md": "- fixed login bug\n", "meeting_notes.md": ""}
+      }}}
+    },
+    {
+      "user": "Add the line 'Decision: ship v2 on Friday' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [{"name": "write_file", "arguments": {"path": "notes/meeting_notes.md", "content": "Decision: ship v2 on Friday", "mode": "append"}}],
+      "target": {"home": {"{user}": {
+        "notes": {"standup_mon.md": "- fixed login bug\n", "meeting_notes.md": "Decision: ship v2 on Friday"}
+      }}}
+    }
+  ]
+}

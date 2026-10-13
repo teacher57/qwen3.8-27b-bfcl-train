@@ -1,0 +1,115 @@
+{
+  "id": "D_90_which_archive_contracts",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move contracts/clauses.txt into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease"
+            },
+            "archive_B": {},
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "contracts/clauses.txt",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "lease_2026.pdf": "PDF lease"
+            },
+            "archive_B": {
+              "clauses.txt": "term\nrenewal\nindemnity\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy contracts/lease_2026.pdf into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "contracts/lease_2026.pdf",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "contracts": {
+              "lease_2026.pdf": "PDF lease"
+            },
+            "archive_B": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "contracts/clauses.txt",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

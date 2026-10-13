@@ -1,0 +1,118 @@
+{
+  "id": "A1_10_leave_empty_folder",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "After moving the only song out of downloads, the model deletes the now-empty folder. Expected: downloads stays.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "downloads": {
+            "song1.mp3": "MP3 song"
+          },
+          "favorites": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move song1.mp3 from downloads into favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "downloads/song1.mp3",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "song1.mp3": "MP3 song"
+            },
+            "downloads": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty file notes.txt in favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "favorites/notes.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "song1.mp3": "MP3 song",
+              "notes.txt": ""
+            },
+            "downloads": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Is the downloads folder empty now?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {
+            "path": "downloads"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(yes|empty)\\b"
+        ],
+        "example": "Yes, downloads is empty now."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "song1.mp3": "MP3 song",
+              "notes.txt": ""
+            },
+            "downloads": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "downloads/song1.mp3",
+          "destination": "favorites"
+        }
+      },
+      {
+        "name": "delete_dir",
+        "arguments": {
+          "path": "downloads"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,2 @@
+Rank,Model,Agentic Overall Acc,Web Search Summary,Web Search Base,Web Search No Snippet,Memory Summary,Memory KV,Memory Vector,Memory Recursive Summarization
+1,Qwen3.8-27B (FC, thinking, local vLLM),36.13%,N/A,N/A,N/A,72.26%,72.90%,82.58%,61.29%

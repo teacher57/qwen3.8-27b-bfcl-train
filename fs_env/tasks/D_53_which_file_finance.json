@@ -1,0 +1,102 @@
+{
+  "id": "D_53_which_file_finance",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in finance and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "finance": {
+            "budget_2026.csv": "rent,1200\nfood,400\n",
+            "savings.csv": "jan,300\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in finance.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, budget_2026.csv or savings.csv, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget_2026.csv": "rent,1200\nfood,400\n",
+              "savings.csv": "jan,300\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "budget_2026.csv. Call it taxes.csv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "finance/budget_2026.csv",
+            "destination": "finance/taxes.csv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "savings.csv": "jan,300\n",
+              "taxes.csv": "rent,1200\nfood,400\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete savings.csv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "finance/savings.csv"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "taxes.csv": "rent,1200\nfood,400\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "finance/budget_2026.csv",
+          "destination": "finance/renamed_budget_2026.csv"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

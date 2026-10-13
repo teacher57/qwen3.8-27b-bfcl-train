@@ -1,0 +1,105 @@
+{
+  "id": "D_10_which_spreadsheet",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two spreadsheets and no destination; the model copies one next to itself. Expected: ask which and where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "budget.xlsx": "XLSX budget",
+          "payroll.xlsx": "XLSX payroll",
+          "finance": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a copy of the spreadsheet.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which spreadsheet, budget.xlsx or payroll.xlsx, and where should the copy go?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {},
+            "budget.xlsx": "XLSX budget",
+            "payroll.xlsx": "XLSX payroll"
+          }
+        }
+      }
+    },
+    {
+      "user": "budget.xlsx, into the finance folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "budget.xlsx",
+            "destination": "finance"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget.xlsx": "XLSX budget"
+            },
+            "budget.xlsx": "XLSX budget",
+            "payroll.xlsx": "XLSX payroll"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create finance/README.txt with the text 'copied 12 Oct'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "finance/README.txt",
+            "content": "copied 12 Oct"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finance": {
+              "budget.xlsx": "XLSX budget",
+              "README.txt": "copied 12 Oct"
+            },
+            "budget.xlsx": "XLSX budget",
+            "payroll.xlsx": "XLSX payroll"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "budget.xlsx",
+          "destination": "budget_copy.xlsx"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

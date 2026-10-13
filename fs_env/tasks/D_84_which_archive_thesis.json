@@ -1,0 +1,115 @@
+{
+  "id": "D_84_which_archive_thesis",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two archive folders with neutral names; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "thesis": {
+            "chapter1.tex": "\\section{Intro}\nMotivation\n",
+            "refs.bib": "@book{knuth}\n"
+          },
+          "archive_A": {},
+          "archive_B": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Move thesis/chapter1.tex into the archive.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are two archives, archive_A and archive_B. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {},
+            "thesis": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n",
+              "refs.bib": "@book{knuth}\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "archive_B.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "thesis/chapter1.tex",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n"
+            },
+            "thesis": {
+              "refs.bib": "@book{knuth}\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy thesis/refs.bib into archive_B as well.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "thesis/refs.bib",
+            "destination": "archive_B"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "archive_B": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n",
+              "refs.bib": "@book{knuth}\n"
+            },
+            "thesis": {
+              "refs.bib": "@book{knuth}\n"
+            },
+            "archive_A": {}
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "thesis/chapter1.tex",
+          "destination": "archive_A"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "A3_72_create_with_line_homework",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Given one line for a new file, the model adds a heading or more lines around it. Expected: only that line.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "homework": {
+            "math.txt": "ex 1-10\nproofs\n",
+            "history.txt": "essay WW1\n"
+          },
+          "handed_in": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create homework/physics.txt for physics notes and put 'Due Friday – page 42, ex. 3a' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "homework/physics.txt"
+          }
+        },
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "homework/physics.txt",
+            "content": "Due Friday – page 42, ex. 3a"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "handed_in": {},
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n",
+              "physics.txt": "Due Friday – page 42, ex. 3a"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into handed_in.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "homework/physics.txt",
+            "destination": "handed_in"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "handed_in": {
+              "physics.txt": "Due Friday – page 42, ex. 3a"
+            },
+            "homework": {
+              "math.txt": "ex 1-10\nproofs\n",
+              "history.txt": "essay WW1\n",
+              "physics.txt": "Due Friday – page 42, ex. 3a"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "homework/physics.txt",
+          "content": "For physics notes\n\nDue Friday – page 42, ex. 3a\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "id": "H_02_year_folder",
+  "cause": "H",
+  "cause_title": "Skipped a required action",
+  "trap": "Three steps; the model creates the folder and moves the files but leaves the old folder. Expected: all three.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "jan.csv": "jan\n",
+          "feb.csv": "feb\n",
+          "old": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a folder 2026, move jan.csv and feb.csv into it, and delete the empty old folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "2026"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "jan.csv",
+            "destination": "2026"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "feb.csv",
+            "destination": "2026"
+          }
+        },
+        {
+          "name": "delete_dir",
+          "arguments": {
+            "path": "old"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "2026": {
+              "jan.csv": "jan\n",
+              "feb.csv": "feb\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many files are in 2026?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {
+            "path": "2026"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(2|two)\\b"
+        ],
+        "example": "There are 2 files in 2026: jan.csv and feb.csv."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "2026": {
+              "jan.csv": "jan\n",
+              "feb.csv": "feb\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'checked' to 2026/jan.csv.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "2026/jan.csv",
+            "content": "checked",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "2026": {
+              "jan.csv": "jan\nchecked",
+              "feb.csv": "feb\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "2026"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "jan.csv",
+          "destination": "2026"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "feb.csv",
+          "destination": "2026"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

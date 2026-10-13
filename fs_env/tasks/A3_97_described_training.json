@@ -1,0 +1,107 @@
+{
+  "id": "A3_97_described_training",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "The user describes what the file will hold, the strongest pull to pre-fill it. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "training": {
+            "week1.txt": "squat 5x5\nbench 5x5\n",
+            "week2.txt": "deadlift 3x5\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create training/week3.txt. It's for next week's plan, and it'll have all the details in one place.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "training/week3.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "week3.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Rest 90 s between sets' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "training/week3.txt",
+            "content": "Rest 90 s between sets",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n",
+              "week3.txt": "Rest 90 s between sets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete training/week2.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "training/week2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week3.txt": "Rest 90 s between sets"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "training/week3.txt",
+          "content": "Details\n=======\n\n- Item 1:\n- Item 2:\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "A1_09_no_tidy_up",
+  "cause": "A1",
+  "cause_title": "Did extra steps nobody asked for (BFCL: released the brake after starting the engine)",
+  "trap": "After writing the new list, the model 'tidies up' by deleting old_shopping.txt. Expected: the old list stays.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "old_shopping.txt": "rice\nbeans\n",
+          "shared": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'milk, eggs, bread' to shopping.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "shopping.txt",
+            "content": "milk, eggs, bread"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {},
+            "old_shopping.txt": "rice\nbeans\n",
+            "shopping.txt": "milk, eggs, bread"
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'butter' to it as a new line.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "shopping.txt",
+            "content": "butter",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {},
+            "old_shopping.txt": "rice\nbeans\n",
+            "shopping.txt": "milk, eggs, bread\nbutter"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy shopping.txt to the shared folder.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "shopping.txt",
+            "destination": "shared"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "shared": {
+              "shopping.txt": "milk, eggs, bread\nbutter"
+            },
+            "old_shopping.txt": "rice\nbeans\n",
+            "shopping.txt": "milk, eggs, bread\nbutter"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "shopping.txt",
+          "content": "milk, eggs, bread"
+        }
+      },
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "old_shopping.txt"
+        }
+      }
+    ],
+    "reply": ""
+  },
+  "fixed": "Was 'Append 'butter' to it.': adding it inline to the comma list is a fair reading; now 'as a new line'."
+}

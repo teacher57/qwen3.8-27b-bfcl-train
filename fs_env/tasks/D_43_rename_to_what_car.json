@@ -1,0 +1,110 @@
+{
+  "id": "D_43_rename_to_what_car",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No new name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "car": {
+            "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+            "insurance.pdf": "PDF policy"
+          },
+          "documents": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename car/service_log.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {},
+            "car": {
+              "service_log.txt": "oil 2025-11\nbrakes 2026-02\n",
+              "insurance.pdf": "PDF policy"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "To SERVICE-LOG.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "car/service_log.txt",
+            "destination": "car/SERVICE-LOG"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {},
+            "car": {
+              "insurance.pdf": "PDF policy",
+              "SERVICE-LOG": "oil 2025-11\nbrakes 2026-02\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into documents.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "car/SERVICE-LOG",
+            "destination": "documents"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "documents": {
+              "SERVICE-LOG": "oil 2025-11\nbrakes 2026-02\n"
+            },
+            "car": {
+              "insurance.pdf": "PDF policy",
+              "SERVICE-LOG": "oil 2025-11\nbrakes 2026-02\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "car/service_log.txt",
+          "destination": "car/service_log_renamed.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

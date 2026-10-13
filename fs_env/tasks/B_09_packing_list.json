@@ -1,0 +1,98 @@
+{
+  "id": "B_09_packing_list",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model turns the three items into a bulleted list. Expected: three plain lines.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {}
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write these three lines into packing.txt: 'passport', 'charger', 'socks'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "packing.txt",
+            "content": "passport\ncharger\nsocks"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "packing.txt": "passport\ncharger\nsocks"
+          }
+        }
+      }
+    },
+    {
+      "user": "Add 'toothbrush' as a fourth line.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "packing.txt",
+            "content": "toothbrush",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "packing.txt": "passport\ncharger\nsocks\ntoothbrush"
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does packing.txt have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "packing.txt"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(4|four)\\b"
+        ],
+        "example": "packing.txt has 4 lines."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "packing.txt": "passport\ncharger\nsocks\ntoothbrush"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "packing.txt",
+          "content": "- passport\n- charger\n- socks"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

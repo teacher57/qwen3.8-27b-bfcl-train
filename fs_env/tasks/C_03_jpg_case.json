@@ -1,0 +1,96 @@
+{
+  "id": "C_03_jpg_case",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model lowercases '.JPG' or writes 'Summer_2026'. Expected: 'photo.JPG' and 'Summer 2026' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photo.jpeg": "JPEG photo"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename photo.jpeg to photo.JPG.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "photo.jpeg",
+            "destination": "photo.JPG"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photo.JPG": "JPEG photo"
+          }
+        }
+      }
+    },
+    {
+      "user": "Make a folder called 'Summer 2026'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "Summer 2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "Summer 2026": {},
+            "photo.JPG": "JPEG photo"
+          }
+        }
+      }
+    },
+    {
+      "user": "Move photo.JPG into Summer 2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "photo.JPG",
+            "destination": "Summer 2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "Summer 2026": {
+              "photo.JPG": "JPEG photo"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "photo.jpeg",
+          "destination": "photo.jpg"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_26_somewhere_safe_recipes",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "recipes": {
+            "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+            "soup.txt": "onions\nbroth\n"
+          },
+          "favorites": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy recipes/lasagna.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {},
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into favorites.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "recipes/lasagna.txt",
+            "destination": "favorites"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n"
+            },
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n",
+              "soup.txt": "onions\nbroth\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete recipes/soup.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "recipes/soup.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "favorites": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n"
+            },
+            "recipes": {
+              "lasagna.txt": "pasta sheets\nragu\nbechamel\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "recipes/lasagna.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_29_somewhere_safe_music",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "music": {
+            "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+            "demo_track.mp3": "MP3 demo"
+          },
+          "mastered": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy music/setlist.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {},
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Into mastered.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "music/setlist.txt",
+            "destination": "mastered"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n"
+            },
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n",
+              "demo_track.mp3": "MP3 demo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete music/demo_track.mp3.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "music/demo_track.mp3"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "mastered": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n"
+            },
+            "music": {
+              "setlist.txt": "Intro\nNeon Rain\nOutro\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "music/setlist.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

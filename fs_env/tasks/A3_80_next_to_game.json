@@ -1,0 +1,114 @@
+{
+  "id": "A3_80_next_to_game",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "Created next to level1.json, the model copies its format into the new file. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "game": {
+            "level1.json": "{\"enemies\": 3}\n",
+            "level2.json": "{\"boss\": true}\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create level3.json in game, next to level1.json.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "game/level3.json"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n",
+              "level3.json": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append '{\"lives\": 3, \"hard\": false}' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "game/level3.json",
+            "content": "{\"lives\": 3, \"hard\": false}",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n",
+              "level3.json": "{\"lives\": 3, \"hard\": false}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many lines does game/level3.json have?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "count",
+          "arguments": {
+            "path": "game/level3.json"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(1|one)\\b"
+        ],
+        "example": "It has 1 line."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "game": {
+              "level1.json": "{\"enemies\": 3}\n",
+              "level2.json": "{\"boss\": true}\n",
+              "level3.json": "{\"lives\": 3, \"hard\": false}"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "game/level3.json",
+          "content": "{\"enemies\": 3}\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

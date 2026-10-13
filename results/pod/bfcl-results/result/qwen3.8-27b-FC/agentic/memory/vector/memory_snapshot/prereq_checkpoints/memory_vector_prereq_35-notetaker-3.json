@@ -1,0 +1,38 @@
+{
+    "core_memory": {
+        "next_id": 14,
+        "store": {
+            "0": "URGENT: Change passwords ASAP(IT updated security protocols); submit tax documents before Friday.",
+            "6": "SCHEDULE: Training session(next Monday) \u2014 prep materials this weekend; elementary school orientation(next Thursday).",
+            "9": "DAYCARE: Drop-off 8 AM, pick-up 5 PM(daily). Monthly payment due Friday.",
+            "10": "SCHOOL: Finalize elementary school admission paperwork; research after-school programs.",
+            "11": "MEDICAL(kid): Cold not improving \u2014 schedule pediatrician visit; check vaccine schedule(next shots due in ~2 months); monitor food allergies \u2014 keep a log if symptoms flare up.",
+            "12": "FAMILY(kid): Park this weekend; pick out a new bedtime story book; counting practice \u2014 focus on numbers 1-20 (per teacher).",
+            "13": "SHOPPING: Buy more diapers; school supplies(crayons, notebooks, glue sticks); pack extra snacks in daycare bag."
+        }
+    },
+    "archival_memory": {
+        "next_id": 19,
+        "store": {
+            "0": "Weekly notes(logged Monday): (1) Team meeting ran over by 30 minutes. (2) Q1 budget report must be finalized before Friday. (3) IT updated security protocols \u2014 user needs to change passwords ASAP. (4) Client call with Jacob was delayed and is now scheduled for Wednesday.",
+            "1": "Weekly notes(logged Tuesday): (1) System downtime 10 AM\u201312 PM slowed workflow. (2) HR sent an updated benefits package \u2014 user needs to review it before next month's deadline. (3) Follow-up emails sent to vendors; currently waiting on their response.",
+            "2": "Weekly notes(logged Wednesday): (1) Presentation to leadership went well, but a few slides need tweaking for next week's review. (2) Client proposal draft is ready \u2014 needs to be sent for legal approval. (3) New hire to onboard \u2014 need to schedule a one-on-one.",
+            "3": "Weekly notes(logged Thursday): (1) Finance wants cost-cutting recommendations \u2014 need to brainstorm ideas. (2) Project deadline approaching \u2014 check in with Dev team. (3) Caught a mistake in last month's sales data \u2014 needs correction.",
+            "4": "Weekly notes(logged Friday): (1) Wrapped up pending reports, but still waiting for final approval(likely includes the Q1 budget report). (2) Followed up with vendors \u2014 two have responded, one still pending. (3) Training session scheduled for next Monday \u2014 need to prep materials this weekend.",
+            "5": "TASK: Review credit card statement for errors.",
+            "6": "TASK: Call auto repair shop about weird noise in the engine.",
+            "7": "TECH TASKS: Back up laptop files; update phone software; cancel unused subscriptions.",
+            "8": "PERSONAL TASKS: Schedule dentist appointment; stick to gym 3x this week; call mom(it's been a while).",
+            "9": "Household chores(from user): 1) Wash dishes tonight before they pile up. 2) Laundry \u2014 separate colors, do NOT mix whites. 3) Fix the leaky kitchen sink; use a YouTube how-to if needed. 4) Trash \u2014 take out Wednesday morning. 5) Vacuum the living room. 6) Mop the kitchen floor(sticky from last night's spill).",
+            "10": "Car maintenance(from user): 1) Wash and vacuum the car on Sunday. 2) Check tire pressure. 3) Refill windshield wiper fluid.",
+            "11": "Organizing tasks(from user): 1) Sort through the closet and donate old clothes. 2) Shred old mail. 3) Restock the pantry \u2014 running low on rice and cereal.",
+            "12": "DIY fixes(from user): 1) Tighten the loose cabinet handle. 2) Replace the bathroom lightbulb. 3) Patch up minor wall scuffs.",
+            "13": "Daycare note: bring an extra set of clothes for the next drop-off \u2014 the last set got muddy.",
+            "14": "Elementary school: finalize admission paperwork; attend orientation next Thursday; research after-school programs.",
+            "15": "Q1 budget report \u2014 finalized(Fri), awaiting final approval.",
+            "16": "WORK TASKS: Finalize quarterly budget; review vendor contract before signing; finish security compliance training module.",
+            "17": "DEADLINES: Project deadline \u2014 check in with Dev team(approaching); review updated HR benefits package(next month).",
+            "18": "OPEN TASKS: Tweak leadership slides(before next week's review); send client proposal for legal approval; onboard new hire(schedule 1-on-1); brainstorm cost-cutting ideas for Finance; fix mistake in last month's sales data."
+        }
+    }
+}

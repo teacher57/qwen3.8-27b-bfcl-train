@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FS Task Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: workbench — task list | the turn you're playing | the live file tree. Paths and calls in mono, UI in sans. */
+:root {
+  --bg: #f3f4f1;
+  --surface: #ffffff;
+  --sunken: #e9ebe6;
+  --fg: #1e2420;
+  --muted: #5d665f;
+  --line: #d6dad3;
+  --accent: #2f6b4f;
+  --accent-soft: #e1ede6;
+  --accent-fg: #ffffff;
+  --ok: #217a45;
+  --ok-soft: #dff1e5;
+  --bad: #b3261e;
+  --bad-soft: #fbe3e0;
+  --warn: #9a5b00;
+  --warn-soft: #fbefd9;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "IBM Plex Sans Condensed", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141815; --surface: #1b201c; --sunken: #232923; --fg: #e3e8e3; --muted: #9aa59c; --line: #323a33;
+    --accent: #7cc49d; --accent-soft: #233a2d; --accent-fg: #0f1a13;
+    --ok: #6fd093; --ok-soft: #1d3626; --bad: #f08a80; --bad-soft: #3d201d; --warn: #e8b25c; --warn-soft: #3a2d17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141815; --surface: #1b201c; --sunken: #232923; --fg: #e3e8e3; --muted: #9aa59c; --line: #323a33;
+  --accent: #7cc49d; --accent-soft: #233a2d; --accent-fg: #0f1a13;
+  --ok: #6fd093; --ok-soft: #1d3626; --bad: #f08a80; --bad-soft: #3d201d; --warn: #e8b25c; --warn-soft: #3a2d17;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 14px/1.5 var(--font-ui); }
+code, pre, .mono { font-family: var(--font-mono); font-size: 12.5px; }
+button, select, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.topbar {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--surface);
+  position: sticky; top: 0; z-index: 5;
+}
+.brand { font-family: var(--font-display); font-size: 17px; letter-spacing: .01em; display: flex; gap: 8px; align-items: baseline; }
+.brand small { font-family: var(--font-ui); font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.tabs { display: flex; gap: 4px; }
+.tab { border: 0; background: none; padding: 6px 12px; border-radius: var(--r); cursor: pointer; color: var(--muted); font-weight: 500; }
+.tab[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); }
+
+.view { padding: 16px; }
+.workbench { display: grid; grid-template-columns: 230px minmax(0, 1fr) minmax(0, 360px); gap: 16px; align-items: start; }
+@media (max-width: 1150px) { .workbench { grid-template-columns: 210px minmax(0, 1fr); } .files { grid-column: 2; } }
+@media (max-width: 760px) { .workbench { grid-template-columns: minmax(0, 1fr); } .files { grid-column: auto; } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.panel-head { padding: 10px 14px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+
+/* task list */
+.search { padding: 8px 8px 4px; display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid var(--line); }
+.search input { width: 100%; padding: 6px 9px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); font-size: 13px; }
+.search .hint:empty { display: none; }
+.task-list { display: flex; flex-direction: column; padding: 6px; gap: 2px; max-height: calc(100vh - 140px); overflow: auto; }
+.task-group { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 10px 8px 4px; font-size: 12px; font-weight: 600; color: var(--muted); border-top: 1px solid var(--line); }
+.task-group:first-child { border-top: 0; padding-top: 4px; }
+.task-item {
+  display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 8px; align-items: center;
+  text-align: left; border: 0; background: none; padding: 7px 8px; border-radius: var(--r); cursor: pointer;
+}
+.task-item:hover { background: var(--sunken); }
+.task-item[aria-current="true"] { background: var(--accent-soft); }
+.task-item .name { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.code-chip { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--accent); }
+.dots { display: flex; gap: 3px; }
+.chip { display: inline-block; margin-right: 6px; font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 0 5px; border-radius: 4px; vertical-align: 1px; }
+.chip.fixed { background: var(--warn-soft); color: var(--warn); }
+.chip.new { background: var(--accent-soft); color: var(--accent); }
+.task-group.fixed-group .chip { margin-left: 0; }
+.fixed-note { font-size: 13px; background: var(--warn-soft); color: var(--fg); border-radius: var(--r); padding: 7px 10px; max-width: 90ch; }
+.fixed-note b { color: var(--warn); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.dot.pass { background: var(--ok); }
+.dot.fail { background: var(--bad); }
+
+/* main column */
+.work { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.task-head { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.task-title { font-family: var(--font-display); font-size: 20px; line-height: 1.25; margin: 0; text-wrap: balance; }
+.task-meta { display: flex; gap: 10px 16px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 13px; }
+.btn {
+  border: 1px solid var(--line); background: var(--surface); padding: 5px 11px; border-radius: var(--r);
+  cursor: pointer; font-weight: 500; font-size: 13px; white-space: nowrap;
+}
+.btn:hover:not(:disabled) { background: var(--sunken); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.btn.primary:hover:not(:disabled) { filter: brightness(1.08); background: var(--accent); }
+.btn.small { padding: 2px 8px; font-size: 12px; }
+
+.turns { display: flex; gap: 6px; flex-wrap: wrap; }
+.turn-pill { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 3px 12px; cursor: pointer; font-size: 12.5px; display: inline-flex; gap: 6px; align-items: center; }
+.turn-pill[aria-current="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+.turn-body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.user-msg { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--sunken); display: grid; place-items: center; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; }
+.bubble { background: var(--sunken); border-radius: 4px 12px 12px 12px; padding: 9px 13px; font-size: 15px; }
+.withheld { font-size: 13px; color: var(--warn); background: var(--warn-soft); border-radius: var(--r); padding: 6px 10px; }
+
+.runner { display: flex; flex-direction: column; gap: 10px; }
+.runner-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+select.tool-select { padding: 5px 8px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); font-family: var(--font-mono); font-size: 13px; }
+.tool-desc { color: var(--muted); font-size: 13px; }
+.fields { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+.fields label { font-family: var(--font-mono); font-size: 12.5px; }
+.fields label .req { color: var(--bad); }
+.fields input[type="text"], .fields textarea, .fields select {
+  width: 100%; padding: 5px 8px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg);
+  font-family: var(--font-mono); font-size: 13px;
+}
+.fields textarea { min-height: 64px; resize: vertical; }
+.fields input.armed { border-color: var(--accent); }
+.hint { font-size: 12px; color: var(--muted); }
+
+.convo { display: flex; flex-direction: column; gap: 8px; }
+.convo-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.seg { margin-left: auto; display: inline-flex; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.seg-btn { border: 0; background: var(--surface); padding: 3px 10px; font-size: 12px; cursor: pointer; color: var(--muted); }
+.seg-btn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.transcript, .raw {
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--bg);
+  max-height: 560px; overflow: auto; margin: 0;
+}
+.transcript { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.raw { padding: 10px 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.turn-sep { display: flex; align-items: center; gap: 10px; font-size: 11.5px; color: var(--muted); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-top: 4px; }
+.turn-sep::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+.turn-sep .auto { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.msg { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }
+.msg.past { opacity: .72; }
+.msg .who { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 3px; }
+.avatar.model { background: var(--accent-soft); color: var(--accent); }
+.bubble.model { background: var(--surface); border: 1px solid var(--line); border-radius: 12px 4px 12px 12px; }
+.bubble.draft { border-style: dashed; }
+.bubble .none { color: var(--muted); font-style: italic; }
+.msg .withheld-note { font-size: 12px; color: var(--warn); margin-top: 4px; }
+.log-empty { color: var(--muted); font-size: 13px; padding: 2px 0 2px 40px; }
+.log-entry { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.log-call { padding: 5px 10px; display: flex; gap: 8px; align-items: baseline; background: var(--sunken); }
+.log-call code { overflow-wrap: anywhere; }
+.log-out { padding: 6px 10px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 220px; overflow: auto; }
+.log-out.err { color: var(--bad); }
+.tag { font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; flex: none; }
+.tag.change { background: var(--warn-soft); color: var(--warn); }
+.tag.read { background: var(--accent-soft); color: var(--accent); }
+.tag.error { background: var(--bad-soft); color: var(--bad); }
+
+.reply { display: flex; flex-direction: column; gap: 6px; }
+.reply textarea { width: 100%; min-height: 56px; resize: vertical; padding: 6px 9px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.verdict { border-radius: var(--r); padding: 10px 12px; font-size: 13.5px; }
+.verdict.pass { background: var(--ok-soft); color: var(--ok); }
+.verdict.fail { background: var(--bad-soft); color: var(--bad); }
+.verdict ul { margin: 6px 0 0; padding-left: 18px; font-family: var(--font-mono); font-size: 12.5px; overflow-wrap: anywhere; }
+.verdict .note { color: var(--fg); opacity: .8; margin-top: 4px; }
+
+details.answer { border-top: 1px solid var(--line); }
+details.answer > summary { padding: 10px 14px; cursor: pointer; font-weight: 500; color: var(--muted); }
+.answer-body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+.expect { display: inline-flex; gap: 6px; align-items: center; font-weight: 500; }
+.trap { font-size: 13px; color: var(--muted); max-width: 70ch; }
+.gold { display: flex; flex-direction: column; gap: 4px; }
+.gold code { background: var(--sunken); padding: 4px 8px; border-radius: 4px; overflow-wrap: anywhere; }
+
+/* file tree */
+.files { position: sticky; top: 64px; display: flex; flex-direction: column; min-width: 0; }
+.cwd { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent); overflow-wrap: anywhere; }
+.tree { padding: 6px; display: flex; flex-direction: column; max-height: 46vh; overflow: auto; }
+.row {
+  display: flex; align-items: center; gap: 6px; padding: 2px 6px; border-radius: 4px; cursor: pointer;
+  font-family: var(--font-mono); font-size: 12.5px; border: 0; background: none; text-align: left; width: 100%;
+}
+.row:hover { background: var(--sunken); }
+.row.selected { background: var(--accent-soft); }
+.row .glyph { width: 14px; color: var(--muted); flex: none; text-align: center; }
+.row.dir .nm { font-weight: 600; }
+.row .nm { overflow-wrap: anywhere; }
+.row.added .nm { color: var(--ok); }
+.row.modified .nm { color: var(--warn); }
+.row .here { font-family: var(--font-ui); font-size: 10.5px; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 4px; }
+.row .st { margin-left: auto; font-family: var(--font-ui); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; }
+.row.added .st { color: var(--ok); }
+.row.modified .st { color: var(--warn); }
+.deleted { padding: 4px 12px 8px; font-family: var(--font-mono); font-size: 12.5px; color: var(--bad); }
+.deleted div { text-decoration: line-through; overflow-wrap: anywhere; }
+.viewer { border-top: 1px solid var(--line); padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+.viewer pre { margin: 0; background: var(--sunken); padding: 8px 10px; border-radius: 4px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 240px; overflow: auto; }
+.viewer .empty { color: var(--muted); font-style: italic; font-family: var(--font-ui); }
+.target-tree { border: 1px solid var(--line); border-radius: var(--r); padding: 6px; }
+.row.static { cursor: default; }
+.row.static:hover { background: none; }
+.target-content { margin: 0 0 4px; padding: 4px 8px; background: var(--sunken); border-radius: 4px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.legend { display: flex; gap: 12px; padding: 0 14px 10px; font-size: 11.5px; color: var(--muted); }
+.legend .a { color: var(--ok); } .legend .m { color: var(--warn); } .legend .d { color: var(--bad); }
+
+/* tools tab */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 14px; max-width: 1300px; }
+.tool-card { padding: 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tool-card h3 { margin: 0; font-family: var(--font-mono); font-size: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.tool-card p { margin: 0; color: var(--muted); }
+.params { width: 100%; border-collapse: collapse; font-size: 13px; }
+.params td { padding: 5px 6px 5px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.params td:first-child { font-family: var(--font-mono); white-space: nowrap; }
+.params .type { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+.tool-card details summary { cursor: pointer; color: var(--muted); font-size: 12.5px; }
+.tool-card details pre { background: var(--sunken); padding: 8px; border-radius: 4px; overflow-x: auto; margin: 6px 0 0; }
+.tools-intro { max-width: 75ch; color: var(--muted); margin: 0 0 14px; }
+
+.folder-map { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.folder-map .pair { font-family: var(--font-mono); font-size: 12px; background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 1px 7px; }
+.folder-map .pair s { color: var(--muted); text-decoration: none; }
+.words-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+.words-bar input { padding: 6px 9px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); font-size: 13px; width: min(320px, 100%); }
+.words { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 4px 12px; font-family: var(--font-mono); font-size: 12.5px; max-width: 1300px; }
+.words span { padding: 2px 4px; border-radius: 3px; }
+.words span.hit { background: var(--accent-soft); color: var(--accent); }
+.toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--bad); color: #fff; padding: 8px 14px; border-radius: var(--r); font-size: 13px; max-width: calc(100% - 32px); }
+@media (prefers-reduced-motion: no-preference) { .verdict, .log-entry { animation: in .18s ease-out; } }
+@keyframes in { from { opacity: .3; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">FS Task Playground <small id="counts"></small></div>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-tasks" aria-selected="true">Tasks</button>
+    <button class="tab" role="tab" id="tab-tools" aria-selected="false">Tools</button>
+    <button class="tab" role="tab" id="tab-words" aria-selected="false">Folder words</button>
+  </nav>
+</header>
+
+<section class="view" id="view-tasks">
+  <div class="workbench">
+    <aside class="panel">
+      <div class="panel-head"><span class="label">Tasks</span></div>
+      <div class="search">
+        <input type="search" id="task-search" placeholder="Search scenarios  ( / )" title="Searches names, user messages, traps, file names and fix notes. Several words must all match, e.g.: recipe, withheld delete_file, TODO.md, fixed, which draft. Enter opens the first match, Esc clears." aria-label="Search scenarios" autocomplete="off">
+        <span class="hint" id="search-count"></span>
+      </div>
+      <div class="task-list" id="task-list"></div>
+    </aside>
+
+    <div class="work">
+      <div class="panel">
+        <div class="task-head">
+          <h1 class="task-title" id="task-title">Loading…</h1>
+          <div class="fixed-note" id="fixed-note" hidden></div>
+          <div class="task-meta">
+            <span>Home folder <code id="home"></code></span>
+            <button class="btn small" id="btn-rename" title="Restart this task with another random user name">New name</button>
+            <button class="btn small" id="btn-restart">Restart task</button>
+          </div>
+          <div class="folder-map" id="folder-map" hidden></div>
+          <div class="turns" id="turns"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="turn-body">
+          <div class="convo">
+            <div class="convo-head">
+              <span class="label">Conversation</span>
+              <span class="hint" id="convo-count"></span>
+              <span class="seg" role="group" aria-label="Conversation view">
+                <button class="seg-btn" id="convo-chat" aria-pressed="true">Chat</button>
+                <button class="seg-btn" id="convo-raw" aria-pressed="false">Raw messages</button>
+              </span>
+            </div>
+            <div class="transcript" id="transcript"></div>
+            <pre class="raw" id="raw" hidden></pre>
+          </div>
+          <div class="withheld" id="withheld" hidden></div>
+
+          <div class="runner">
+            <div class="runner-row">
+              <span class="label">Call a tool</span>
+              <select class="tool-select" id="tool-select" aria-label="Tool"></select>
+              <span class="tool-desc" id="tool-desc"></span>
+            </div>
+            <form class="fields" id="fields" autocomplete="off"></form>
+            <div class="runner-row">
+              <button class="btn primary" id="btn-run">Run call</button>
+              <span class="hint">Tip: click a file or folder in the tree to put its path into the highlighted field.</span>
+            </div>
+          </div>
+
+          <div class="reply">
+            <label class="label" for="reply">Your final reply, as the model</label>
+            <textarea id="reply" placeholder="What the model says to the user when it's done. Checked on turns that need an answer, a question, or a refusal."></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" id="btn-check">Check turn</button>
+            <button class="btn" id="btn-undo">Undo last call</button>
+            <button class="btn" id="btn-reset">Reset turn</button>
+            <button class="btn" id="btn-next">Next turn →</button>
+          </div>
+          <div id="verdict"></div>
+        </div>
+
+        <details class="answer" id="answer">
+          <summary>Show the answer for this turn</summary>
+          <div class="answer-body">
+            <div><span class="label">Expected</span><div class="expect" id="expect"></div></div>
+            <div class="trap" id="trap"></div>
+            <div id="answer-check" hidden>
+              <div class="label" style="margin-bottom:6px">The reply must match</div>
+              <div class="gold" id="answer-patterns"></div>
+              <div class="hint" style="margin-top:6px">Example that passes: <span id="answer-example"></span></div>
+            </div>
+            <div>
+              <div class="runner-row" style="margin-bottom:6px">
+                <span class="label">Gold calls</span>
+                <button class="btn small" id="btn-gold">Reset turn and run these</button>
+              </div>
+              <div class="gold" id="gold"></div>
+            </div>
+            <div>
+              <div class="label" style="margin-bottom:6px">Target state after this turn</div>
+              <div class="target-tree" id="target"></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <aside class="panel files">
+      <div class="panel-head">
+        <span class="label">Files</span>
+        <span class="cwd" id="cwd"></span>
+      </div>
+      <div class="tree" id="tree"></div>
+      <div class="deleted" id="deleted" hidden></div>
+      <div class="legend"><span class="a">● added</span><span class="m">● changed</span><span class="d">● deleted</span><span>this turn</span></div>
+      <div class="viewer" id="viewer"><span class="hint">Click a file to see what's in it.</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="view-tools" hidden>
+  <p class="tools-intro">These are the 14 tools the model gets, with the exact definitions sent to it.
+    Tools that change files are marked. Try any of them on a real task in the Tasks tab.</p>
+  <div class="tools-grid" id="tools-grid"></div>
+</section>
+
+<section class="view" id="view-words" hidden>
+  <p class="tools-intro">Every plain folder in a task gets one of these nouns, chosen at random each time the task loads, and the same word is
+    used everywhere in that task: the user's messages, the starting files, each turn's target, the gold calls and the answer checks.
+    Odd names that a task tests on purpose (<code>#archive</code>, <code>Q4 Plans</code>, <code>v2.0</code>, <code>.config</code>, <code>archive_A</code>) keep their names.
+    The list: <code>fs_env/folder_words.txt</code> (common English words that WordNet marks as mainly nouns).</p>
+  <div class="words-bar"><input type="search" id="word-search" placeholder="Search the list" aria-label="Search folder words" autocomplete="off"><span class="hint" id="word-count"></span></div>
+  <div class="words" id="words"></div>
+</section>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const S = { init: null, session: null, v: null, tool: null, armed: null, selected: null, progress: {} };
+
+const EXPECT = {
+  act: "Do it: the files should change",
+  answer: "Only look things up and answer; change nothing",
+  ask: "Ask the user for the missing information; change nothing",
+  refuse: "Say it can't do this right now; change nothing",
+};
+
+function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+function load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } }
+
+function toast(msg) {
+  const t = $("toast");
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => (t.hidden = true), 4000);
+}
+
+async function api(op, extra = {}) {
+  const r = await fetch("/api", { method: "POST", body: JSON.stringify({ op, session: S.session, ...extra }) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error);
+  return j;
+}
+
+async function act(op, extra) {
+  try {
+    const v = await api(op, extra);
+    if (v.session) S.session = v.session;
+    S.v = v;
+    render();
+  } catch (e) { toast(e.message); }
+}
+
+const fmtVal = (v) => JSON.stringify(v);
+function fmtCall(name, args) {
+  if (typeof args === "string") return `${name}(${args})`;
+  return `${name}(${Object.entries(args || {}).map(([k, v]) => `${k}=${fmtVal(v)}`).join(", ")})`;
+}
+const humanize = (id) => id.replace(/^[A-Z]\d?_(\d\d_)?/, "").replace(/_/g, " ");
+function relPath(p) {
+  const cwd = S.v.cwd;
+  if (p === cwd) return ".";
+  return p.startsWith(cwd === "/" ? "/" : cwd + "/") ? p.slice(cwd === "/" ? 1 : cwd.length + 1) : p;
+}
+
+// ---------- tasks tab ----------
+
+function taskItem(t, head = "") {
+  const res = S.progress[t.id] || [];
+  const dots = Array.from({ length: t.turns }, (_, i) =>
+    `<span class="dot ${res[i] === true ? "pass" : res[i] === false ? "fail" : ""}" title="Turn ${i + 1}: ${res[i] === true ? "passed" : res[i] === false ? "failed" : "not checked"}"></span>`).join("");
+  const cur = S.v && S.v.task.id === t.id;
+  const num = (t.id.match(/^[A-Z]\d?_(\d\d)_/) || [null, "01"])[1];
+  const chip = t.fixed ? `<span class="chip fixed" title="${esc(t.fixed)}">fixed</span>` : t.new ? `<span class="chip new">new</span>` : "";
+  return `${head}<button class="task-item" data-id="${esc(t.id)}" aria-current="${cur}" title="${esc(t.fixed || t.cause_title)}">
+    <span class="code-chip">${num}</span><span class="name">${chip}${esc(humanize(t.id))}</span><span class="dots">${dots}</span></button>`;
+}
+
+function matches(t) {
+  const terms = (S.query || "").toLowerCase().split(/\s+/).filter(Boolean);
+  return terms.every((w) => t.search.includes(w));
+}
+
+function renderTaskList() {
+  const shown = S.init.tasks.filter(matches);
+  const q = (S.query || "").trim();
+  $("search-count").textContent = q ? `${shown.length} of ${S.init.tasks.length}` : "";
+  if (q && !shown.length) {
+    $("task-list").innerHTML = `<div class="hint" style="padding:10px 8px">No scenario matches “${esc(q)}”. Try fewer words.</div>`;
+    return;
+  }
+  const fixed = shown.filter((t) => t.fixed);
+  const fixedHtml = fixed.length
+    ? `<div class="task-group fixed-group"><span class="chip fixed">fixed</span><span>Changed after the first baseline</span><span class="hint">${fixed.length}</span></div>` +
+      fixed.map((t) => taskItem({ ...t }).replace('<span class="code-chip">', `<span class="code-chip">${esc(t.cause)}·`)).join("")
+    : "";
+  let lastCause = null;
+  $("task-list").innerHTML = (q ? "" : fixedHtml) + shown.map((t) => {
+    let head = "";
+    if (t.cause !== lastCause) {
+      lastCause = t.cause;
+      const group = S.init.tasks.filter((x) => x.cause === t.cause);
+      const done = group.filter((x) => (S.progress[x.id] || []).length && (S.progress[x.id] || []).every((r) => r === true)).length;
+      head = `<div class="task-group"><span class="code-chip">${esc(t.cause)}</span><span>${esc(t.cause_title.replace(/\s*\(BFCL:.*\)$/, ""))}</span><span class="hint">${done}/${group.length}</span></div>`;
+    }
+    return taskItem(t, head);
+  }).join("");
+}
+
+function renderTree(rows, { interactive }) {
+  if (!rows.length) return `<div class="hint" style="padding:4px 6px">(nothing)</div>`;
+  return rows.map((r) => {
+    const isDir = r.type === "dir";
+    const here = interactive && isDir && r.path === S.v.cwd ? `<span class="here">you are here</span>` : "";
+    const st = r.status ? `<span class="st">${r.status === "added" ? "new" : "changed"}</span>` : "";
+    const sel = interactive && S.selected === r.path ? " selected" : "";
+    return `<button class="row ${isDir ? "dir" : "file"} ${r.status || ""}${sel}" data-path="${esc(r.path)}" style="padding-left:${6 + r.depth * 16}px" ${interactive ? "" : 'tabindex="-1"'}>
+      <span class="glyph">${isDir ? "▾" : "·"}</span><span class="nm">${esc(r.name)}${isDir ? "/" : ""}</span>${here}${st}</button>`;
+  }).join("");
+}
+
+function renderViewer() {
+  const row = S.v.tree.find((r) => r.path === S.selected);
+  if (!row) { $("viewer").innerHTML = `<span class="hint">Click a file to see what's in it.</span>`; return; }
+  if (row.type === "dir") {
+    const n = S.v.tree.filter((r) => r.path.startsWith(row.path + "/") && r.depth === row.depth + 1).length;
+    $("viewer").innerHTML = `<code>${esc(row.path)}/</code><span class="hint">Folder with ${n} item${n === 1 ? "" : "s"}.</span>`;
+    return;
+  }
+  const body = row.content === "" ? `<span class="empty">(empty file)</span>` : esc(row.content);
+  $("viewer").innerHTML = `<code>${esc(row.path)}</code><pre>${body}</pre>`;
+}
+
+function renderTarget(rows) {
+  return rows.map((r) => {
+    const pad = 6 + r.depth * 16, isDir = r.type === "dir", c = r.content;
+    let note = "", body = "";
+    if (!isDir && c === "") note = `<span class="hint">(empty)</span>`;
+    else if (!isDir && typeof c === "object") note = `<span class="hint">rule: ${esc(JSON.stringify(c))}</span>`;
+    else if (!isDir) body = `<pre class="target-content" style="margin-left:${pad + 20}px">${esc(c)}</pre>`;
+    return `<div class="row ${isDir ? "dir" : "file"} static" style="padding-left:${pad}px"><span class="glyph">${isDir ? "▾" : "·"}</span><span class="nm">${esc(r.name)}${isDir ? "/" : ""}</span>${note}</div>${body}`;
+  }).join("");
+}
+
+function renderToolSelect() {
+  const withheld = S.v.task.turns[S.v.turn].withheld_tools;
+  const changing = new Set(S.init.state_changing);
+  const opt = (t) => {
+    const n = t.function.name, off = withheld.includes(n);
+    return `<option value="${n}" ${off ? "disabled" : ""} ${n === S.tool ? "selected" : ""}>${n}${off ? " (not available this turn)" : ""}</option>`;
+  };
+  $("tool-select").innerHTML =
+    `<optgroup label="Look around (read only)">${S.init.tools.filter((t) => !changing.has(t.function.name)).map(opt).join("")}</optgroup>` +
+    `<optgroup label="Change files">${S.init.tools.filter((t) => changing.has(t.function.name)).map(opt).join("")}</optgroup>`;
+  if (withheld.includes(S.tool)) { S.tool = "list_dir"; $("tool-select").value = S.tool; buildFields(); }
+}
+
+function buildFields() {
+  const tool = S.init.tools.find((t) => t.function.name === S.tool).function;
+  $("tool-desc").textContent = tool.description;
+  const req = new Set(tool.parameters.required);
+  const props = Object.entries(tool.parameters.properties);
+  S.armed = null;
+  $("fields").innerHTML = props.length ? props.map(([name, spec]) => {
+    const id = `f-${S.tool}-${name}`;
+    const label = `<label for="${id}">${name}${req.has(name) ? '<span class="req">*</span>' : ""}</label>`;
+    let input;
+    if (spec.type === "boolean") input = `<span><input type="checkbox" id="${id}" data-arg="${name}" data-type="boolean"> <span class="hint">${esc(spec.description)}</span></span>`;
+    else if (spec.enum) input = `<select id="${id}" data-arg="${name}"><option value="">(default)</option>${spec.enum.map((e) => `<option>${esc(e)}</option>`).join("")}</select>`;
+    else if (name === "content") input = `<textarea id="${id}" data-arg="${name}" placeholder="${esc(spec.description)}"></textarea>`;
+    else input = `<input type="text" id="${id}" data-arg="${name}" data-path="${["path", "source", "destination"].includes(name)}" placeholder="${esc(spec.description)}">`;
+    return label + input;
+  }).join("") : `<span class="hint" style="grid-column:1/-1">No arguments.</span>`;
+  const first = $("fields").querySelector('input[data-path="true"]');
+  if (first) arm(first);
+}
+
+function arm(input) {
+  document.querySelectorAll("#fields input.armed").forEach((i) => i.classList.remove("armed"));
+  S.armed = input;
+  input.classList.add("armed");
+}
+
+function collectArgs() {
+  const tool = S.init.tools.find((t) => t.function.name === S.tool).function;
+  const req = new Set(tool.parameters.required);
+  const args = {};
+  $("fields").querySelectorAll("[data-arg]").forEach((el) => {
+    const k = el.dataset.arg;
+    if (el.dataset.type === "boolean") { if (el.checked) args[k] = true; }
+    else if (el.value !== "" || req.has(k)) args[k] = el.value;
+  });
+  return args;
+}
+
+function parseArgs(str) { try { return JSON.parse(str); } catch { return str; } }
+
+function renderTranscript() {
+  const v = S.v, msgs = v.messages, name = v.task.user_name;
+  let html = "", lastTurn = -1;
+  for (let i = 0; i < msgs.length; i++) {
+    const m = msgs[i], past = m._turn < v.turn ? " past" : "";
+    if (m._turn !== lastTurn) {
+      lastTurn = m._turn;
+      html += `<div class="turn-sep">Turn ${m._turn + 1}${m._auto ? '<span class="auto">· played from the gold answer</span>' : ""}</div>`;
+    }
+    if (m.role === "user") {
+      const w = m._withheld || [];
+      html += `<div class="msg${past}"><div class="avatar">${esc(name.slice(0, 2))}</div><div>
+        <div class="who">User</div><div class="bubble">${esc(m.content)}</div>
+        ${w.length ? `<div class="withheld-note">Tools not offered on this turn: ${w.map((n) => `<code>${esc(n)}</code>`).join(", ")}</div>` : ""}</div></div>`;
+      const rest = msgs.slice(i + 1).filter((x) => x._turn === m._turn);
+      if (!rest.length && m._turn === v.turn)
+        html += `<div class="log-empty">No calls yet. Run tools below, then write the final reply.</div>`;
+    } else if (m.tool_calls) {
+      for (const c of m.tool_calls) {
+        const res = msgs.slice(i + 1).find((x) => x.role === "tool" && x.tool_call_id === c.id);
+        const out = res ? res._out : {};
+        const err = "error" in out;
+        const tag = err ? `<span class="tag error">error</span>` : res && res._changes ? `<span class="tag change">changed files</span>` : `<span class="tag read">read</span>`;
+        const val = err ? out.error : out.result;
+        const text = typeof val === "string" ? val : JSON.stringify(val, null, 1);
+        html += `<div class="msg${past}"><div class="avatar model">AI</div><div class="log-entry">
+          <div class="log-call">${tag}<code>${esc(fmtCall(c.function.name, parseArgs(c.function.arguments)))}</code></div>
+          <pre class="log-out ${err ? "err" : ""}">${esc(text === "" || text === undefined ? "(empty)" : text)}</pre></div></div>`;
+      }
+    } else if (m.role === "assistant") {
+      const body = m.content ? esc(m.content) : `<span class="none">(no reply text)</span>`;
+      html += `<div class="msg${past}"><div class="avatar model">AI</div><div>
+        <div class="who">Model reply${m._draft ? " · draft, added to the conversation when you go to the next turn" : ""}</div>
+        <div class="bubble model${m._draft ? " draft" : ""}">${body}</div></div></div>`;
+    }
+  }
+  $("transcript").innerHTML = html;
+  const clean = msgs.filter((m) => !m._draft).map((m) => Object.fromEntries(Object.entries(m).filter(([k]) => !k.startsWith("_"))));
+  $("raw").textContent = JSON.stringify(clean, null, 2);
+  const calls = msgs.filter((m) => m.tool_calls).length, users = msgs.filter((m) => m.role === "user").length;
+  const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  $("convo-count").textContent = `${plural(users, "user turn")} · ${plural(calls, "tool call")}`;
+  $("transcript").scrollTop = $("transcript").scrollHeight;
+  $("raw").scrollTop = $("raw").scrollHeight;
+}
+
+function renderVerdict() {
+  const c = S.v.check, turn = S.v.task.turns[S.v.turn];
+  if (!c) { $("verdict").innerHTML = ""; return; }
+  $("verdict").innerHTML = c.passed
+    ? `<div class="verdict pass"><b>Passed.</b> The files match the target state${c.reply_checked ? " and the reply has what it needs" : ""}.</div>`
+    : `<div class="verdict fail"><b>Failed.</b> ${c.diffs.length} difference${c.diffs.length === 1 ? "" : "s"} from the target:<ul>${c.diffs.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></div>`;
+}
+
+function render() {
+  const v = S.v, t = v.task, turn = t.turns[v.turn];
+  const prev = S.progress[t.id] || [];
+  S.progress[t.id] = v.results.map((r, i) => (r === null ? prev[i] ?? null : r));
+  store("fs-progress", S.progress);
+  store("fs-task", t.id);
+  renderTaskList();
+
+  $("task-title").textContent = `${t.cause} · ${t.cause_title}`;
+  $("fixed-note").hidden = !t.fixed;
+  $("fixed-note").innerHTML = t.fixed ? `<b>Fixed after the first baseline.</b> ${esc(t.fixed)}` : "";
+  $("home").textContent = `/home/${t.user_name}`;
+  const fm = Object.entries(t.folder_map || {});
+  $("folder-map").hidden = !fm.length;
+  $("folder-map").innerHTML = fm.length ? "Folders this load: " + fm.map(([a, b]) => `<span class="pair" title="written as '${esc(a)}' in the task file"><s>${esc(a)}</s> → ${esc(b)}</span>`).join("") +
+    `<span class="hint">· "New name" re-rolls them</span>` : "";
+  $("turns").innerHTML = t.turns.map((_, i) => {
+    const r = v.results[i];
+    return `<button class="turn-pill" data-turn="${i}" aria-current="${i === v.turn}">Turn ${i + 1}<span class="dot ${r === true ? "pass" : r === false ? "fail" : ""}"></span></button>`;
+  }).join("");
+  const w = turn.withheld_tools;
+  $("withheld").hidden = !w.length;
+  $("withheld").innerHTML = w.length ? `Not available to the model on this turn: ${w.map((n) => `<code>${esc(n)}</code>`).join(", ")}` : "";
+
+  renderToolSelect();
+  renderTranscript();
+  renderVerdict();
+  $("btn-undo").disabled = !v.log.length;
+  $("btn-reset").disabled = !v.log.length;
+  const last = v.turn + 1 >= t.turns.length;
+  $("btn-next").textContent = last ? "Next task →" : "Next turn →";
+
+  $("expect").textContent = EXPECT[turn.expect];
+  $("trap").textContent = `What the model tends to do wrong here: ${t.trap}`;
+  const ac = turn.answer_check;
+  $("answer-check").hidden = !ac;
+  $("answer-patterns").innerHTML = ac ? ac.must_match.map((p) => `<code>/${esc(p)}/i</code>`).join("") : "";
+  $("answer-example").textContent = ac ? ac.example : "";
+  $("gold").innerHTML = turn.gold_calls.length
+    ? turn.gold_calls.map((c) => `<code>${esc(fmtCall(c.name, c.arguments))}</code>`).join("")
+    : `<span class="hint">No calls. The right move is a reply only.</span>`;
+  $("target").innerHTML = renderTarget(v.target);
+
+  $("cwd").textContent = v.cwd;
+  if (S.selected && !v.tree.some((r) => r.path === S.selected)) S.selected = null;
+  $("tree").innerHTML = renderTree(v.tree, { interactive: true });
+  $("deleted").hidden = !v.deleted.length;
+  $("deleted").innerHTML = v.deleted.map((p) => `<div>${esc(p)}</div>`).join("");
+  renderViewer();
+}
+
+function startTask(id, extra = {}) {
+  S.selected = null;
+  $("reply").value = "";
+  $("answer").open = false;
+  return act("start", { task_id: id, ...extra });
+}
+
+// ---------- tools tab ----------
+
+function renderTools() {
+  const changing = new Set(S.init.state_changing);
+  $("tools-grid").innerHTML = S.init.tools.map((t) => {
+    const f = t.function, req = new Set(f.parameters.required);
+    const params = Object.entries(f.parameters.properties);
+    const rows = params.map(([n, p]) => `<tr><td>${esc(n)}${req.has(n) ? '<span style="color:var(--bad)">*</span>' : ""}</td>
+      <td><span class="type">${esc(p.enum ? p.enum.map((e) => `"${e}"`).join(" | ") : p.type)}</span><br>${esc(p.description || "")}</td></tr>`).join("");
+    return `<article class="panel tool-card">
+      <h3>${esc(f.name)} ${changing.has(f.name) ? '<span class="tag change">changes files</span>' : '<span class="tag read">read only</span>'}</h3>
+      <p>${esc(f.description)}</p>
+      ${params.length ? `<table class="params">${rows}</table>` : `<span class="hint">No arguments.</span>`}
+      <details><summary>Definition sent to the model</summary><pre>${esc(JSON.stringify(t, null, 2))}</pre></details>
+    </article>`;
+  }).join("");
+}
+
+// ---------- events ----------
+
+function renderWords() {
+  const q = ($("word-search").value || "").trim().toLowerCase();
+  const ws = S.init.folder_words || [];
+  const shown = q ? ws.filter((w) => w.includes(q)) : ws;
+  $("word-count").textContent = q ? `${shown.length} of ${ws.length}` : `${ws.length} words`;
+  $("words").innerHTML = shown.map((w) => `<span class="${q ? "hit" : ""}">${esc(w)}</span>`).join("");
+}
+
+function showTab(name) {
+  for (const n of ["tasks", "tools", "words"]) {
+    $(`tab-${n}`).setAttribute("aria-selected", n === name);
+    $(`view-${n}`).hidden = n !== name;
+  }
+}
+$("tab-tasks").onclick = () => showTab("tasks");
+$("tab-tools").onclick = () => showTab("tools");
+$("tab-words").onclick = () => showTab("words");
+$("word-search").addEventListener("input", renderWords);
+
+$("task-list").onclick = (e) => { const b = e.target.closest(".task-item"); if (b) startTask(b.dataset.id); };
+$("task-search").addEventListener("input", (e) => { S.query = e.target.value; store("fs-query", S.query); renderTaskList(); });
+$("task-search").addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { e.target.value = ""; S.query = ""; store("fs-query", ""); renderTaskList(); }
+  if (e.key === "Enter") { const first = $("task-list").querySelector(".task-item"); if (first) startTask(first.dataset.id); }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) { e.preventDefault(); $("task-search").focus(); }
+});
+$("turns").onclick = (e) => {
+  const b = e.target.closest(".turn-pill");
+  if (b) { S.selected = null; $("reply").value = ""; act("start", { task_id: S.v.task.id, turn: +b.dataset.turn, keep_name: true }); }
+};
+$("btn-rename").onclick = () => startTask(S.v.task.id);
+$("btn-restart").onclick = () => startTask(S.v.task.id, { keep_name: true });
+$("tool-select").onchange = (e) => { S.tool = e.target.value; buildFields(); };
+$("fields").addEventListener("focusin", (e) => { if (e.target.dataset.path === "true") arm(e.target); });
+$("fields").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+$("fields").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); run(); }
+  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); run(); }
+});
+function run() { act("call", { name: S.tool, arguments: collectArgs() }); }
+$("btn-run").onclick = run;
+function convoView(raw) {
+  $("convo-chat").setAttribute("aria-pressed", !raw);
+  $("convo-raw").setAttribute("aria-pressed", raw);
+  $("transcript").hidden = raw;
+  $("raw").hidden = !raw;
+  store("fs-convo-raw", raw);
+}
+$("convo-chat").onclick = () => convoView(false);
+$("convo-raw").onclick = () => convoView(true);
+convoView(load("fs-convo-raw", false));
+$("btn-check").onclick = () => act("check", { reply: $("reply").value });
+$("btn-undo").onclick = () => act("undo");
+$("btn-reset").onclick = () => act("reset_turn");
+$("btn-gold").onclick = () => act("play_gold");
+$("btn-next").onclick = () => {
+  const t = S.v.task, reply = $("reply").value;
+  $("reply").value = "";
+  if (S.v.turn + 1 < t.turns.length) { $("answer").open = false; act("next_turn", { reply }); }
+  else {
+    const ids = S.init.tasks.map((x) => x.id);
+    startTask(ids[(ids.indexOf(t.id) + 1) % ids.length]);
+  }
+};
+$("tree").onclick = (e) => {
+  const row = e.target.closest(".row");
+  if (!row) return;
+  S.selected = row.dataset.path;
+  if (S.armed && document.body.contains(S.armed)) { S.armed.value = relPath(row.dataset.path); }
+  $("tree").innerHTML = renderTree(S.v.tree, { interactive: true });
+  renderViewer();
+};
+
+(async function boot() {
+  try {
+    S.init = await api("init");
+  } catch (e) { toast(`Can't reach the playground server: ${e.message}`); return; }
+  S.progress = load("fs-progress", {});
+  S.query = load("fs-query", ""); $("task-search").value = S.query;
+  $("counts").textContent = `${S.init.tasks.length} tasks · ${S.init.tools.length} tools`;
+  S.tool = "list_dir";
+  renderTools();
+  renderWords();
+  const saved = load("fs-task", null);
+  const first = S.init.tasks.some((t) => t.id === saved) ? saved : S.init.tasks[0].id;
+  await startTask(first);
+  buildFields();
+})();
+</script>
+</body>
+</html>

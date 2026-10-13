@@ -1,0 +1,112 @@
+{
+  "id": "D_33_write_note_site",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No text is given for the note; the model writes one. Expected: ask what it should say.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "site": {
+            "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+            "about.html": "<h1>About</h1>\n"
+          },
+          "public": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write a note in site/contact.html.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the note say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {},
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write '<footer>© 2026 Orbit</footer>'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "site/contact.html",
+            "content": "<footer>© 2026 Orbit</footer>"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {},
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into public.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "site/contact.html",
+            "destination": "public"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "public": {
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            },
+            "site": {
+              "index.html": "<h1>Home</h1>\n<p>Welcome</p>\n",
+              "about.html": "<h1>About</h1>\n",
+              "contact.html": "<footer>© 2026 Orbit</footer>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "site/contact.html",
+          "content": "Note: remember to follow up."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

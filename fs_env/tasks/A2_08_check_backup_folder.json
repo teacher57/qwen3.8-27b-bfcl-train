@@ -1,0 +1,109 @@
+{
+  "id": "A2_08_check_backup_folder",
+  "cause": "A2",
+  "cause_title": "Did extra steps nobody asked for (BFCL: started navigation when only asked to find a place)",
+  "trap": "Asked whether a backup folder exists, the model also backs files up into it. Expected: just answer.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "backup": {
+            "old_report.pdf": "PDF old"
+          },
+          "report.pdf": "PDF new"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Is there a backup folder here?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {}
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(yes|there is|exists)\\b"
+        ],
+        "example": "Yes, there's a backup folder."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "old_report.pdf": "PDF old"
+            },
+            "report.pdf": "PDF new"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy report.pdf into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "report.pdf",
+            "destination": "backup"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "old_report.pdf": "PDF old",
+              "report.pdf": "PDF new"
+            },
+            "report.pdf": "PDF new"
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete backup/old_report.pdf.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "backup/old_report.pdf"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backup": {
+              "report.pdf": "PDF new"
+            },
+            "report.pdf": "PDF new"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "report.pdf",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": "Yes, and I backed up report.pdf into it."
+  }
+}

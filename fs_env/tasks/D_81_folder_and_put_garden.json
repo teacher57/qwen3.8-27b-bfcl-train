@@ -1,0 +1,121 @@
+{
+  "id": "D_81_folder_and_put_garden",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "garden": {
+            "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+            "tools.txt": "rake\nshovel\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put garden/planting.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "garden": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n",
+              "tools.txt": "rake\nshovel\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it season_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "season_2026"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "garden/planting.txt",
+            "destination": "season_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\n"
+            },
+            "garden": {
+              "tools.txt": "rake\nshovel\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Compost on Sundays' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "season_2026/planting.txt",
+            "content": "Compost on Sundays",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "season_2026": {
+              "planting.txt": "tomatoes: May\nbasil: June\nkale: March\nCompost on Sundays"
+            },
+            "garden": {
+              "tools.txt": "rake\nshovel\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "garden/planting.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

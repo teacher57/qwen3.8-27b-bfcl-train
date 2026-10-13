@@ -1,0 +1,113 @@
+{
+  "id": "E_55_no_write_invoices",
+  "cause": "E",
+  "cause_title": "Worked around a missing function instead of saying it can't",
+  "trap": "With write_file withheld, the model creates an empty reminders.txt as a partial step. Expected: say it can't write.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "invoices": {
+            "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+            "inv_0043.pdf": "PDF invoice 43"
+          },
+          "paid": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'Paid in full: 1,480.50 USD' into invoices/reminders.txt.",
+      "expect": "refuse",
+      "withheld_tools": [
+        "write_file"
+      ],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\b(can['’]?t|cannot|can not|couldn['’]?t|could not|unable|not able|no way|don['’]?t have|do not have|doesn['’]?t have|not available|isn['’]?t available|unavailable|not possible|isn['’]?t possible|not supported)\\b|\\bno\\b[^.?!\\n]{0,40}\\b(tool|function|operation)s?\\b"
+        ],
+        "example": "I'm unable to write to files at the moment."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43"
+            },
+            "paid": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "I've updated your tools, try again.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "invoices/reminders.txt",
+            "content": "Paid in full: 1,480.50 USD"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "reminders.txt": "Paid in full: 1,480.50 USD"
+            },
+            "paid": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into paid.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "invoices/reminders.txt",
+            "destination": "paid"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "invoices": {
+              "ledger.csv": "id,amount\n42,1480.50\n43,220.00\n",
+              "inv_0043.pdf": "PDF invoice 43",
+              "reminders.txt": "Paid in full: 1,480.50 USD"
+            },
+            "paid": {
+              "reminders.txt": "Paid in full: 1,480.50 USD"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "create_file",
+        "arguments": {
+          "path": "invoices/reminders.txt"
+        }
+      }
+    ],
+    "reply": "I created the file but couldn't write the text."
+  }
+}

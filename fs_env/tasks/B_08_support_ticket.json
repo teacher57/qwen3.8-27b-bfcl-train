@@ -1,0 +1,106 @@
+{
+  "id": "B_08_support_ticket",
+  "cause": "B",
+  "cause_title": "Rewrote or embellished text the user gave",
+  "trap": "The model adds details to the ticket text. Expected: exactly the sentence given.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "tickets": {
+            "t_100.txt": "Wifi down in lobby.\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write 'Urgent: printer on floor 2 jams.' to tickets/t_101.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "tickets/t_101.txt",
+            "content": "Urgent: printer on floor 2 jams."
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tickets": {
+              "t_100.txt": "Wifi down in lobby.\n",
+              "t_101.txt": "Urgent: printer on floor 2 jams."
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'Reported by Sam.'",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "tickets/t_101.txt",
+            "content": "Reported by Sam.",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tickets": {
+              "t_100.txt": "Wifi down in lobby.\n",
+              "t_101.txt": "Urgent: printer on floor 2 jams.\nReported by Sam."
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty tickets/t_102.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "tickets/t_102.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "tickets": {
+              "t_100.txt": "Wifi down in lobby.\n",
+              "t_101.txt": "Urgent: printer on floor 2 jams.\nReported by Sam.",
+              "t_102.txt": ""
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "tickets/t_101.txt",
+          "content": "Urgent: the printer on floor 2 keeps jamming. Please send a technician as soon as possible."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

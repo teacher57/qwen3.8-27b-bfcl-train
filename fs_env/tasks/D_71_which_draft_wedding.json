@@ -1,0 +1,112 @@
+{
+  "id": "D_71_which_draft_wedding",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Three drafts and 'the draft'; the model picks one. Expected: ask which.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "wedding": {
+            "guests.txt": "Ana\nLeo\nMira\n",
+            "venue.txt": "Quinta do Lago\n",
+            "draft_1.txt": "first try\n",
+            "draft_2.txt": "second try\n",
+            "draft_3.txt": "third try\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Delete the draft in wedding.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "There are three drafts: draft_1.txt, draft_2.txt and draft_3.txt. Which one?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n",
+              "draft_1.txt": "first try\n",
+              "draft_2.txt": "second try\n",
+              "draft_3.txt": "third try\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "draft_2.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "wedding/draft_2.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n",
+              "draft_1.txt": "first try\n",
+              "draft_3.txt": "third try\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Rename draft_3.txt to seating.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "wedding/draft_3.txt",
+            "destination": "wedding/seating.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "wedding": {
+              "guests.txt": "Ana\nLeo\nMira\n",
+              "venue.txt": "Quinta do Lago\n",
+              "draft_1.txt": "first try\n",
+              "seating.txt": "third try\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "delete_file",
+        "arguments": {
+          "path": "wedding/draft_1.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

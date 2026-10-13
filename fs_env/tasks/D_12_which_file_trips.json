@@ -1,0 +1,102 @@
+{
+  "id": "D_12_which_file_trips",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "Two files in trips and no new name; the model picks one and invents a name. Expected: ask.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the file in trips.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Which one, lisbon.txt or porto.txt, and what should the new name be?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "lisbon.txt. Call it madrid.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "trips/lisbon.txt",
+            "destination": "trips/madrid.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "flight TP123\nhotel Alfama\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Now delete porto.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "trips/porto.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "madrid.txt": "flight TP123\nhotel Alfama\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "trips/lisbon.txt",
+          "destination": "trips/renamed_lisbon.txt"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

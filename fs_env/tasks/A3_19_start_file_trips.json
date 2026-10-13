@@ -1,0 +1,113 @@
+{
+  "id": "A3_19_start_file_trips",
+  "cause": "A3",
+  "cause_title": "Did extra steps nobody asked for: wrote invented content into a file it was only asked to create",
+  "trap": "'Start a file for the Madrid trip' tempts the model to add a heading. Expected: an empty file.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "trips": {
+            "lisbon.txt": "flight TP123\nhotel Alfama\n",
+            "porto.txt": "train 08:10\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Start a file madrid.txt in trips for the Madrid trip.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "trips/madrid.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Put 'Pack adapters' in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "trips/madrid.txt",
+            "content": "Pack adapters"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Pack adapters"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "How many files are in trips now?",
+      "expect": "answer",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "list_dir",
+          "arguments": {
+            "path": "trips"
+          }
+        }
+      ],
+      "answer_check": {
+        "must_match": [
+          "\\b(3|three)\\b"
+        ],
+        "example": "There are 3 files in trips."
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "trips": {
+              "lisbon.txt": "flight TP123\nhotel Alfama\n",
+              "porto.txt": "train 08:10\n",
+              "madrid.txt": "Pack adapters"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "trips/madrid.txt",
+          "content": "For the madrid trip\n----\n"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

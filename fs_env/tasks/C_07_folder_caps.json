@@ -1,0 +1,103 @@
+{
+  "id": "C_07_folder_caps",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model writes 'Proj-Alpha' or 'proj_alpha'. Expected: 'PROJ-ALPHA' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "Proj": {
+            "plan.txt": "phase 1\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Rename the folder Proj to PROJ-ALPHA.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "move",
+          "arguments": {
+            "source": "Proj",
+            "destination": "PROJ-ALPHA"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "PROJ-ALPHA": {
+              "plan.txt": "phase 1\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Inside it, create a file v1.0.0.txt.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "PROJ-ALPHA/v1.0.0.txt"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "PROJ-ALPHA": {
+              "plan.txt": "phase 1\n",
+              "v1.0.0.txt": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'release candidate' into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "PROJ-ALPHA/v1.0.0.txt",
+            "content": "release candidate"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "PROJ-ALPHA": {
+              "plan.txt": "phase 1\n",
+              "v1.0.0.txt": "release candidate"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "move",
+        "arguments": {
+          "source": "Proj",
+          "destination": "Proj-Alpha"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

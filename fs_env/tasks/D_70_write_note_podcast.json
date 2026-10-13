@@ -1,0 +1,112 @@
+{
+  "id": "D_70_write_note_podcast",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No text is given for the note; the model writes one. Expected: ask what it should say.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "podcast": {
+            "ep12_script.txt": "cold open\nsponsor read\n",
+            "ep13_ideas.txt": "guest list\n"
+          },
+          "published": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write a note in podcast/ep14_script.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the note say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {},
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Ep. 12: Why Rust? (42:17)'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "podcast/ep14_script.txt",
+            "content": "Ep. 12: Why Rust? (42:17)"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {},
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n",
+              "ep14_script.txt": "Ep. 12: Why Rust? (42:17)"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into published.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "podcast/ep14_script.txt",
+            "destination": "published"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "published": {
+              "ep14_script.txt": "Ep. 12: Why Rust? (42:17)"
+            },
+            "podcast": {
+              "ep12_script.txt": "cold open\nsponsor read\n",
+              "ep13_ideas.txt": "guest list\n",
+              "ep14_script.txt": "Ep. 12: Why Rust? (42:17)"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "podcast/ep14_script.txt",
+          "content": "Note: remember to follow up."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_27_somewhere_safe_photos",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "photos": {
+            "captions.txt": "beach: golden hour\nhike: fog\n",
+            "beach.jpg": "JPEG beach"
+          },
+          "album_2026": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy photos/captions.txt somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Into album_2026.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "photos/captions.txt",
+            "destination": "album_2026"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n",
+              "beach.jpg": "JPEG beach"
+            },
+            "album_2026": {
+              "captions.txt": "beach: golden hour\nhike: fog\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete photos/beach.jpg.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "photos/beach.jpg"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "photos": {
+              "captions.txt": "beach: golden hour\nhike: fog\n"
+            },
+            "album_2026": {
+              "captions.txt": "beach: golden hour\nhike: fog\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "photos/captions.txt",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

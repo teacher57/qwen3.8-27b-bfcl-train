@@ -1,0 +1,112 @@
+{
+  "id": "D_56_which_line_reading",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No line is given; the model invents one for dune.txt. Expected: ask what to add.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "reading": {
+            "dune.txt": "p. 210\nspice\n",
+            "borges.txt": "labyrinths\n"
+          },
+          "finished": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Add a line to reading/dune.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Sure, what should the new line say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {},
+            "reading": {
+              "dune.txt": "p. 210\nspice\n",
+              "borges.txt": "labyrinths\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Add '“So it goes.” — Vonnegut'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "reading/dune.txt",
+            "content": "“So it goes.” — Vonnegut",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {},
+            "reading": {
+              "dune.txt": "p. 210\nspice\n“So it goes.” — Vonnegut",
+              "borges.txt": "labyrinths\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into finished.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "reading/dune.txt",
+            "destination": "finished"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "finished": {
+              "dune.txt": "p. 210\nspice\n“So it goes.” — Vonnegut"
+            },
+            "reading": {
+              "dune.txt": "p. 210\nspice\n“So it goes.” — Vonnegut",
+              "borges.txt": "labyrinths\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "reading/dune.txt",
+          "content": "New line",
+          "mode": "append"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

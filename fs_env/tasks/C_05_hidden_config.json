@@ -1,0 +1,100 @@
+{
+  "id": "C_05_hidden_config",
+  "cause": "C",
+  "cause_title": "Small exact-value mistakes (format, prefix, extension)",
+  "trap": "The model drops the leading dot ('config'). Expected: '.config' exactly.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "app.py": "load('.config/app.json')\n"
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a folder called .config.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": ".config"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            ".config": {},
+            "app.py": "load('.config/app.json')\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Create .config/app.json containing '{\"debug\": true}'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": ".config/app.json",
+            "content": "{\"debug\": true}"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            ".config": {
+              "app.json": "{\"debug\": true}"
+            },
+            "app.py": "load('.config/app.json')\n"
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy .config/app.json to app.json.bak.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": ".config/app.json",
+            "destination": "app.json.bak"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            ".config": {
+              "app.json": "{\"debug\": true}"
+            },
+            "app.py": "load('.config/app.json')\n",
+            "app.json.bak": "{\"debug\": true}"
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "config"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

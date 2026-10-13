@@ -1,0 +1,112 @@
+{
+  "id": "D_67_write_note_contracts",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No text is given for the note; the model writes one. Expected: ask what it should say.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "contracts": {
+            "clauses.txt": "term\nrenewal\nindemnity\n",
+            "lease_2026.pdf": "PDF lease"
+          },
+          "signed": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Write a note in contracts/lawyer_notes.txt.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the note say?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {},
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Write 'Term: 24 months from 2026-01-01'.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "contracts/lawyer_notes.txt",
+            "content": "Term: 24 months from 2026-01-01"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {},
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy it into signed.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "contracts/lawyer_notes.txt",
+            "destination": "signed"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "signed": {
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            },
+            "contracts": {
+              "clauses.txt": "term\nrenewal\nindemnity\n",
+              "lease_2026.pdf": "PDF lease",
+              "lawyer_notes.txt": "Term: 24 months from 2026-01-01"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "contracts/lawyer_notes.txt",
+          "content": "Note: remember to follow up."
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

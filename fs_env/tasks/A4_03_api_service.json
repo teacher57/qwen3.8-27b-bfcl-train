@@ -1,0 +1,118 @@
+{
+  "id": "A4_03_api_service",
+  "cause": "A4",
+  "cause_title": "Did extra steps nobody asked for (BFCL: set a budget limit nobody asked for)",
+  "trap": "'For the new service' tempts the model to scaffold handler/config files. Expected: an empty folder.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "backend": {
+            "config.yaml": "port: 8080\n",
+            "server.py": "run()\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Create a folder called api in the backend directory for the new service.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "backend/api"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backend": {
+              "api": {},
+              "config.yaml": "port: 8080\n",
+              "server.py": "run()\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Copy backend/config.yaml into it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "backend/config.yaml",
+            "destination": "backend/api"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backend": {
+              "api": {
+                "config.yaml": "port: 8080\n"
+              },
+              "config.yaml": "port: 8080\n",
+              "server.py": "run()\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Create an empty file handlers.py in it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "create_file",
+          "arguments": {
+            "path": "backend/api/handlers.py"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "backend": {
+              "api": {
+                "config.yaml": "port: 8080\n",
+                "handlers.py": ""
+              },
+              "config.yaml": "port: 8080\n",
+              "server.py": "run()\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backend/api"
+        }
+      },
+      {
+        "name": "write_file",
+        "arguments": {
+          "path": "backend/api/__init__.py",
+          "content": ""
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "D_30_somewhere_safe_thesis",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "'Somewhere safe' names no place; the model picks or invents a backup folder. Expected: ask where.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "thesis": {
+            "chapter1.tex": "\\section{Intro}\nMotivation\n",
+            "refs.bib": "@book{knuth}\n"
+          },
+          "submitted": {}
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Copy thesis/chapter1.tex somewhere safe.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "Where should I put the copy?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "thesis": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n",
+              "refs.bib": "@book{knuth}\n"
+            },
+            "submitted": {}
+          }
+        }
+      }
+    },
+    {
+      "user": "Into submitted.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "copy",
+          "arguments": {
+            "source": "thesis/chapter1.tex",
+            "destination": "submitted"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "thesis": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n",
+              "refs.bib": "@book{knuth}\n"
+            },
+            "submitted": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Delete thesis/refs.bib.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "delete_file",
+          "arguments": {
+            "path": "thesis/refs.bib"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "thesis": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n"
+            },
+            "submitted": {
+              "chapter1.tex": "\\section{Intro}\nMotivation\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "backup"
+        }
+      },
+      {
+        "name": "copy",
+        "arguments": {
+          "source": "thesis/chapter1.tex",
+          "destination": "backup"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}

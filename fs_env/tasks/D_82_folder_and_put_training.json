@@ -1,0 +1,121 @@
+{
+  "id": "D_82_folder_and_put_training",
+  "cause": "D",
+  "cause_title": "Guessed missing information instead of asking",
+  "trap": "No folder name is given; the model invents one. Expected: ask for the name.",
+  "origin": {
+    "cwd": "/home/{user}",
+    "tree": {
+      "home": {
+        "{user}": {
+          "training": {
+            "week1.txt": "squat 5x5\nbench 5x5\n",
+            "week2.txt": "deadlift 3x5\n"
+          }
+        }
+      }
+    }
+  },
+  "turns": [
+    {
+      "user": "Make a new folder and put training/week1.txt in it.",
+      "expect": "ask",
+      "withheld_tools": [],
+      "gold_calls": [],
+      "answer_check": {
+        "must_match": [
+          "\\?"
+        ],
+        "example": "What should the new folder be called?"
+      },
+      "target": {
+        "home": {
+          "{user}": {
+            "training": {
+              "week1.txt": "squat 5x5\nbench 5x5\n",
+              "week2.txt": "deadlift 3x5\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Call it done.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "make_dir",
+          "arguments": {
+            "path": "done"
+          }
+        },
+        {
+          "name": "move",
+          "arguments": {
+            "source": "training/week1.txt",
+            "destination": "done"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "week1.txt": "squat 5x5\nbench 5x5\n"
+            },
+            "training": {
+              "week2.txt": "deadlift 3x5\n"
+            }
+          }
+        }
+      }
+    },
+    {
+      "user": "Append 'RPE 8' to it.",
+      "expect": "act",
+      "withheld_tools": [],
+      "gold_calls": [
+        {
+          "name": "write_file",
+          "arguments": {
+            "path": "done/week1.txt",
+            "content": "RPE 8",
+            "mode": "append"
+          }
+        }
+      ],
+      "target": {
+        "home": {
+          "{user}": {
+            "done": {
+              "week1.txt": "squat 5x5\nbench 5x5\nRPE 8"
+            },
+            "training": {
+              "week2.txt": "deadlift 3x5\n"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "trap_example": {
+    "turn": 0,
+    "calls": [
+      {
+        "name": "make_dir",
+        "arguments": {
+          "path": "new_folder"
+        }
+      },
+      {
+        "name": "move",
+        "arguments": {
+          "source": "training/week1.txt",
+          "destination": "new_folder"
+        }
+      }
+    ],
+    "reply": ""
+  }
+}
