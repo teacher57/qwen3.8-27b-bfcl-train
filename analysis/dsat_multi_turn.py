@@ -5,9 +5,13 @@ Cluster names are mechanical; analysis/multi_turn_dsat.md has the root causes af
 import ast, collections, json
 from pathlib import Path
 
+import os
 HERE = Path(__file__).resolve().parents[1]
-RES = HERE / "results/pod/bfcl-results/result/qwen3.8-27b-FC/multi_turn"
-SCO = HERE / "results/pod/bfcl-results/score/qwen3.8-27b-FC/multi_turn"
+# another run: BFCL_ROOT (folder with result/ and score/), BFCL_MODEL (registry name), DSAT_OUT (output folder)
+ROOT = Path(os.environ.get("BFCL_ROOT", HERE / "results/pod/bfcl-results")); MODEL = os.environ.get("BFCL_MODEL", "qwen3.8-27b-FC")
+OUT = Path(os.environ.get("DSAT_OUT", HERE / "analysis"))
+RES = ROOT / f"result/{MODEL}/multi_turn"
+SCO = ROOT / f"score/{MODEL}/multi_turn"
 CATS = ["base", "miss_func", "miss_param", "long_context"]
 
 # calls that only look at things (or move around / log in) and don't change what BFCL compares
@@ -142,7 +146,7 @@ for cat in CATS:
                         "classes": (f.get("prompt") or {}).get("involved_classes"), **info})
 
 Path(HERE / "analysis").mkdir(exist_ok=True)
-(HERE / "analysis/multi_turn_dsat.json").write_text(json.dumps(records, ensure_ascii=False, indent=1))
+OUT.mkdir(parents=True, exist_ok=True); (OUT / "multi_turn_dsat.json").write_text(json.dumps(records, ensure_ascii=False, indent=1))
 tab = collections.Counter((r["cluster"], r["category"]) for r in records)
 clusters = collections.Counter(r["cluster"] for r in records)
 print(f"{'cluster':58s} {'all':>4s} " + " ".join(f"{c[:10]:>10s}" for c in CATS))

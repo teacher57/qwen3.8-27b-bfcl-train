@@ -4,13 +4,17 @@ Needs analysis/multi_turn_dsat.json from dsat_multi_turn.py. Clusters were named
 import collections, glob, json
 from pathlib import Path
 
+import os
 HERE = Path(__file__).resolve().parents[1]
-R = {r["id"]: r for r in json.load(open(HERE / "analysis/multi_turn_dsat.json"))}
+# another run: same BFCL_ROOT / BFCL_MODEL / DSAT_OUT as dsat_multi_turn.py
+ROOT = Path(os.environ.get("BFCL_ROOT", HERE / "results/pod/bfcl-results")); MODEL = os.environ.get("BFCL_MODEL", "qwen3.8-27b-FC")
+OUT = Path(os.environ.get("DSAT_OUT", HERE / "analysis"))
+R = {r["id"]: r for r in json.load(open(OUT / "multi_turn_dsat.json"))}
 TEXT = {"content", "description", "message", "body", "comment_content", "resolution", "details"}
 CATS = ["base", "miss_func", "miss_param", "long_context"]
 
 state = {}   # which system and which fields differ, from BFCL's own error details
-for p in glob.glob(str(HERE / "results/pod/bfcl-results/score/qwen3.8-27b-FC/multi_turn/*_score.json")):
+for p in glob.glob(str(ROOT / f"score/{MODEL}/multi_turn/*_score.json")):
     for line in list(open(p))[1:]:
         f = json.loads(line)
         if f["error"]["error_type"] == "multi_turn:instance_state_mismatch":
@@ -41,7 +45,7 @@ def root(r):
 
 
 out = {i: {**s, "root_cause": root(R[i]), "category": R[i]["category"], "turn": R[i]["turn"]} for i, s in state.items()}
-(HERE / "analysis/final_state_root_causes.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
+(OUT / "final_state_root_causes.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
 cnt = collections.Counter(v["root_cause"] for v in out.values())
 tab = collections.Counter((v["root_cause"], v["category"]) for v in out.values())
 print(f"{'root cause':88s} {'all':>4s} " + " ".join(f"{c[:10]:>10s}" for c in CATS))

@@ -195,6 +195,9 @@ How to read it:
 - **long_context is not really flat.** 9 of the baseline's 11 context-limit failures pass now only because of the
   bigger window. On the 189 entries both runs could fit, GRPO is 9 entries *worse* (p = 0.14). The training
   conversations are short; long noisy tool outputs may be where the update hurt.
+- **Which failures changed (DSAT on the new run):** the trained causes fell cleanly (E: 7 of 19 fixed, 1 new; D: 7 of
+  32 fixed, 2 new), the brake (A1) churned (12 fixed, 17 new, mostly long_context), and rewriting the user's text (B)
+  was untouched. Tables: `analysis/final_state_dsat.md`, last section.
 - **Nothing is significant at p < 0.05.** The test is McNemar's exact test on paired entries (the same 200 entries per
   category for both models; only the entries where they disagree count).
 
@@ -242,7 +245,8 @@ fs_env/            the environment and all training code (run from the repo root
   grpo_train.py                            GRPO (rollouts in vLLM, turn rewards, group advantages, QLoRA update, hot swap)
   adapter_fix.py                           renames LoRA tensors so vLLM applies them (required, see section 5)
   RUN_ON_POD.md, playground/               pod runbook; a local page to try tools and tasks by hand
-analysis/          the DSAT: dsat_multi_turn.py, final_state_root_causes.py, final_state_dsat.md (+ JSON labels)
+analysis/          the DSAT: dsat_multi_turn.py, final_state_root_causes.py, final_state_dsat.md (+ JSON labels);
+                   grpo20/ + compare_dsat.py: the same DSAT on GRPO step 20 and the entry-by-entry comparison
 pod/               pod-side scripts: setup, vLLM serving (BFCL, GRPO on A100/H200, LoRA for BFCL), BFCL runs
                    (run.sh full, run_multiturn.sh, partial_score.sh "passed so far"), BFCL handler (qwen38_vllm.py,
                    install_handler.py), GRPO helpers (setup_grpo.sh, after_grpo_eval.sh, eval_ckpts.sh, prune_ckpt.sh)

@@ -81,3 +81,85 @@ are about **doing exactly what was asked, no more and no less**:
 - **For 3:** small SFT sets for copying values verbatim.
 - **Caveat:** some of A1 and C are BFCL conventions (keeping the brake pressed, five decimals) rather than clear
   mistakes. Don't overfit to them; check real-world-style behavior on τ³ at the same time.
+
+## After SFT + GRPO: the same DSAT on the new eval (GRPO step 20)
+
+The same 800 BFCL multi-turn entries, run again with the model after the fs_env SFT warm start and GRPO (step 20, the
+best held-out checkpoint), same BFCL settings (temperature 0.001, thinking on, 16,384 tokens per call; context 131k
+instead of 65k). The same two scripts, pointed at the new results (they reproduce the base-model labels above exactly):
+
+```
+BFCL_ROOT=results/fs_env/grpo/run_v1/bfcl BFCL_MODEL=qwen3.8-27b-grpo20-FC DSAT_OUT=analysis/grpo20 python3 analysis/dsat_multi_turn.py
+BFCL_ROOT=results/fs_env/grpo/run_v1/bfcl BFCL_MODEL=qwen3.8-27b-grpo20-FC DSAT_OUT=analysis/grpo20 python3 analysis/final_state_root_causes.py
+python3 analysis/compare_dsat.py      # prints the tables below
+```
+
+Labels per conversation: `analysis/grpo20/final_state_root_causes.json` and `analysis/grpo20/multi_turn_dsat.json`.
+
+**All failed multi-turn entries, by first divergence** (base: 318, GRPO step 20: 295 of 800)
+
+| What went wrong first | base | GRPO step 20 | change |
+|---|---|---|---|
+| Did an extra, unrequested action | 65 | 73 | +8 |
+| Right action, wrong argument values | 72 | 64 | -8 |
+| Guessed the missing information instead of asking | 44 | 34 | -10 |
+| Skipped a lookup the answer needed | 23 | 33 | +10 |
+| Worked around the missing function instead of saying it can't | 31 | 23 | -8 |
+| Asked for confirmation/info instead of acting | 31 | 23 | -8 |
+| No call-level divergence found (state differs for another reason) | 18 | 18 | 0 |
+| Looped until the 20-step limit | 10 | 12 | +2 |
+| Took no action (said it can't / just answered) | 11 | 6 | -5 |
+| excluded: context limit (our setup) | 11 | 1 | -10 |
+| Skipped a required action | 2 | 5 | +3 |
+| Different approach (other functions than expected) | 0 | 3 | +3 |
+| **total** | **318** | **295** | **-23** |
+
+**Wrong-final-state failures by root cause** (base → GRPO step 20, per category)
+
+| Root cause | all | base | miss_func | miss_param | long_context |
+|---|---|---|---|---|---|
+| A1 extra step: released / re-pressed the brake | 39 → **45** | 10 → 9 | 10 → 8 | 7 → 11 | 12 → 17 |
+| A2 extra step: started navigation | 9 → **8** | 3 → 2 | 2 → 1 | 2 → 2 | 2 → 3 |
+| A3 wrote invented content into a new file | 12 → **10** | 5 → 4 | 2 → 2 | 2 → 1 | 3 → 3 |
+| A4 other unrequested action | 2 → **5** | 0 → 1 | 0 → 1 | 2 → 2 | 0 → 1 |
+| B rewrote the user's exact text | 36 → **39** | 7 → 8 | 6 → 8 | 9 → 8 | 14 → 15 |
+| C small exact-value mistake | 25 → **21** | 9 → 6 | 3 → 5 | 6 → 6 | 7 → 4 |
+| D guessed missing info instead of asking | 32 → **27** | 0 → 0 | 0 → 0 | 32 → 27 | 0 → 0 |
+| E worked around a missing function | 19 → **14** | 0 → 0 | 19 → 14 | 0 → 0 | 0 → 0 |
+| F asked when it should act | 18 → **15** | 7 → 5 | 5 → 6 | 4 → 2 | 2 → 2 |
+| G did nothing / just answered | 5 → **4** | 0 → 0 | 2 → 0 | 1 → 1 | 2 → 3 |
+| H other (skipped action, different approach...) | 2 → **6** | 1 → 3 | 0 → 0 | 1 → 2 | 0 → 1 |
+| **total** | 199 → **194** | 42 → 38 | 49 → 45 | 66 → 62 | 42 → 49 |
+
+**Entry by entry** (the same 800 entries): what happened to each base wrong-final-state failure, and where GRPO step 20's came from
+
+| Root cause | base failures | fixed (now pass) | same cause | other failure | GRPO step 20 failures | new (passed before) | from another failure |
+|---|---|---|---|---|---|---|---|
+| A1 extra step: released / re-pressed the brake | 39 | 12 | 23 | 4 | 45 | 17 | 5 |
+| A2 extra step: started navigation | 9 | 1 | 6 | 2 | 8 | 0 | 2 |
+| A3 wrote invented content into a new file | 12 | 2 | 6 | 4 | 10 | 0 | 4 |
+| A4 other unrequested action | 2 | 0 | 2 | 0 | 5 | 1 | 2 |
+| B rewrote the user's exact text | 36 | 5 | 31 | 0 | 39 | 3 | 5 |
+| C small exact-value mistake | 25 | 8 | 13 | 4 | 21 | 3 | 5 |
+| D guessed missing info instead of asking | 32 | 7 | 22 | 3 | 27 | 2 | 3 |
+| E worked around a missing function | 19 | 7 | 11 | 1 | 14 | 1 | 2 |
+| F asked when it should act | 18 | 6 | 9 | 3 | 15 | 4 | 2 |
+| G did nothing / just answered | 5 | 1 | 2 | 2 | 4 | 0 | 2 |
+| H other (skipped action, different approach...) | 2 | 0 | 2 | 0 | 6 | 2 | 2 |
+| **total** | **199** | **49** | **127** | **23** | **194** | **33** | **34** |
+
+**How to read it**
+
+- **What we trained moved the right way, and cleanly.** E (worked around a missing function): 7 of 19 fixed, 1 new.
+  D (guessed instead of asking): 7 of 32 fixed, 2 new. A3 (invented file content): 2 fixed, none new. In the first table,
+  "guessed" falls 44 → 34 and "worked around" 31 → 23 across all failures.
+- **The brake (A1) didn't get worse so much as it churned:** 12 of its 39 failures were fixed, but 17 entries that passed
+  before now fail on it, mostly in long_context (12 → 17) and miss_param (7 → 11). Whether the model releases the brake
+  seems to hinge on small differences in the conversation. A1 needs its own training signal; it won't move as a side effect.
+- **Rewriting the user's text (B) is untouched:** 31 of 36 failures still fail the same way. Nothing in fs_env taught it
+  (B was only a regression check).
+- **One new pattern:** "skipped a lookup the answer needed" grew 23 → 33 among all failures (wrong answers rather than
+  wrong states). The model may have learned to act with fewer looks first; worth watching if training goes further.
+- **Context limit:** 11 → 1 failures, only because the new run had 131k context instead of 65k (not a model change).
+- **Caveat:** 49 base wrong-state failures got fixed while 33 entries that passed before now end in a wrong state. With this much movement in both directions, single
+  rows of 5–45 entries are noisy; trust the direction of the trained causes (D, E), not small differences elsewhere.

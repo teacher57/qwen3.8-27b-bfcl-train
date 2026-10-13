@@ -1,0 +1,18 @@
+root cause                                                                                all       base  miss_func miss_param long_conte
+A1 Extra step: released/re-pressed the brake after starting the engine                     45          9          8         11         17
+A2 Extra step: started navigation when only asked to find a place                           8          2          1          2          3
+A3 Extra step: wrote invented content into a file it was only asked to create              10          4          2          1          3
+A4 Extra step: other unrequested action (cancel_booking)                                    1          0          0          0          1
+A4 Extra step: other unrequested action (cp)                                                1          0          1          0          0
+A4 Extra step: other unrequested action (setHeadlights)                                     1          1          0          0          0
+A4 Extra step: other unrequested action (set_budget_limit)                                  2          0          0          2          0
+B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)           39          8          8          8         15
+C  Small exact-value mistake (format, unit, precision, wrong id/option)                    21          6          5          6          4
+D  Guessed missing information instead of asking (miss_param)                              27          0          0         27          0
+E  Worked around a missing function instead of saying it can't (miss_func)                 14          0         14          0          0
+F  Asked for confirmation/clarification when it should have acted                          15          5          6          2          2
+G  Did nothing / just answered when action was expected                                     4          0          0          1          3
+H  Different approach (other functions than expected)                                       2          1          0          1          0
+H  No call-level divergence found (state differs for another reason)                        1          1          0          0          0
+H  Skipped a required action                                                                3          1          0          1          1
+total 194

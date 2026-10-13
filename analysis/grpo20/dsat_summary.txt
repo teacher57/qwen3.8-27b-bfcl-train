@@ -1,0 +1,14 @@
+cluster                                                     all       base  miss_func miss_param long_conte
+Did an extra, unrequested action                             73         17         14         16         26
+Right action, wrong argument values                          64         15         14         15         20
+Guessed the missing information instead of asking            34          0          0         34          0
+Skipped a lookup the answer needed                           33          8          5          6         14
+Asked for confirmation/info instead of acting                23          5         11          3          4
+Worked around the missing function instead of saying it can't   23          0         23          0          0
+No call-level divergence found (state differs for another reason)   18          2          3         12          1
+Looped until the 20-step limit                               12          0         12          0          0
+Took no action (said it can't / just answered)                6          1          0          2          3
+Skipped a required action                                     5          1          0          1          3
+Different approach (other functions than expected)            3          1          0          2          0
+excluded: context limit (our setup)                           1          0          0          0          1
+total                                                       295
