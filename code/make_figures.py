@@ -166,3 +166,53 @@ ax.set_xlim(-68, 92); style(ax, "x"); ax.legend(loc="upper center", bbox_to_anch
 ax.set_xlabel("entries (the same 200 entries per category for both models)")
 ax.set_title("BFCL multi-turn: entries fixed vs broken by SFT + GRPO", loc="left")
 save(fig, "fig6_bfcl_fixed_broken.png")
+
+
+# ---------- 7. A1 "brake" test tasks: step 20 -> run_a1 checkpoints ----------
+A = ROOT / "results/fs_env/a1_brake"
+models = [("step 20 (start)", A / "grpo-s20/grpo-s20.jsonl", REF)] + \
+         [(f"run_a1 step {s}", A / f"run_a1-s{s}/run_a1-s{s}.jsonl", c) for s, c in zip((10, 20, 30, 40), ["#cde2fb", RAMP[0], RAMP[1], RAMP[2]])]
+scen = [("A1-I", "unzip &\ntake out"), ("A1-II", "locked\nfile"), ("A1-III", "maintenance\nmode"), ("A1-VI", "conditional\n+ archive"), (None, "all four")]
+res = {name: [r for r in jsonl(p) if r["cause"] in ("A1-I", "A1-II", "A1-III", "A1-VI")] for name, p, _ in models}
+fig, ax = plt.subplots(figsize=(8.6, 4.2)); w = 0.16
+for j, (name, _, col) in enumerate(models):
+    for i, (s, _) in enumerate(scen):
+        rs = [r for r in res[name] if s is None or r["cause"] == s]; p = sum(r["passed"] for r in rs)
+        x = i + (j - 2) * w
+        ax.bar(x, p / len(rs), w - 0.02, color=col, label=name if i == 0 else None)
+        ax.text(x, p / len(rs) + 0.015, str(p), ha="center", fontsize=6.5, color=INK)
+ax.set_xticks(range(len(scen)), [f"{s or ''}\n{lab}" if s else lab for s, lab in scen]); ax.set_ylim(0, 1.15)
+ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0%}"); style(ax); ax.legend(ncol=5, loc="upper center", bbox_to_anchor=(0.5, -0.2), fontsize=8)
+ax.set_title("A1 test tasks (10 per scenario x 4 trials, seed 13): passed", loc="left")
+save(fig, "fig7_a1_checkpoints.png")
+
+# ---------- 8. BFCL multi-turn: base -> GRPO step 20 -> run_a1 step 40 ----------
+S40 = ROOT / "results/fs_env/grpo/run_a1/bfcl/score/qwen3.8-27b-a1s40-FC/multi_turn"
+three = [("base Qwen3.8-27B", B, REF), ("GRPO step 20", S, RAMP[0]), ("run_a1 step 40", S40, RAMP[2])]
+fig, ax = plt.subplots(figsize=(8.6, 3.9)); w = 0.27
+vals = {name: [score(d / f"BFCL_v4_{c}_score.json")[0]["accuracy"] for c in cats] for name, d, _ in three}
+for name in vals: vals[name].append(sum(vals[name]) / 4)
+for j, (name, _, col) in enumerate(three):
+    for i, v in enumerate(vals[name]):
+        ax.bar(i + (j - 1) * w, v, w - 0.03, color=col, label=name if i == 0 else None)
+        ax.text(i + (j - 1) * w, v + 0.012, f"{v:.1%}", ha="center", fontsize=7, color=INK)
+ax.set_xticks(range(5), [short(c) for c in cats] + ["all 800"]); ax.set_ylim(0, 1); ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0%}")
+style(ax); ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.08))
+ax.set_title("BFCL v4 multi-turn accuracy: base -> step 20 -> step 40", loc="left")
+save(fig, "fig8_bfcl_three_models.png")
+
+# ---------- 9. BFCL failure causes: base -> step 20 -> step 40 ----------
+def causes(d):
+    return Counter(v["root_cause"].split()[0] for v in json.load(open(ROOT / d / "final_state_root_causes.json")).values())
+cb, cs, ca = causes("analysis"), causes("analysis/grpo20"), causes("analysis/a1s40")
+order = [k for k in ["A1", "B", "D", "C", "E", "F", "A3", "A2"] if cb[k] or ca[k]]
+fig, ax = plt.subplots(figsize=(8.6, 4.2)); w = 0.27
+for j, (name, c, col) in enumerate([("base Qwen3.8-27B", cb, REF), ("GRPO step 20", cs, RAMP[0]), ("run_a1 step 40", ca, RAMP[2])]):
+    for i, k in enumerate(order):
+        ax.bar(i + (j - 1) * w, c[k], w - 0.03, color=col, label=name if i == 0 else None)
+        ax.text(i + (j - 1) * w, c[k] + 0.6, str(c[k]), ha="center", fontsize=7, color=INK)
+names = {"A1": "A1 brake", "B": "B rewrote\ntext", "D": "D guessed", "C": "C exact\nvalues", "E": "E work-\naround", "F": "F asked", "A3": "A3 file\ncontent", "A2": "A2 navi-\ngation"}
+ax.set_xticks(range(len(order)), [names[k] for k in order]); style(ax)
+ax.set_ylabel("wrong-final-state failures (of 800)"); ax.legend(ncol=3, loc="upper right", fontsize=8.5)
+ax.set_title("BFCL multi-turn failure causes (DSAT): fewer is better", loc="left")
+save(fig, "fig9_bfcl_causes_three_models.png")

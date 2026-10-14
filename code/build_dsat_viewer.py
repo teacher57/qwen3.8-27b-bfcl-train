@@ -13,7 +13,10 @@ RUNS = {   # key: (label, DSAT folder, BFCL root, registry name)
     "base": ("Base Qwen3.8-27B", HERE / "analysis", HERE / "results/pod/bfcl-results", "qwen3.8-27b-FC"),
     "grpo": ("GRPO step 20", HERE / "analysis/grpo20", HERE / "results/fs_env/grpo/run_v1/bfcl", "qwen3.8-27b-grpo20-FC"),
 }
-OUT = HERE / "renders/bfcl_dsat_base_vs_grpo20.html"
+# the second run can be another model: DSAT_B="label|dsat folder|BFCL root|registry name", DSAT_OUT=file name in renders/
+if os.environ.get("DSAT_B"):
+    _l, _d, _r, _m = os.environ["DSAT_B"].split("|"); RUNS["grpo"] = (_l, HERE / _d, HERE / _r, _m)
+OUT = HERE / "renders" / os.environ.get("DSAT_OUT", "bfcl_dsat_base_vs_grpo20.html")
 CAUSES = {   # code: (label, what it looks like)
     "A1": ("A1 Released / re-pressed the brake", "Asked to start the engine, the model presses the brake, starts it, then releases or re-presses the brake: an extra step nobody asked for."),
     "A2": ("A2 Started navigation", "Asked to find a place, the model also sets the navigation to it."),
@@ -89,7 +92,7 @@ def main():
             "acc": {cat: [A["acc"][cat]["accuracy"], B["acc"][cat]["accuracy"]] for cat in CATS},
             "totals": [len(A["roots"]), len(B["roots"])]}
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(TEMPLATE.replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/")))
+    OUT.write_text(TEMPLATE.replace("__RUN_B__", RUNS["grpo"][0]).replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/")))
     print("\n".join(summary)); print(f"wrote {OUT.relative_to(HERE)} ({os.path.getsize(OUT) / 1e6:.1f} MB)")
 
 
@@ -128,7 +131,7 @@ details>summary{cursor:pointer;color:var(--mut);font-size:12.5px}.exp{border-lef
 @media (max-width:1100px){.cols{grid-template-columns:1fr}}
 @media (max-width:760px){.wrap{flex-direction:column;height:auto}aside{width:auto;max-height:45vh}}
 </style></head><body>
-<header><h1>Qwen3.8-27B · BFCL multi-turn failure causes (A1–H) · base vs GRPO step 20</h1><nav class="tabs" id="tabs"></nav><p id="sub"></p></header>
+<header><h1>Qwen3.8-27B · BFCL multi-turn failure causes (A1–H) · base vs __RUN_B__</h1><nav class="tabs" id="tabs"></nav><p id="sub"></p></header>
 <div class="wrap"><aside><div class="filters"><input id="q" placeholder="search ids, user messages, calls…">
 <select id="cat"><option value="">all categories</option><option>base</option><option>miss_func</option><option>miss_param</option><option>long_context</option></select></div><div id="nav"></div></aside><main id="main"></main></div>
 <script>

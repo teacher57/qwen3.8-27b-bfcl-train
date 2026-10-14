@@ -1,0 +1,13 @@
+I can't directly create files on your computer, as I don't have access to your file system. However, you can easily create the file yourself:
+
+**On macOS/Linux:**
+```bash
+touch ~/notes.txt
+```
+
+**On Windows (Command Prompt):**
+```cmd
+type nul > %USERPROFILE%\notes.txt
+```
+
+**On Windows (PowerShell):

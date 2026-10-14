@@ -16,6 +16,9 @@ A task (tasks/*.json):
   trap_example (optional)               {turn, calls, reply}: the wrong behavior the task targets; validate() checks
                                         that doing it on that turn really fails
 
+A zip archive in a tree is written {"$zip": {...archived tree...}} (filesystem.zip_encode turns it into the file's
+content when the task is instantiated). Task sets: the folder tasks/ (one task per file) or a JSON file in task_sets/
+holding a list of tasks (load_templates(path), task_sources()).
 Task files use "{user}" for the home folder name (in cwd, trees and paths). load_tasks() replaces it with a
 random name and adds random background clutter (CLUTTER) to the home folder, new on every load; the chosen name is
 kept in task["user_name"] and the clutter names in task["clutter"].
@@ -28,10 +31,11 @@ import re
 from pathlib import Path
 
 from .checker import check_answer, compare, flatten
-from .filesystem import STATE_CHANGING, FileSystem
+from .filesystem import STATE_CHANGING, FileSystem, zip_encode
 from .tools import TOOL_NAMES, execute
 
 TASK_DIR = Path(__file__).parent / "tasks"
+TASK_SETS_DIR = Path(__file__).parent / "task_sets"
 EXPECT = {"act", "answer", "ask", "refuse"}
 # What a refuse turn may withhold: sets whose effect no combination of the remaining tools can reproduce exactly.
 # Withholding a replaceable tool (move = copy + delete) would make a working workaround count as a failure.
@@ -43,6 +47,7 @@ IRREPLACEABLE_WITHHELD = [
     {"create_file", "write_file"},     # create_file = write_file(""); also needs no empty file around to copy
     {"make_dir", "copy"},              # make_dir = copy an existing empty folder
     {"move", "copy", "write_file"},    # move = copy + delete, or read + write + delete
+    {"unzip"},                         # nothing else opens an archive (read_file and paths inside it are refused)
 ]
 MIN_ACT_TURNS = 2  # every task has at least two turns that change files
 LAZY_REPLIES = ["", "Done.", "Okay!", "I've completed the task."]  # must fail every answer_check
@@ -177,10 +182,44 @@ def instantiate(task: dict, name: str, rng: random.Random | None = None) -> dict
     if rng is not None:
         randomize_folders(task, rng)
         add_clutter(task, rng)
+    task["origin"]["tree"] = encode_zips(task["origin"]["tree"])
+    for t in task["turns"]:
+        t["target"] = encode_zips(t["target"])
     return task
 
 
+def encode_zips(tree: dict) -> dict:
+    """{"$zip": tree} values -> archive file content (after folder renaming, so names inside archives match)."""
+    out = {}
+    for k, v in tree.items():
+        if isinstance(v, dict) and set(v) == {"$zip"}:
+            out[k] = zip_encode(v["$zip"])
+        elif isinstance(v, dict) and "$rule" not in v:
+            out[k] = encode_zips(v)
+        else:
+            out[k] = v
+    return out
+
+
+def task_sources() -> list[str]:
+    """Names of the task sets: "tasks" (the folder) and every JSON file in task_sets/."""
+    return ["tasks"] + sorted(p.name for p in TASK_SETS_DIR.glob("*.json"))
+
+
+def source_path(name: str = "tasks") -> Path:
+    if name in ("tasks", "", None):
+        return TASK_DIR
+    p = TASK_SETS_DIR / Path(name).name
+    if not p.is_file():
+        raise ValueError(f"no task set {name}; have {task_sources()}")
+    return p
+
+
 def load_templates(task_dir: Path = TASK_DIR) -> list[dict]:
+    """Task templates from a folder of task files, or from one JSON file holding a list of tasks."""
+    task_dir = Path(task_dir)
+    if task_dir.is_file():
+        return json.loads(task_dir.read_text())
     return [json.loads(p.read_text()) for p in sorted(task_dir.glob("*.json"))]
 
 

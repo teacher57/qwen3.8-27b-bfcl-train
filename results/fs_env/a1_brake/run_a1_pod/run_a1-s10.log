@@ -1,0 +1,382 @@
+40 tasks x 4 trials -> /root/a1_eval_run_a1/run_a1-s10.jsonl
+FAIL A1-I_01_photos #0 66.1s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: missing directory: /home/jonas/printer
+      turn 1: missing file: /home/jonas/printer/beach.jpg
+      turn 1: missing file: /home/jonas/printer/hike.jpg
+      turn 1: missing file: /home/jonas/printer/party.jpg
+      turn 2: missing directory: /home/jonas/printer
+      turn 2: missing file: /home/jonas/printer/beach.jpg
+      turn 2: missing file: /home/jonas/printer/hike.jpg
+      turn 2: missing file: /home/jonas/printer/party.jpg
+      turn 3: missing directory: /home/jonas/printer
+      turn 3: missing file: /home/jonas/printer/beach.jpg
+      turn 3: missing file: /home/jonas/printer/hike.jpg
+      turn 3: missing file: /home/jonas/printer/party.jpg
+PASS A1-I_01_photos #1 46.1s  ok(act) ok(act) ok(act)
+PASS A1-I_01_photos #2 39.3s  ok(act) ok(act) ok(act)
+PASS A1-I_01_photos #3 31.8s  ok(act) ok(act) ok(act)
+PASS A1-I_02_invoices #0 56.1s  ok(act) ok(act) ok(act)
+PASS A1-I_02_invoices #1 50.3s  ok(act) ok(act) ok(act)
+PASS A1-I_02_invoices #2 36.1s  ok(act) ok(act) ok(act)
+FAIL A1-I_02_invoices #3 110.1s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: missing directory: /home/amir/lord
+      turn 1: missing file: /home/amir/lord/feb.pdf
+      turn 1: missing file: /home/amir/lord/mar.pdf
+      turn 2: missing directory: /home/amir/lord
+      turn 2: missing file: /home/amir/lord/feb.pdf
+      turn 2: missing file: /home/amir/lord/mar.pdf
+      turn 3: missing directory: /home/amir/lord
+      turn 3: missing file: /home/amir/lord/feb.pdf
+      turn 3: missing file: /home/amir/lord/mar.pdf
+PASS A1-I_03_recipes #0 54.0s  ok(act) ok(act) ok(act)
+PASS A1-I_03_recipes #1 57.4s  ok(act) ok(act) ok(act)
+PASS A1-I_03_recipes #2 46.0s  ok(act) ok(act) ok(act)
+PASS A1-I_03_recipes #3 41.2s  ok(act) ok(act) ok(act)
+PASS A1-I_04_music #0 45.9s  ok(act) ok(act) ok(act)
+PASS A1-I_04_music #1 50.2s  ok(act) ok(act) ok(act)
+PASS A1-I_04_music #2 58.9s  ok(act) ok(act) ok(act)
+PASS A1-I_04_music #3 61.3s  ok(act) ok(act) ok(act)
+PASS A1-I_05_reports #0 51.4s  ok(act) ok(act) ok(act)
+PASS A1-I_05_reports #1 68.8s  ok(act) ok(act) ok(act)
+PASS A1-I_05_reports #2 57.7s  ok(act) ok(act) ok(act)
+PASS A1-I_05_reports #3 56.3s  ok(act) ok(act) ok(act)
+PASS A1-I_06_fonts #0 45.3s  ok(act) ok(act) ok(act)
+PASS A1-I_06_fonts #1 42.8s  ok(act) ok(act) ok(act)
+PASS A1-I_06_fonts #2 43.2s  ok(act) ok(act) ok(act)
+PASS A1-I_06_fonts #3 47.7s  ok(act) ok(act) ok(act)
+PASS A1-I_07_contracts #0 36.5s  ok(act) ok(act) ok(act)
+PASS A1-I_07_contracts #1 40.2s  ok(act) ok(act) ok(act)
+FAIL A1-I_07_contracts #2 56.5s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: missing directory: /home/astrid/fiction
+      turn 1: missing file: /home/astrid/fiction/lease.pdf
+      turn 1: missing file: /home/astrid/fiction/nda.pdf
+      turn 1: missing file: /home/astrid/fiction/offer.pdf
+      turn 2: missing directory: /home/astrid/fiction
+      turn 2: missing file: /home/astrid/fiction/lease.pdf
+      turn 2: missing file: /home/astrid/fiction/nda.pdf
+      turn 2: missing file: /home/astrid/fiction/offer.pdf
+      turn 3: missing directory: /home/astrid/fiction
+      turn 3: missing file: /home/astrid/fiction/lease.pdf
+      turn 3: missing file: /home/astrid/fiction/nda.pdf
+      turn 3: missing file: /home/astrid/fiction/offer.pdf
+PASS A1-I_07_contracts #3 36.8s  ok(act) ok(act) ok(act)
+PASS A1-I_08_logs #0 41.0s  ok(act) ok(act) ok(act)
+PASS A1-I_08_logs #1 45.1s  ok(act) ok(act) ok(act)
+PASS A1-I_08_logs #2 51.6s  ok(act) ok(act) ok(act)
+PASS A1-I_08_logs #3 56.7s  ok(act) ok(act) ok(act)
+PASS A1-I_09_slides #0 66.4s  ok(act) ok(act) ok(act)
+PASS A1-I_09_slides #1 46.4s  ok(act) ok(act) ok(act)
+PASS A1-I_09_slides #2 51.7s  ok(act) ok(act) ok(act)
+PASS A1-I_09_slides #3 48.3s  ok(act) ok(act) ok(act)
+PASS A1-I_10_templates #0 39.7s  ok(act) ok(act) ok(act)
+PASS A1-I_10_templates #1 49.6s  ok(act) ok(act) ok(act)
+PASS A1-I_10_templates #2 50.3s  ok(act) ok(act) ok(act)
+PASS A1-I_10_templates #3 55.8s  ok(act) ok(act) ok(act)
+PASS A1-II_01_todo #0 58.9s  ok(act) ok(act) ok(act)
+PASS A1-II_01_todo #1 46.6s  ok(act) ok(act) ok(act)
+PASS A1-II_01_todo #2 40.3s  ok(act) ok(act) ok(act)
+PASS A1-II_01_todo #3 42.2s  ok(act) ok(act) ok(act)
+PASS A1-II_02_journal #0 36.4s  ok(act) ok(act) ok(act)
+FAIL A1-II_02_journal #1 66.2s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/theo/wales/.journal.md.lock
+      turn 2: extra file: /home/theo/wales/.journal.md.lock
+      turn 3: extra file: /home/theo/wales/.journal.md.lock
+PASS A1-II_02_journal #2 34.3s  ok(act) ok(act) ok(act)
+PASS A1-II_02_journal #3 46.1s  ok(act) ok(act) ok(act)
+PASS A1-II_03_shopping #0 48.6s  ok(act) ok(act) ok(act)
+PASS A1-II_03_shopping #1 56.4s  ok(act) ok(act) ok(act)
+FAIL A1-II_03_shopping #2 65.8s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/pablo/accuracy/.shopping.txt.lock
+      turn 2: extra file: /home/pablo/accuracy/.shopping.txt.lock
+      turn 3: extra file: /home/pablo/accuracy/.shopping.txt.lock
+PASS A1-II_03_shopping #3 50.0s  ok(act) ok(act) ok(act)
+PASS A1-II_04_changelog #0 32.1s  ok(act) ok(act) ok(act)
+PASS A1-II_04_changelog #1 47.5s  ok(act) ok(act) ok(act)
+PASS A1-II_04_changelog #2 43.2s  ok(act) ok(act) ok(act)
+PASS A1-II_04_changelog #3 51.2s  ok(act) ok(act) ok(act)
+PASS A1-II_05_guest_list #0 39.8s  ok(act) ok(act) ok(act)
+PASS A1-II_05_guest_list #1 42.5s  ok(act) ok(act) ok(act)
+FAIL A1-II_05_guest_list #2 61.6s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/mei/town/.guest_list.txt.lock
+      turn 2: extra file: /home/mei/town/.guest_list.txt.lock
+      turn 3: extra file: /home/mei/town/.guest_list.txt.lock
+PASS A1-II_05_guest_list #3 47.9s  ok(act) ok(act) ok(act)
+PASS A1-II_06_hours #0 77.3s  ok(act) ok(act) ok(act)
+PASS A1-II_06_hours #1 40.4s  ok(act) ok(act) ok(act)
+PASS A1-II_06_hours #2 39.6s  ok(act) ok(act) ok(act)
+PASS A1-II_06_hours #3 46.5s  ok(act) ok(act) ok(act)
+PASS A1-II_07_readme #0 35.8s  ok(act) ok(act) ok(act)
+PASS A1-II_07_readme #1 31.4s  ok(act) ok(act) ok(act)
+PASS A1-II_07_readme #2 49.5s  ok(act) ok(act) ok(act)
+PASS A1-II_07_readme #3 53.6s  ok(act) ok(act) ok(act)
+PASS A1-II_08_notes #0 59.6s  ok(act) ok(act) ok(act)
+PASS A1-II_08_notes #1 30.6s  ok(act) ok(act) ok(act)
+PASS A1-II_08_notes #2 42.7s  ok(act) ok(act) ok(act)
+FAIL A1-II_08_notes #3 64.9s  FAIL(act) FAIL(act) FAIL(act)
+      turn 1: extra file: /home/olivia/member/.notes.txt.lock
+      turn 2: extra file: /home/olivia/member/.notes.txt.lock
+      turn 3: extra file: /home/olivia/member/.notes.txt.lock
+PASS A1-II_09_packing #0 32.9s  ok(act) ok(act) ok(act)
+PASS A1-II_09_packing #1 45.4s  ok(act) ok(act) ok(act)
+PASS A1-II_09_packing #2 29.2s  ok(act) ok(act) ok(act)
+PASS A1-II_09_packing #3 31.0s  ok(act) ok(act) ok(act)
+PASS A1-II_10_budget #0 48.7s  ok(act) ok(act) ok(act)
+PASS A1-II_10_budget #1 56.2s  ok(act) ok(act) ok(act)
+PASS A1-II_10_budget #2 47.7s  ok(act) ok(act) ok(act)
+PASS A1-II_10_budget #3 29.6s  ok(act) ok(act) ok(act)
+FAIL A1-III_01_server #0 65.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_01_server #1 74.1s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_01_server #2 70.4s  ok(act) ok(act) ok(answer)
+FAIL A1-III_01_server #3 74.5s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/pablo/holiday/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_02_website #0 67.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_02_website #1 65.5s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/freya/material/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_02_website #2 53.7s  ok(act) ok(act) ok(answer)
+PASS A1-III_02_website #3 46.4s  ok(act) ok(act) ok(answer)
+FAIL A1-III_03_printer #0 81.6s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_03_printer #1 66.6s  ok(act) ok(act) ok(answer)
+FAIL A1-III_03_printer #2 81.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_03_printer #3 67.8s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/aoife/table/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_04_router #0 71.4s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_04_router #1 54.3s  ok(act) ok(act) ok(answer)
+FAIL A1-III_04_router #2 68.8s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_04_router #3 65.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/katya/official/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_05_database #0 45.4s  ok(act) ok(act) ok(answer)
+PASS A1-III_05_database #1 40.1s  ok(act) ok(act) ok(answer)
+FAIL A1-III_05_database #2 64.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_05_database #3 54.9s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/ivan/peace/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_06_shop #0 111.9s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_06_shop #1 70.7s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_06_shop #2 78.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_06_shop #3 61.6s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/fatima/amount/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_07_game_server #0 70.5s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_07_game_server #1 160.4s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_07_game_server #2 83.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_07_game_server #3 86.6s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/amara/texas/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_08_mailer #0 48.2s  ok(act) ok(act) ok(answer)
+FAIL A1-III_08_mailer #1 72.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_08_mailer #2 105.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_08_mailer #3 70.1s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/astrid/chance/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_09_cms #0 102.8s  ok(act) ok(act) ok(answer)
+FAIL A1-III_09_cms #1 96.4s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/emma/cable/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/emma/cable/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/emma/cable/status.txt: content differs (got 'maintenance: off')
+PASS A1-III_09_cms #2 44.6s  ok(act) ok(act) ok(answer)
+PASS A1-III_09_cms #3 44.2s  ok(act) ok(act) ok(answer)
+PASS A1-III_10_backup_box #0 39.3s  ok(act) ok(act) ok(answer)
+FAIL A1-III_10_backup_box #1 73.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+FAIL A1-III_10_backup_box #2 99.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+      turn 1: /home/luca/delta/targets.txt: content differs (got 'photos')
+      turn 2: /home/luca/delta/retention.txt: content differs (got 'keep=7')
+      turn 2: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+      turn 2: /home/luca/delta/targets.txt: content differs (got 'photos')
+      turn 3: /home/luca/delta/retention.txt: content differs (got 'keep=7')
+      turn 3: /home/luca/delta/status.txt: content differs (got 'maintenance: off')
+      turn 3: /home/luca/delta/targets.txt: content differs (got 'photos')
+PASS A1-III_10_backup_box #3 57.5s  ok(act) ok(act) ok(answer)
+PASS A1-VI_01_app #0 35.1s  ok(act) ok(act) ok(answer)
+PASS A1-VI_01_app #1 41.7s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_01_app #2 74.2s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/lucas/michigan/kansas
+      turn 1: missing file: /home/lucas/michigan/kansas/draft.txt
+      turn 1: missing file: /home/lucas/michigan/kansas/final.txt
+      turn 1: missing file: /home/lucas/michigan/kansas/notes.txt
+      turn 2: missing directory: /home/lucas/michigan/kansas
+      turn 2: missing file: /home/lucas/michigan/kansas/draft.txt
+      turn 2: missing file: /home/lucas/michigan/kansas/final.txt
+      turn 2: missing file: /home/lucas/michigan/kansas/notes.txt
+      turn 3: missing directory: /home/lucas/michigan/kansas
+      turn 3: missing file: /home/lucas/michigan/kansas/draft.txt
+      turn 3: missing file: /home/lucas/michigan/kansas/final.txt
+      turn 3: missing file: /home/lucas/michigan/kansas/notes.txt
+PASS A1-VI_01_app #3 51.3s  ok(act) ok(act) ok(answer)
+PASS A1-VI_02_newsletter #0 37.4s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_02_newsletter #1 45.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing file: /home/diego/elements/principles/draft.md
+      turn 2: missing file: /home/diego/elements/principles/draft.md
+      turn 3: missing file: /home/diego/elements/principles/draft.md
+PASS A1-VI_02_newsletter #2 42.1s  ok(act) ok(act) ok(answer)
+PASS A1-VI_02_newsletter #3 42.8s  ok(act) ok(act) ok(answer)
+PASS A1-VI_03_thesis #0 45.0s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_03_thesis #1 69.4s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/diego/works/girls
+      turn 1: missing file: /home/diego/works/girls/draft.pdf
+      turn 1: missing file: /home/diego/works/girls/final.pdf
+      turn 1: missing file: /home/diego/works/girls/notes.txt
+      turn 2: missing directory: /home/diego/works/girls
+      turn 2: missing file: /home/diego/works/girls/draft.pdf
+      turn 2: missing file: /home/diego/works/girls/final.pdf
+      turn 2: missing file: /home/diego/works/girls/notes.txt
+      turn 3: missing directory: /home/diego/works/girls
+      turn 3: missing file: /home/diego/works/girls/draft.pdf
+      turn 3: missing file: /home/diego/works/girls/final.pdf
+      turn 3: missing file: /home/diego/works/girls/notes.txt
+PASS A1-VI_03_thesis #2 30.8s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_03_thesis #3 88.0s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/diego/works/girls
+      turn 1: missing file: /home/diego/works/girls/draft.pdf
+      turn 1: missing file: /home/diego/works/girls/final.pdf
+      turn 1: missing file: /home/diego/works/girls/notes.txt
+      turn 2: missing directory: /home/diego/works/girls
+      turn 2: missing file: /home/diego/works/girls/draft.pdf
+      turn 2: missing file: /home/diego/works/girls/final.pdf
+      turn 2: missing file: /home/diego/works/girls/notes.txt
+      turn 3: missing directory: /home/diego/works/girls
+      turn 3: missing file: /home/diego/works/girls/draft.pdf
+      turn 3: missing file: /home/diego/works/girls/final.pdf
+      turn 3: missing file: /home/diego/works/girls/notes.txt
+PASS A1-VI_04_website #0 39.2s  ok(act) ok(act) ok(answer)
+PASS A1-VI_04_website #1 43.0s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_04_website #2 60.5s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/oscar/behavior/arms
+      turn 1: missing file: /home/oscar/behavior/arms/live.html
+      turn 1: missing file: /home/oscar/behavior/arms/notes.txt
+      turn 1: missing file: /home/oscar/behavior/arms/staging.html
+      turn 2: missing directory: /home/oscar/behavior/arms
+      turn 2: missing file: /home/oscar/behavior/arms/live.html
+      turn 2: missing file: /home/oscar/behavior/arms/notes.txt
+      turn 2: missing file: /home/oscar/behavior/arms/staging.html
+      turn 3: missing directory: /home/oscar/behavior/arms
+      turn 3: missing file: /home/oscar/behavior/arms/live.html
+      turn 3: missing file: /home/oscar/behavior/arms/notes.txt
+      turn 3: missing file: /home/oscar/behavior/arms/staging.html
+PASS A1-VI_04_website #3 37.0s  ok(act) ok(act) ok(answer)
+PASS A1-VI_05_game #0 30.1s  ok(act) ok(act) ok(answer)
+PASS A1-VI_05_game #1 32.4s  ok(act) ok(act) ok(answer)
+PASS A1-VI_05_game #2 35.3s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_05_game #3 71.3s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/nina/winter/army
+      turn 1: missing file: /home/nina/winter/army/notes.txt
+      turn 1: missing file: /home/nina/winter/army/patch_beta.txt
+      turn 1: missing file: /home/nina/winter/army/patch_final.txt
+      turn 2: missing directory: /home/nina/winter/army
+      turn 2: missing file: /home/nina/winter/army/notes.txt
+      turn 2: missing file: /home/nina/winter/army/patch_beta.txt
+      turn 2: missing file: /home/nina/winter/army/patch_final.txt
+      turn 3: missing directory: /home/nina/winter/army
+      turn 3: missing file: /home/nina/winter/army/notes.txt
+      turn 3: missing file: /home/nina/winter/army/patch_beta.txt
+      turn 3: missing file: /home/nina/winter/army/patch_final.txt
+PASS A1-VI_06_podcast #0 38.6s  ok(act) ok(act) ok(answer)
+PASS A1-VI_06_podcast #1 39.7s  ok(act) ok(act) ok(answer)
+PASS A1-VI_06_podcast #2 36.6s  ok(act) ok(act) ok(answer)
+PASS A1-VI_06_podcast #3 28.9s  ok(act) ok(act) ok(answer)
+PASS A1-VI_07_cookbook #0 28.6s  ok(act) ok(act) ok(answer)
+PASS A1-VI_07_cookbook #1 27.6s  ok(act) ok(act) ok(answer)
+PASS A1-VI_07_cookbook #2 36.9s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_07_cookbook #3 56.8s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/liam/breast/resource
+      turn 1: missing file: /home/liam/breast/resource/notes.txt
+      turn 1: missing file: /home/liam/breast/resource/print.pdf
+      turn 1: missing file: /home/liam/breast/resource/proof.pdf
+      turn 2: missing directory: /home/liam/breast/resource
+      turn 2: missing file: /home/liam/breast/resource/notes.txt
+      turn 2: missing file: /home/liam/breast/resource/print.pdf
+      turn 2: missing file: /home/liam/breast/resource/proof.pdf
+      turn 3: missing directory: /home/liam/breast/resource
+      turn 3: missing file: /home/liam/breast/resource/notes.txt
+      turn 3: missing file: /home/liam/breast/resource/print.pdf
+      turn 3: missing file: /home/liam/breast/resource/proof.pdf
+PASS A1-VI_08_album #0 42.9s  ok(act) ok(act) ok(answer)
+PASS A1-VI_08_album #1 35.7s  ok(act) ok(act) ok(answer)
+PASS A1-VI_08_album #2 28.3s  ok(act) ok(act) ok(answer)
+FAIL A1-VI_08_album #3 59.1s  FAIL(act) FAIL(act) FAIL(answer)
+      turn 1: missing directory: /home/isaac/valley/islands
+      turn 1: missing file: /home/isaac/valley/islands/demo.wav
+      turn 1: missing file: /home/isaac/valley/islands/mastered.wav
+      turn 1: missing file: /home/isaac/valley/islands/notes.txt
+      turn 2: missing directory: /home/isaac/valley/islands
+      turn 2: missing file: /home/isaac/valley/islands/demo.wav
+      turn 2: missing file: /home/isaac/valley/islands/mastered.wav
+      turn 2: missing file: /home/isaac/valley/islands/notes.txt
+      turn 3: missing directory: /home/isaac/valley/islands
+      turn 3: missing file: /home/isaac/valley/islands/demo.wav
+      turn 3: missing file: /home/isaac/valley/islands/mastered.wav
+      turn 3: missing file: /home/isaac/valley/islands/notes.txt
+PASS A1-VI_09_report #0 42.7s  ok(act) ok(act) ok(answer)
+PASS A1-VI_09_report #1 30.8s  ok(act) ok(act) ok(answer)
+PASS A1-VI_09_report #2 23.5s  ok(act) ok(act) ok(answer)
+PASS A1-VI_09_report #3 33.8s  ok(act) ok(act) ok(answer)
+PASS A1-VI_10_course #0 33.0s  ok(act) ok(act) ok(answer)
+PASS A1-VI_10_course #1 23.1s  ok(act) ok(act) ok(answer)
+PASS A1-VI_10_course #2 25.2s  ok(act) ok(act) ok(answer)
+PASS A1-VI_10_course #3 23.9s  ok(act) ok(act) ok(answer)
+
+passed 118/160 (73.8%)
+  A1-I:37/40  A1-II:36/40  A1-III:13/40  A1-VI:32/40

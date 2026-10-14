@@ -1,10 +1,10 @@
 {
  "_about": "Which GRPO run grpo_q38.ipynb shows. Pipelines change this file and the run's JSON files, never the notebook.",
- "run": "run_v1",
- "remote_dir": "/root/grpo/run_v1",
- "local_dir": "results/fs_env/grpo/run_v1",
+ "run": "run_a1",
+ "remote_dir": "/root/grpo/run_a1",
+ "local_dir": "results/fs_env/grpo/run_a1",
  "price_per_hour": 3.79,
- "about": "GRPO run v1: A3/D/E, 30 steps, 4 tasks x group 8, lr 5e-6, temperature 1, sleep mode, from SFT warm start v1 (H200 NVL)",
+ "about": "GRPO run_a1: from GRPO step 20, on a1_brake_train.json (A1-I/II/III/VI, one each per step) + 1 A3/D/E replay task per step, 40 steps, group 8, lr 5e-6, temp 1, checkpoints kept every 10 steps (H200 NVL)",
  "eval": {
   "_about": "Held-out fs_env eval + BFCL multi-turn shown in sections 7-8 of grpo_q38.ipynb; change these, not the notebook.",
   "heldout_dir": "results/fs_env/grpo/run_v1/eval",
@@ -59,5 +59,22 @@
    }
   },
   "bfcl_chosen_because": "best held-out fs_env checkpoint: step 20 220/292 vs step 10 219, step 30 212, SFT 207 (rule fixed in advance: best overall; within \u00b13 -> higher A3+D+E: 65 vs 63)"
- }
+ },
+ "runs": {
+  "run_v1": {
+   "run": "run_v1",
+   "remote_dir": "/root/grpo/run_v1",
+   "local_dir": "results/fs_env/grpo/run_v1",
+   "price_per_hour": 3.79,
+   "about": "GRPO run_v1: from SFT v1, A3/D/E (fs_env train split), 30 steps, group 8 (H200 NVL, 2026-10-13)"
+  },
+  "run_a1": {
+   "run": "run_a1",
+   "remote_dir": "/root/grpo/run_a1",
+   "local_dir": "results/fs_env/grpo/run_a1",
+   "price_per_hour": 3.79,
+   "about": "GRPO run_a1: from GRPO step 20, on a1_brake_train.json (A1-I/II/III/VI, one each per step) + 1 A3/D/E replay task per step, 40 steps, group 8, lr 5e-6, temp 1, checkpoints kept every 10 steps (H200 NVL)"
+  }
+ },
+ "_runs_about": "Every run the notebook can show; RUN in its first code cell picks one. The top-level run is what ./grpo_updater.sh syncs."
 }

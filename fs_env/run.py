@@ -23,7 +23,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from .checker import check_answer, compare
-from .tasks import load_tasks, new_fs
+from .tasks import load_tasks, new_fs, source_path, task_sources
 from .tools import execute, tools_for
 
 
@@ -124,12 +124,14 @@ def main():
     p.add_argument("--system", default="", help="optional system prompt (BFCL multi-turn uses none)")
     p.add_argument("--system-file", help="read the system prompt from this file (e.g. fs_env/sft_rules_prompt.txt)")
     p.add_argument("--split", choices=["train", "eval"], help="only the tasks of this part of fs_env/split.json")
+    p.add_argument("--task-set", default="tasks", choices=task_sources(),
+                   help="the tasks/ folder (default) or a JSON task set in fs_env/task_sets/, e.g. a1_brake.json")
     p.add_argument("--out", default=f"results/fs_env/run_{time.strftime('%Y%m%d_%H%M%S')}.jsonl")
     args = p.parse_args()
     if args.system_file:
         args.system = Path(args.system_file).read_text().strip()
 
-    tasks = load_tasks(seed=args.seed)
+    tasks = load_tasks(source_path(args.task_set), seed=args.seed)
     if args.tasks:
         order = args.tasks.split(",")   # run in the order given (ids or causes), e.g. the important causes first
         rank = {x: i for i, x in enumerate(order)}

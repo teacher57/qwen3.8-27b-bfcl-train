@@ -1,10 +1,14 @@
-"""Replay every task's gold calls and check each turn reaches its target: python -m fs_env.validate"""
+"""Replay every task's gold calls and check each turn reaches its target:
+    python -m fs_env.validate                 the tasks/ folder
+    python -m fs_env.validate a1_brake.json   a task set in task_sets/"""
 
-from .tasks import load_tasks, validate
+import sys
+
+from .tasks import load_tasks, source_path, validate
 
 
 if __name__ == "__main__":
-    tasks = load_tasks()
+    tasks = load_tasks(source_path(sys.argv[1] if len(sys.argv) > 1 else "tasks"))
     bad = 0
     for t in tasks:
         problems = validate(t)

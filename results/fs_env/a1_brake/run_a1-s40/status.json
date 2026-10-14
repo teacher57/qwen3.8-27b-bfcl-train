@@ -1,0 +1,17 @@
+{
+ "updated": "2026-10-14T11:59:23",
+ "done": 160,
+ "total": 160,
+ "alive": false,
+ "finished": true,
+ "stopped": false,
+ "pipeline_log": [
+  "2026-10-14T07:22:57Z setup: start",
+  "2026-10-14T07:26:44Z SETUP_DONE (model 52G, disk free 13G)",
+  "2026-10-14T07:33:08Z vLLM up",
+  "2026-10-14T07:33:28Z GRPO run_a1 launched",
+  "2026-10-14T11:41:08Z CKPT_EVAL vLLM up with 4 checkpoints",
+  "2026-10-14T11:41:23Z CKPT_EVAL sanity ok: every checkpoint changes the output",
+  "2026-10-14T11:59:03Z CKPT_EVAL_DONE s10: passed 118/160 (73.8%) | s20: passed 128/160 (80.0%) | s30: passed 141/160 (88.1%) | s40: passed 147/160 (91.9%) | "
+ ]
+}

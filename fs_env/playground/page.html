@@ -257,7 +257,7 @@ details.answer > summary { padding: 10px 14px; cursor: pointer; font-weight: 500
 <section class="view" id="view-tasks">
   <div class="workbench">
     <aside class="panel">
-      <div class="panel-head"><span class="label">Tasks</span></div>
+      <div class="panel-head"><span class="label">Tasks</span><select class="tool-select" id="task-set" aria-label="Task file" title="Which task file to show: the tasks/ folder or a JSON task set in fs_env/task_sets/"></select></div>
       <div class="search">
         <input type="search" id="task-search" placeholder="Search scenarios  ( / )" title="Searches names, user messages, traps, file names and fix notes. Several words must all match, e.g.: recipe, withheld delete_file, TODO.md, fixed, which draft. Enter opens the first match, Esc clears." aria-label="Search scenarios" autocomplete="off">
         <span class="hint" id="search-count"></span>
@@ -423,7 +423,7 @@ function fmtCall(name, args) {
   if (typeof args === "string") return `${name}(${args})`;
   return `${name}(${Object.entries(args || {}).map(([k, v]) => `${k}=${fmtVal(v)}`).join(", ")})`;
 }
-const humanize = (id) => id.replace(/^[A-Z]\d?_(\d\d_)?/, "").replace(/_/g, " ");
+const humanize = (id) => id.replace(/^[A-Z]\d?(?:-[IVX]+)?_(\d\d_)?/, "").replace(/_/g, " ");
 function relPath(p) {
   const cwd = S.v.cwd;
   if (p === cwd) return ".";
@@ -437,7 +437,7 @@ function taskItem(t, head = "") {
   const dots = Array.from({ length: t.turns }, (_, i) =>
     `<span class="dot ${res[i] === true ? "pass" : res[i] === false ? "fail" : ""}" title="Turn ${i + 1}: ${res[i] === true ? "passed" : res[i] === false ? "failed" : "not checked"}"></span>`).join("");
   const cur = S.v && S.v.task.id === t.id;
-  const num = (t.id.match(/^[A-Z]\d?_(\d\d)_/) || [null, "01"])[1];
+  const num = (t.id.match(/^[A-Z]\d?(?:-[IVX]+)?_(\d\d)_/) || [null, "01"])[1];
   const chip = t.fixed ? `<span class="chip fixed" title="${esc(t.fixed)}">fixed</span>` : t.new ? `<span class="chip new">new</span>` : "";
   return `${head}<button class="task-item" data-id="${esc(t.id)}" aria-current="${cur}" title="${esc(t.fixed || t.cause_title)}">
     <span class="code-chip">${num}</span><span class="name">${chip}${esc(humanize(t.id))}</span><span class="dots">${dots}</span></button>`;
@@ -671,7 +671,7 @@ function startTask(id, extra = {}) {
   S.selected = null;
   $("reply").value = "";
   $("answer").open = false;
-  return act("start", { task_id: id, ...extra });
+  return act("start", { task_id: id, task_set: S.set, ...extra });
 }
 
 // ---------- tools tab ----------
@@ -724,7 +724,7 @@ document.addEventListener("keydown", (e) => {
 });
 $("turns").onclick = (e) => {
   const b = e.target.closest(".turn-pill");
-  if (b) { S.selected = null; $("reply").value = ""; act("start", { task_id: S.v.task.id, turn: +b.dataset.turn, keep_name: true }); }
+  if (b) { S.selected = null; $("reply").value = ""; act("start", { task_id: S.v.task.id, task_set: S.set, turn: +b.dataset.turn, keep_name: true }); }
 };
 $("btn-rename").onclick = () => startTask(S.v.task.id);
 $("btn-restart").onclick = () => startTask(S.v.task.id, { keep_name: true });
@@ -769,10 +769,32 @@ $("tree").onclick = (e) => {
   renderViewer();
 };
 
+function renderTaskSets() {
+  if (!S.init.task_sets) {   // a server started before task files existed: say so instead of an empty list
+    $("task-set").innerHTML = `<option>restart the server to see task files</option>`;
+    toast("This playground server is older than the page: stop it and start it again to choose task files.");
+    $("counts").textContent = `${S.init.tasks.length} tasks · ${S.init.tools.length} tools`;
+    return;
+  }
+  $("task-set").innerHTML = S.init.task_sets.map((x) =>
+    `<option value="${esc(x.name)}"${x.name === S.init.task_set ? " selected" : ""}>${esc(x.name === "tasks" ? "tasks/" : x.name)} (${x.count})</option>`).join("");
+  $("counts").textContent = `${S.init.tasks.length} tasks · ${S.init.tools.length} tools`;
+}
+
+$("task-set").onchange = async (e) => {
+  try { S.init = await api("init", { task_set: e.target.value }); } catch (err) { toast(err.message); return; }
+  S.set = S.init.task_set; store("fs-set", S.set);
+  renderTaskSets(); renderTaskList(); renderTools();
+  await startTask(S.init.tasks[0].id);
+};
+
 (async function boot() {
+  S.set = load("fs-set", "tasks");
   try {
-    S.init = await api("init");
+    S.init = await api("init", { task_set: S.set });
   } catch (e) { toast(`Can't reach the playground server: ${e.message}`); return; }
+  S.set = S.init.task_set;
+  renderTaskSets();
   S.progress = load("fs-progress", {});
   S.query = load("fs-query", ""); $("task-search").value = S.query;
   $("counts").textContent = `${S.init.tasks.length} tasks · ${S.init.tools.length} tools`;

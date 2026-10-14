@@ -6,8 +6,10 @@ import html, json, os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-RES = HERE / "results/pod/bfcl-results/result/qwen3.8-27b-FC/multi_turn"
-SCO = HERE / "results/pod/bfcl-results/score/qwen3.8-27b-FC/multi_turn"
+# another model: BFCL_ROOT (folder with result/ and score/), BFCL_MODEL (registry name), VIEW_NAME (output file), VIEW_TITLE
+_ROOT = Path(os.environ.get("BFCL_ROOT", HERE / "results/pod/bfcl-results")); _MODEL = os.environ.get("BFCL_MODEL", "qwen3.8-27b-FC")
+RES = _ROOT / f"result/{_MODEL}/multi_turn"
+SCO = _ROOT / f"score/{_MODEL}/multi_turn"
 OUT = HERE / "renders"
 CATS = {"base": "Base", "miss_func": "Missing function", "miss_param": "Missing parameter", "long_context": "Long context"}
 ABOUT = {
@@ -133,7 +135,7 @@ details>summary{cursor:pointer;color:var(--mut);font-size:12.5px}.exp{border-lef
 .note{color:var(--mut);font-size:12.5px;white-space:pre-wrap}.hint{color:var(--mut);font-size:12px;margin-top:4px}
 @media (max-width:760px){.wrap{flex-direction:column;height:auto}aside{width:auto;max-height:45vh}}
 </style></head><body>
-<header><h1>Qwen3.8-27B · BFCL multi-turn conversations</h1><nav class="tabs" id="tabs"></nav><p id="sub"></p></header>
+<header><h1>__TITLE__</h1><nav class="tabs" id="tabs"></nav><p id="sub"></p></header>
 <div class="wrap"><aside><input id="q" placeholder="search ids, user messages, calls…"><div id="nav"></div></aside><main id="main"></main></div>
 <script>
 const ALL = __DATA__;
@@ -200,6 +202,6 @@ if __name__ == "__main__":
         t, counts = build(cat); tabs.append(t)
         print(f"{CATS[cat]:18s} {len(t['items'])} conversations |", ", ".join(f"{GROUPS[g][0]} {c}" for g, c in counts.items() if c))
     OUT.mkdir(exist_ok=True)
-    path = OUT / "bfcl_multi_turn.html"
-    path.write_text(TEMPLATE.replace("__DATA__", json.dumps(tabs, ensure_ascii=False).replace("</", "<\\/")))
+    path = OUT / os.environ.get("VIEW_NAME", "bfcl_multi_turn.html")
+    path.write_text(TEMPLATE.replace("__TITLE__", os.environ.get("VIEW_TITLE", "Qwen3.8-27B · BFCL multi-turn conversations")).replace("__DATA__", json.dumps(tabs, ensure_ascii=False).replace("</", "<\\/")))
     print(f"wrote {path.relative_to(HERE)} ({os.path.getsize(path) / 1e6:.1f} MB)")

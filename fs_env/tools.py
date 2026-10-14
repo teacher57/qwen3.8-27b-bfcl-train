@@ -55,6 +55,15 @@ TOOLS = [
          "path": {**_PATH, "description": "File or directory to search. Defaults to the current directory."}},
         ["text"]),
     _fn("count", "Count the lines, words and characters of a file.", {"path": _PATH}, ["path"]),
+    _fn("zip", "Pack a file or a folder's contents into a .zip archive.",
+        {"source": {**_PATH, "description": "File or folder to archive."},
+         "destination": {**_PATH, "description": "Archive to create; must end with .zip."},
+         "overwrite": {"type": "boolean", "description": "Replace the archive if it already exists. Default false."}},
+        ["source", "destination"]),
+    _fn("unzip", "Extract a .zip archive into a folder next to it named after the archive (photos.zip -> photos/). "
+                 "The archive is kept.", {"path": _PATH}, ["path"]),
+    _fn("lock", "Lock a file so it can't be written, deleted or moved.", {"path": _PATH}, ["path"]),
+    _fn("unlock", "Unlock a locked file.", {"path": _PATH}, ["path"]),
 ]
 
 TOOL_NAMES = [t["function"]["name"] for t in TOOLS]

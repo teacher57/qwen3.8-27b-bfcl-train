@@ -1,13 +1,15 @@
 #!/bin/bash
 # While BFCL generates: every 5 min, snapshot the complete result lines of each category and score them with
 # `bfcl evaluate --partial-eval` into /root/bfcl-results/partial/ (the official result/ and score/ are never touched),
-# so the notebook can show "passed so far". Exits after one last pass once generation is over.
+# so the notebook can show "passed so far". Exits after one last pass once run_multiturn.sh logs MULTITURN_DONE.
 #   MODEL=qwen3.8-27b-grpo20-FC setsid nohup /root/partial_score.sh > /root/partial_score.out 2>&1 < /dev/null &
 M=${MODEL:?}; R=/root/bfcl-results; P=$R/partial
 export BFCL_PROJECT_ROOT=$R
 cd /root/gorilla/berkeley-function-call-leaderboard || exit 1
 while true; do
-  alive=$(pgrep -f "[b]fcl generate" >/dev/null && echo 1 || echo 0)
+  # done = run_multiturn.sh logged MULTITURN_DONE for this model (checking for a running "bfcl generate" raced at startup:
+  # started in the same second, the first check found nothing yet and the loop quit after one empty pass)
+  grep -q "MULTITURN_DONE ${M}" /root/pipeline.log 2>/dev/null && alive=0 || alive=1
   for f in $R/result/$M/multi_turn/BFCL_v4_*_result.json; do
     [ -f "$f" ] || continue
     cat=$(basename $f | sed -E 's/BFCL_v4_(.*)_result.json/\1/'); mkdir -p $P/result/$M/multi_turn

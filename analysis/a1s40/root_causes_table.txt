@@ -1,0 +1,17 @@
+root cause                                                                                all       base  miss_func miss_param long_conte
+A1 Extra step: released/re-pressed the brake after starting the engine                     17          5          4          2          6
+A2 Extra step: started navigation when only asked to find a place                          11          4          3          2          2
+A3 Extra step: wrote invented content into a file it was only asked to create              10          4          1          2          3
+A4 Extra step: other unrequested action (activateParkingBrake)                              2          0          0          1          1
+A4 Extra step: other unrequested action (fillFuelTank)                                      1          0          0          1          0
+A4 Extra step: other unrequested action (set_budget_limit)                                  1          0          0          1          0
+B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)           41          9          9          6         17
+C  Small exact-value mistake (format, unit, precision, wrong id/option)                    22          5          5          7          5
+D  Guessed missing information instead of asking (miss_param)                              23          0          0         23          0
+E  Worked around a missing function instead of saying it can't (miss_func)                 16          0         16          0          0
+F  Asked for confirmation/clarification when it should have acted                          15          4          3          4          4
+G  Did nothing / just answered when action was expected                                     3          1          0          0          2
+H  Different approach (other functions than expected)                                       2          2          0          0          0
+H  No call-level divergence found (state differs for another reason)                        2          1          0          0          1
+H  Skipped a required action                                                                3          1          1          0          1
+total 169

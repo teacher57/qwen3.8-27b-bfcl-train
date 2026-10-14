@@ -1,0 +1,1562 @@
+{
+ "multi_turn_miss_param_2": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_4": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_5": {
+  "system": "TwitterAPI",
+  "fields": [
+   "comments"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_6": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_8": {
+  "system": "TwitterAPI",
+  "fields": [
+   "comments"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_10": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_16": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_17": {
+  "system": "MessageAPI",
+  "fields": [
+   "generated_ids",
+   "inbox",
+   "message_count"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_18": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_23": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_27": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_29": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_30": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweet_counter",
+   "tweets"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_46": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_49": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_52": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_56": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "A4 Extra step: other unrequested action (fillFuelTank)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_58": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_61": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_64": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_65": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_66": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "parkingBrakeStatus"
+  ],
+  "root_cause": "A4 Extra step: other unrequested action (activateParkingBrake)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_67": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_param",
+  "turn": 5
+ },
+ "multi_turn_miss_param_73": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_75": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "doorStatus",
+   "engine_state",
+   "remainingUnlockedDoors"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_76": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweet_counter",
+   "tweets"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_78": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_83": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_84": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_90": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 5
+ },
+ "multi_turn_miss_param_92": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_param",
+  "turn": 6
+ },
+ "multi_turn_miss_param_106": {
+  "system": "TradingBot",
+  "fields": [
+   "order_counter",
+   "orders"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_120": {
+  "system": "TradingBot",
+  "fields": [
+   "order_counter",
+   "orders"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_130": {
+  "system": "TradingBot",
+  "fields": [
+   "order_counter",
+   "orders"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_134": {
+  "system": "TradingBot",
+  "fields": [
+   "orders"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_140": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_143": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 5
+ },
+ "multi_turn_miss_param_147": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweet_counter",
+   "tweets"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_156": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 4
+ },
+ "multi_turn_miss_param_171": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_172": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_173": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_param",
+  "turn": 5
+ },
+ "multi_turn_miss_param_177": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_miss_param_178": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_180": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_187": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_196": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "A4 Extra step: other unrequested action (set_budget_limit)",
+  "category": "miss_param",
+  "turn": 3
+ },
+ "multi_turn_miss_param_197": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_param",
+  "turn": 2
+ },
+ "multi_turn_miss_param_198": {
+  "system": "TravelAPI",
+  "fields": [
+   "access_token",
+   "token_expires_in",
+   "token_scope"
+  ],
+  "root_cause": "D  Guessed missing information instead of asking (miss_param)",
+  "category": "miss_param",
+  "turn": 1
+ },
+ "multi_turn_base_2": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_base_4": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_6": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_7": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "H  No call-level divergence found (state differs for another reason)",
+  "category": "base",
+  "turn": null
+ },
+ "multi_turn_base_9": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_10": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_16": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_18": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_30": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_32": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_41": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "H  Different approach (other functions than expected)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_49": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_52": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_58": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_59": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "base",
+  "turn": 4
+ },
+ "multi_turn_base_64": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_66": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_73": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_75": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "doorStatus",
+   "engine_state",
+   "remainingUnlockedDoors"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_base_78": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_base_82": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_89": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "base",
+  "turn": 4
+ },
+ "multi_turn_base_92": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "base",
+  "turn": 5
+ },
+ "multi_turn_base_97": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "base",
+  "turn": 4
+ },
+ "multi_turn_base_99": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "base",
+  "turn": 4
+ },
+ "multi_turn_base_110": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 6
+ },
+ "multi_turn_base_130": {
+  "system": "TradingBot",
+  "fields": [
+   "order_counter",
+   "orders"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_base_134": {
+  "system": "TradingBot",
+  "fields": [
+   "orders"
+  ],
+  "root_cause": "G  Did nothing / just answered when action was expected",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_140": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_152": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_171": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "H  Skipped a required action",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_base_173": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "H  Different approach (other functions than expected)",
+  "category": "base",
+  "turn": 4
+ },
+ "multi_turn_base_176": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 2
+ },
+ "multi_turn_base_178": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_187": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "base",
+  "turn": 3
+ },
+ "multi_turn_base_197": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "base",
+  "turn": 1
+ },
+ "multi_turn_long_context_2": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_4": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_6": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_7": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "H  No call-level divergence found (state differs for another reason)",
+  "category": "long_context",
+  "turn": null
+ },
+ "multi_turn_long_context_8": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_10": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_11": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_18": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_20": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_27": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_29": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_30": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweet_counter",
+   "tweets"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_32": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_35": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_41": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_43": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_49": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_52": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "engine_state"
+  ],
+  "root_cause": "G  Did nothing / just answered when action was expected",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_59": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_61": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "fuelLevel"
+  ],
+  "root_cause": "G  Did nothing / just answered when action was expected",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_64": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_65": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_66": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "parkingBrakeStatus"
+  ],
+  "root_cause": "A4 Extra step: other unrequested action (activateParkingBrake)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_73": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_75": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "doorStatus",
+   "engine_state",
+   "remainingUnlockedDoors"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_78": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_80": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_92": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "long_context",
+  "turn": 5
+ },
+ "multi_turn_long_context_97": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_130": {
+  "system": "TradingBot",
+  "fields": [
+   "order_counter",
+   "orders"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_long_context_140": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_143": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_147": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_152": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_156": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_165": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "H  Skipped a required action",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_171": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_172": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "long_context",
+  "turn": 2
+ },
+ "multi_turn_long_context_178": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_184": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 4
+ },
+ "multi_turn_long_context_187": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "long_context",
+  "turn": 3
+ },
+ "multi_turn_long_context_197": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "long_context",
+  "turn": 1
+ },
+ "multi_turn_miss_func_2": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "A3 Extra step: wrote invented content into a file it was only asked to create",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_4": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_6": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_10": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_18": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_29": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_32": {
+  "system": "GorillaFileSystem",
+  "fields": [
+   "root"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_52": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_53": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "parkingBrakeStatus"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_56": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_61": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "parkingBrakeStatus"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_64": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "parkingBrakeStatus"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_66": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_69": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_70": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "fuelLevel"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_73": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_75": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus",
+   "doorStatus",
+   "engine_state",
+   "remainingUnlockedDoors"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_78": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "A2 Extra step: started navigation when only asked to find a place",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_83": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_92": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_func",
+  "turn": 6
+ },
+ "multi_turn_miss_func_94": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "A1 Extra step: released/re-pressed the brake after starting the engine",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_98": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "brakePedalStatus"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_99": {
+  "system": "VehicleControlAPI",
+  "fields": [
+   "destination"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_func",
+  "turn": 5
+ },
+ "multi_turn_miss_func_104": {
+  "system": "TradingBot",
+  "fields": [
+   "watch_list"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_133": {
+  "system": "TradingBot",
+  "fields": [
+   "watch_list"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_140": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_143": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 5
+ },
+ "multi_turn_miss_func_147": {
+  "system": "TwitterAPI",
+  "fields": [
+   "tweets"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_152": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "F  Asked for confirmation/clarification when it should have acted",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_155": {
+  "system": "TravelAPI",
+  "fields": [
+   "budget_limit"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_156": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_158": {
+  "system": "TravelAPI",
+  "fields": [
+   "budget_limit"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_165": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "H  Skipped a required action",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_166": {
+  "system": "TravelAPI",
+  "fields": [
+   "access_token",
+   "booking_record",
+   "credit_card_list",
+   "token_expires_in",
+   "token_scope"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_171": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_172": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_173": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 2
+ },
+ "multi_turn_miss_func_178": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 3
+ },
+ "multi_turn_miss_func_184": {
+  "system": "MessageAPI",
+  "fields": [
+   "inbox"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_185": {
+  "system": "TravelAPI",
+  "fields": [
+   "booking_record",
+   "credit_card_list"
+  ],
+  "root_cause": "E  Worked around a missing function instead of saying it can't (miss_func)",
+  "category": "miss_func",
+  "turn": 1
+ },
+ "multi_turn_miss_func_187": {
+  "system": "TicketAPI",
+  "fields": [
+   "ticket_queue"
+  ],
+  "root_cause": "B  Rewrote/embellished text the user gave (tweet, ticket, message, file content)",
+  "category": "miss_func",
+  "turn": 4
+ },
+ "multi_turn_miss_func_197": {
+  "system": "TravelAPI",
+  "fields": [
+   "credit_card_list"
+  ],
+  "root_cause": "C  Small exact-value mistake (format, unit, precision, wrong id/option)",
+  "category": "miss_func",
+  "turn": 1
+ }
+}

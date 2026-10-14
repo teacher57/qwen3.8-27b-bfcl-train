@@ -1,11 +1,11 @@
 {
  "_about": "Which BFCL multi-turn run bfcl_eval_after_grpo_q38_27b.ipynb shows. Pipelines change this file and the run's data files, never the notebook.",
- "run": "grpo20_multiturn",
- "model": "qwen3.8-27b-grpo20-FC",
- "model_label": "GRPO step 20 (SFT v1 -> GRPO run_v1)",
- "chosen_because": "best held-out fs_env checkpoint: step 20 220/292 vs step 10 219, step 30 212, SFT 207 (rule fixed in advance: best overall; within \u00b13 -> higher A3+D+E: 65 vs 63)",
+ "run": "a1s40_multiturn",
+ "model": "qwen3.8-27b-a1s40-FC",
+ "model_label": "GRPO run_a1 step 40 (step 20 -> A1 brake tasks + A3/D/E replay)",
+ "chosen_because": "best run_a1 checkpoint on the A1 test tasks: 147/160 vs 112/160 for step 20 (p < 0.001); A1-III 31/40 vs 14/40; best on every scenario",
  "pod_root": "/root/bfcl-results",
- "local_dir": "results/fs_env/grpo/run_v1/bfcl",
+ "local_dir": "results/fs_env/grpo/run_a1/bfcl",
  "categories": [
   "multi_turn_miss_func",
   "multi_turn_miss_param",
@@ -16,7 +16,7 @@
  "baseline_dir": "results/pod/bfcl-results/score/qwen3.8-27b-FC/multi_turn",
  "baseline_label": "base Qwen3.8-27B (2026-10-12, 65k context)",
  "settings": "temperature 0.001, thinking on, 16,384 tokens per call, vLLM 0.30.0, 131k context (baseline 65k), 32 threads, H200 NVL",
- "started_utc": "2026-10-13T02:41:06",
+ "started_utc": "2026-10-14T12:02:20",
  "price_per_hour": 3.79,
  "eta_weights": {
   "multi_turn_miss_func": 5125,
@@ -24,5 +24,17 @@
   "multi_turn_base": 2036,
   "multi_turn_long_context": 4458
  },
- "eta_weights_about": "relative cost of one entry per category for the ETA: output tokens per entry in the base-model baseline run"
+ "eta_weights_about": "relative cost of one entry per category for the ETA: output tokens per entry in the base-model baseline run",
+ "previous_runs": [
+  {
+   "run": "grpo20_multiturn",
+   "model": "qwen3.8-27b-grpo20-FC",
+   "model_label": "GRPO step 20 (SFT v1 -> GRPO run_v1)",
+   "chosen_because": "best held-out fs_env checkpoint: step 20 220/292 vs step 10 219, step 30 212, SFT 207 (rule fixed in advance: best overall; within \u00b13 -> higher A3+D+E: 65 vs 63)",
+   "local_dir": "results/fs_env/grpo/run_v1/bfcl",
+   "started_utc": "2026-10-13T02:41:06",
+   "price_per_hour": 3.79,
+   "settings": "temperature 0.001, thinking on, 16,384 tokens per call, vLLM 0.30.0, 131k context (baseline 65k), 32 threads, H200 NVL"
+  }
+ ]
 }

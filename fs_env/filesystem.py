@@ -5,10 +5,41 @@ Trees (task origin/target states) are nested dicts: a dict is a directory, a str
 
 Every tool returns a JSON-serializable dict: {"result": ...} on success, {"error": "..."} on failure.
 A failed call never changes state.
+
+Three "precondition" features (the A1-I..A1-VI tasks: the model must set something up to do what was asked, and must
+then leave it as it is), all kept inside the plain tree so the checker sees every change:
+  - zip archives: a file ending in .zip whose content is ZIP_HEADER + the JSON of the archived tree. It can't be read or
+    reached into ("photos.zip/x"): the error says to unzip it first. unzip(path) extracts next to it into a folder
+    named after it (photos.zip -> photos/) and keeps the archive; zip(source, destination) makes one.
+  - locks: a locked file has a hidden marker ".<name>.lock" next to it; it can't be written, deleted or moved until
+    unlock(path); lock(path) puts the marker back.
+  - maintenance mode: a folder whose status.txt has the line "maintenance: off" refuses changes inside it (other than
+    to status.txt itself) until that line says "maintenance: on". Folders without such a status.txt are unaffected.
 """
 
 import fnmatch
+import json
 import posixpath
+import re
+
+ZIP_HEADER = "ZIP-ARCHIVE v1\n"
+MAINTENANCE_OFF = re.compile(r"^maintenance:\s*off\s*$", re.MULTILINE | re.IGNORECASE)
+
+
+def zip_encode(tree: dict) -> str:
+    """Archive content for a tree (deterministic, so equal trees give equal archives)."""
+    return ZIP_HEADER + json.dumps(tree, sort_keys=True, ensure_ascii=False, indent=1)
+
+
+def zip_decode(content: str):
+    """The archived tree, or None if the content isn't an archive this file system made."""
+    if not isinstance(content, str) or not content.startswith(ZIP_HEADER):
+        return None
+    try:
+        tree = json.loads(content[len(ZIP_HEADER):])
+    except ValueError:
+        return None
+    return tree if isinstance(tree, dict) else None
 
 
 class FsError(Exception):
@@ -29,7 +60,9 @@ class FileSystem:
     def _load(self, tree: dict, base: str):
         for name, value in tree.items():
             path = posixpath.join(base, name)
-            if isinstance(value, dict):
+            if isinstance(value, dict) and set(value) == {"$zip"}:
+                self.files[path] = zip_encode(value["$zip"])
+            elif isinstance(value, dict):
                 self.dirs.add(path)
                 self._load(value, path)
             elif isinstance(value, str):
@@ -57,7 +90,46 @@ class FileSystem:
         p = posixpath.normpath(posixpath.join(self.cwd, path))
         if p.startswith("//"):  # normpath keeps a leading '//'
             p = "/" + p.lstrip("/")
+        q = posixpath.dirname(p)
+        while q != "/":
+            if q in self.files and q.endswith(".zip"):
+                raise FsError(f"{q} is a zip archive: unzip it first")
+            q = posixpath.dirname(q)
         return p
+
+    def _is_zip(self, p: str) -> bool:
+        """An archive by name (.zip) or by content: renaming an archive doesn't make it readable (it would let a model
+        read it without unzip, the A1-V loophole)."""
+        return p in self.files and (p.endswith(".zip") or self.files[p].startswith(ZIP_HEADER))
+
+    def _no_zip(self, p: str):
+        if self._is_zip(p):
+            raise FsError(f"{p} is a zip archive: unzip it first")
+
+    @staticmethod
+    def _lock_marker(p: str) -> str:
+        return posixpath.join(posixpath.dirname(p), "." + posixpath.basename(p) + ".lock")
+
+    def _no_lock(self, paths):
+        """Refuse if any of these files (or any file under these folders) is locked."""
+        for p in paths:
+            if p in self.files and self._lock_marker(p) in self.files:
+                raise FsError(f"{p} is locked: unlock it first")
+            if p in self.dirs:
+                for f in sorted(self._subtree(p)[1]):
+                    if self._lock_marker(f) in self.files:
+                        raise FsError(f"{f} is locked: unlock it first")
+
+    def _writable(self, p: str):
+        """Refuse changes inside a folder in maintenance mode 'off' (its status.txt itself stays editable)."""
+        q = posixpath.dirname(p)
+        while True:
+            status = posixpath.join(q, "status.txt")
+            if status != p and status in self.files and MAINTENANCE_OFF.search(self.files[status]):
+                raise FsError(f"{q} is protected: set 'maintenance: on' in {status} first")
+            if q == "/":
+                return
+            q = posixpath.dirname(q)
 
     def _file_path(self, path: str) -> str:
         """Absolute path for something that must be a file: like a real shell, 'name/' can only mean a directory."""
@@ -109,7 +181,7 @@ class FileSystem:
             name = posixpath.basename(c)
             if name.startswith(".") and not show_hidden:
                 continue
-            entries.append({"name": name, "type": "dir" if c in self.dirs else "file"})
+            entries.append({"name": name, "type": "dir" if c in self.dirs else "zip" if self._is_zip(c) else "file"})
         return {"path": p, "entries": entries}
 
     def change_dir(self, path: str):
@@ -121,6 +193,7 @@ class FileSystem:
 
     def make_dir(self, path: str, parents: bool = False):
         p = self._abs(path)
+        self._writable(p)
         if self._exists(p):
             raise FsError(f"{p} already exists")
         if parents:
@@ -139,6 +212,7 @@ class FileSystem:
 
     def create_file(self, path: str):
         p = self._file_path(path)
+        self._writable(p)
         if self._exists(p):
             raise FsError(f"{p} already exists")
         self._require_parent_dir(p)
@@ -153,6 +227,9 @@ class FileSystem:
             raise FsError("mode must be 'overwrite' or 'append'")
         if p in self.dirs:
             raise FsError(f"{p} is a directory, not a file")
+        self._no_zip(p)
+        self._no_lock([p])
+        self._writable(p)
         if p not in self.files:
             self._require_parent_dir(p)
             self.files[p] = ""
@@ -167,11 +244,14 @@ class FileSystem:
     def read_file(self, path: str):
         p = self._file_path(path)
         self._require_file(p)
+        self._no_zip(p)
         return self.files[p]
 
     def delete_file(self, path: str):
         p = self._file_path(path)
         self._require_file(p)
+        self._no_lock([p])
+        self._writable(p)
         del self.files[p]
         return f"deleted file {p}"
 
@@ -185,6 +265,8 @@ class FileSystem:
             raise FsError("cannot delete the root directory")
         if self.cwd == p or self.cwd.startswith(p + "/"):
             raise FsError(f"cannot delete {p}: it contains the current directory")
+        self._no_lock([p])
+        self._writable(p)
         sub_dirs, sub_files = self._subtree(p)
         if (len(sub_dirs) > 1 or sub_files) and not recursive:
             raise FsError(f"directory {p} is not empty (use recursive=true)")
@@ -215,6 +297,10 @@ class FileSystem:
         if not keep_source and (self.cwd == src or self.cwd.startswith(src + "/")):
             raise FsError(f"cannot move {src}: it contains the current directory")
         dst = self._resolve_destination(src, destination)
+        self._writable(dst)
+        if not keep_source:
+            self._no_lock([src])
+            self._writable(src)
         if src in self.files:
             self.files[dst] = self.files[src]
             if not keep_source:
@@ -252,8 +338,12 @@ class FileSystem:
             targets = sorted(self._subtree(p)[1])
         else:
             raise FsError(f"no such file or directory: {p}")
+        if len(targets) == 1 and targets[0] == p:
+            self._no_zip(p)
         matches = []
         for f in targets:
+            if self._is_zip(f):
+                continue   # archives can't be searched without unzipping
             for i, line in enumerate(self.files[f].splitlines(), 1):
                 if text in line:
                     matches.append({"path": f, "line": i, "text": line})
@@ -262,9 +352,75 @@ class FileSystem:
     def count(self, path: str):
         p = self._file_path(path)
         self._require_file(p)
+        self._no_zip(p)
         c = self.files[p]
         return {"lines": len(c.splitlines()), "words": len(c.split()), "characters": len(c)}
 
+    def _tree_of(self, p: str):
+        """A file's content, or a folder as a nested tree (what an archive stores)."""
+        if p in self.files:
+            return self.files[p]
+        out = {}
+        for c in self._children(p):
+            out[posixpath.basename(c)] = self._tree_of(c)
+        return out
+
+    def zip(self, source: str, destination: str, overwrite: bool = False):
+        src = self._abs(source)
+        if not self._exists(src):
+            raise FsError(f"no such file or directory: {src}")
+        dst = self._file_path(destination)
+        if not dst.endswith(".zip"):
+            raise FsError("destination must end with .zip")
+        if dst in self.dirs:
+            raise FsError(f"{dst} is a directory")
+        if dst in self.files and not overwrite:
+            raise FsError(f"{dst} already exists (use overwrite=true to replace it)")
+        if src in self.dirs and (dst == src or dst.startswith(src + "/")):
+            raise FsError(f"cannot put the archive {dst} inside the folder it archives")
+        self._require_parent_dir(dst)
+        self._no_lock([dst])
+        self._writable(dst)
+        content = self._tree_of(src) if src in self.dirs else {posixpath.basename(src): self.files[src]}
+        self.files[dst] = zip_encode(content)
+        return f"created archive {dst}"
+
+    def unzip(self, path: str):
+        p = self._file_path(path)
+        self._require_file(p)
+        if not p.endswith(".zip"):
+            raise FsError(f"{p} is not a .zip archive")
+        tree = zip_decode(self.files[p])
+        if tree is None:
+            raise FsError(f"{p} is damaged and can't be extracted")
+        out = p[:-len(".zip")]
+        if self._exists(out):
+            raise FsError(f"{out} already exists: it may have been extracted already")
+        self._writable(out)
+        self.dirs.add(out)
+        self._load(tree, out)
+        return f"extracted {p} into {out}"
+
+    def lock(self, path: str):
+        p = self._file_path(path)
+        self._require_file(p)
+        m = self._lock_marker(p)
+        if m in self.files:
+            raise FsError(f"{p} is already locked")
+        self._writable(m)
+        self.files[m] = "locked"
+        return f"locked {p}"
+
+    def unlock(self, path: str):
+        p = self._file_path(path)
+        self._require_file(p)
+        m = self._lock_marker(p)
+        if m not in self.files:
+            raise FsError(f"{p} is not locked")
+        self._writable(m)
+        del self.files[m]
+        return f"unlocked {p}"
+
 
 # Tools that can change the file tree. current_dir/list_dir/change_dir/read_file/find_files/search_text/count can't.
-STATE_CHANGING = {"make_dir", "create_file", "write_file", "delete_file", "delete_dir", "move", "copy"}
+STATE_CHANGING = {"make_dir", "create_file", "write_file", "delete_file", "delete_dir", "move", "copy", "zip", "unzip", "lock", "unlock"}

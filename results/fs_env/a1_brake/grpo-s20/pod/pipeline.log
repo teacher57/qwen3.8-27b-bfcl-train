@@ -1,0 +1,7 @@
+2026-10-13T11:11:27Z setup: start
+2026-10-13T11:12:45Z SETUP_DONE (model 52G)
+2026-10-13T11:16:18Z adapter md5 ok
+renamed 992 tensors -> /root/adapters/step_20_vllm
+2026-10-13T11:20:53Z vLLM up
+2026-10-13T11:21:05Z sanity ok: LoRA changes the output
+2026-10-13T12:00:27Z A1_EVAL_DONE passed 154/240 (64.2%)   A1-I:36/40  A1-II:33/40  A1-III:14/40  A1-IV:40/40  A1-V:2/40  A1-VI:29/40 

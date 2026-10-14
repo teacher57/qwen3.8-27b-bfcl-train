@@ -1,0 +1,50 @@
+No prebuilt binary for CUDA 12.9, loading CUDA 12.8 instead. Set BNB_CUDA_VERSION to override.
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:   0%|          | 1/851 [00:00<02:39,  5.32it/s]Loading weights:   0%|          | 2/851 [00:00<03:07,  4.52it/s]Loading weights:   2%|▏         | 15/851 [00:00<00:22, 37.85it/s]Loading weights:   5%|▍         | 40/851 [00:00<00:08, 95.70it/s]Loading weights:   6%|▌         | 53/851 [00:00<00:07, 104.27it/s]Loading weights:   9%|▉         | 75/851 [00:00<00:05, 137.13it/s]Loading weights:  11%|█         | 91/851 [00:00<00:05, 142.05it/s]Loading weights:  13%|█▎        | 107/851 [00:01<00:05, 129.11it/s]Loading weights:  15%|█▌        | 130/851 [00:01<00:04, 154.93it/s]Loading weights:  17%|█▋        | 147/851 [00:01<00:04, 155.43it/s]Loading weights:  19%|█▉        | 164/851 [00:01<00:04, 152.19it/s]Loading weights:  22%|██▏       | 185/851 [00:01<00:03, 166.71it/s]Loading weights:  24%|██▍       | 203/851 [00:01<00:04, 155.94it/s]Loading weights:  26%|██▋       | 224/851 [00:01<00:03, 170.14it/s]Loading weights:  28%|██▊       | 242/851 [00:01<00:03, 159.42it/s]Loading weights:  30%|███       | 259/851 [00:02<00:03, 157.74it/s]Loading weights:  33%|███▎      | 280/851 [00:02<00:03, 169.90it/s]Loading weights:  36%|███▌      | 303/851 [00:02<00:02, 185.56it/s]Loading weights:  38%|███▊      | 322/851 [00:02<00:03, 166.73it/s]Loading weights:  40%|████      | 342/851 [00:02<00:02, 174.15it/s]Loading weights:  42%|████▏     | 360/851 [00:02<00:04, 118.11it/s]Loading weights:  45%|████▌     | 383/851 [00:02<00:03, 140.04it/s]Loading weights:  47%|████▋     | 400/851 [00:02<00:03, 142.38it/s]Loading weights:  49%|████▉     | 419/851 [00:03<00:02, 148.47it/s]Loading weights:  53%|█████▎    | 448/851 [00:03<00:02, 181.00it/s]Loading weights:  55%|█████▍    | 468/851 [00:03<00:02, 174.49it/s]Loading weights:  58%|█████▊    | 490/851 [00:03<00:01, 182.70it/s]Loading weights:  60%|█████▉    | 510/851 [00:03<00:01, 179.02it/s]Loading weights:  62%|██████▏   | 529/851 [00:03<00:01, 161.50it/s]Loading weights:  65%|██████▌   | 556/851 [00:03<00:01, 186.44it/s]Loading weights:  68%|██████▊   | 576/851 [00:03<00:01, 179.29it/s]Loading weights:  70%|███████   | 598/851 [00:04<00:01, 185.20it/s]Loading weights:  73%|███████▎  | 624/851 [00:04<00:01, 196.95it/s]Loading weights:  76%|███████▌  | 645/851 [00:04<00:01, 194.14it/s]Loading weights:  78%|███████▊  | 665/851 [00:04<00:01, 177.48it/s]Loading weights:  80%|████████  | 684/851 [00:04<00:01, 159.27it/s]Loading weights:  83%|████████▎ | 704/851 [00:04<00:00, 164.67it/s]Loading weights:  86%|████████▌ | 730/851 [00:04<00:00, 183.63it/s]Loading weights:  88%|████████▊ | 751/851 [00:04<00:00, 185.95it/s]Loading weights:  90%|█████████ | 770/851 [00:04<00:00, 184.52it/s]Loading weights:  93%|█████████▎| 789/851 [00:05<00:00, 177.82it/s]Loading weights:  95%|█████████▌| 810/851 [00:05<00:00, 186.24it/s]Loading weights:  98%|█████████▊| 836/851 [00:05<00:00, 202.50it/s]Loading weights: 100%|██████████| 851/851 [00:05<00:00, 157.87it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+step 1: reward 0.72, mixed groups 11, items 88, 471s
+[W1014 07:49:37.389883123 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 4689231872 bytes (free: 1906180096, total: 150120759296).
+step 2: reward 0.62, mixed groups 11, items 88, 417s
+step 3: reward 0.62, mixed groups 12, items 96, 557s
+step 4: reward 0.56, mixed groups 10, items 80, 477s
+step 5: reward 0.75, mixed groups 12, items 96, 392s
+step 6: reward 0.72, mixed groups 12, items 96, 368s
+step 7: reward 0.54, mixed groups 13, items 104, 408s
+step 8: reward 0.78, mixed groups 9, items 72, 310s
+step 9: reward 0.53, mixed groups 10, items 80, 335s
+step 10: reward 0.80, mixed groups 10, items 80, 341s
+step 11: reward 0.78, mixed groups 6, items 48, 251s
+step 12: reward 0.62, mixed groups 7, items 56, 268s
+step 13: reward 0.74, mixed groups 7, items 56, 307s
+step 14: reward 0.78, mixed groups 12, items 96, 381s
+step 15: reward 0.80, mixed groups 9, items 72, 299s
+step 16: reward 0.71, mixed groups 11, items 88, 430s
+step 17: reward 0.47, mixed groups 13, items 104, 428s
+[W1014 09:28:58.226757091 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 3936354304 bytes (free: 2220752896, total: 150120759296).
+step 18: reward 0.59, mixed groups 6, items 48, 303s
+step 19: reward 0.71, mixed groups 9, items 72, 309s
+step 20: reward 0.90, mixed groups 6, items 48, 229s
+step 21: reward 0.63, mixed groups 13, items 104, 465s
+step 22: reward 0.78, mixed groups 7, items 56, 334s
+step 23: reward 0.87, mixed groups 6, items 48, 238s
+step 24: reward 0.82, mixed groups 11, items 88, 417s
+step 25: reward 0.72, mixed groups 14, items 112, 462s
+step 26: reward 0.88, mixed groups 4, items 32, 179s
+step 27: reward 0.93, mixed groups 9, items 72, 312s
+step 28: reward 0.75, mixed groups 11, items 88, 352s
+step 29: reward 0.68, mixed groups 8, items 64, 322s
+[W1014 10:34:15.575017167 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 3502243840 bytes (free: 1100873728, total: 150120759296).
+step 30: reward 0.85, mixed groups 9, items 72, 285s
+step 31: reward 0.90, mixed groups 9, items 72, 299s
+[W1014 10:49:58.150932508 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 7826571264 bytes (free: 6505234432, total: 150120759296).
+step 32: reward 0.84, mixed groups 12, items 96, 549s
+step 33: reward 0.81, mixed groups 9, items 72, 419s
+[W1014 11:05:08.240974669 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 5993660416 bytes (free: 2948464640, total: 150120759296).
+step 34: reward 0.73, mixed groups 12, items 96, 518s
+step 35: reward 0.90, mixed groups 6, items 48, 255s
+step 36: reward 0.84, mixed groups 6, items 48, 260s
+step 37: reward 0.63, mixed groups 8, items 64, 310s
+step 38: reward 0.76, mixed groups 9, items 72, 315s
+step 39: reward 0.88, mixed groups 7, items 56, 259s
+step 40: reward 0.90, mixed groups 9, items 72, 318s
+done

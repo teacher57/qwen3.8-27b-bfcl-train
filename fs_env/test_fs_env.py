@@ -274,6 +274,54 @@ def test_traps_are_caught():
     assert e_blocked[0] == [], "withheld copy/write_file must be rejected and change nothing"
 
 
+def test_zip_archives():
+    from .filesystem import FileSystem
+    from .checker import compare
+    fs = FileSystem({"home": {"u": {"p.zip": {"$zip": {"a.txt": "A", "b.txt": "B"}}, "out": {}}}}, "/home/u")
+    assert "unzip it first" in execute(fs, "read_file", {"path": "p.zip"})["error"]
+    assert "unzip it first" in execute(fs, "copy", {"source": "p.zip/a.txt", "destination": "out"})["error"]
+    assert "result" in execute(fs, "unzip", {"path": "p.zip"}) and fs.files["/home/u/p/a.txt"] == "A" and "/home/u/p.zip" in fs.files
+    assert "already exists" in execute(fs, "unzip", {"path": "p.zip"})["error"]
+    execute(fs, "move", {"source": "p/a.txt", "destination": "out"}); moved = fs.tree()
+    execute(fs, "zip", {"source": "p", "destination": "p.zip", "overwrite": True})
+    assert compare(fs.tree(), moved), "re-zipping after taking a file out must change the archive"
+    execute(fs, "copy", {"source": "p.zip", "destination": "p_copy.txt"})
+    assert "unzip it first" in execute(fs, "read_file", {"path": "p_copy.txt"})["error"], "a renamed archive must stay unreadable"
+    assert "unzip it first" in execute(fs, "count", {"path": "p_copy.txt"})["error"]
+    assert all(not m["path"].endswith("p_copy.txt") for m in execute(fs, "search_text", {"text": "B", "path": "."})["result"])
+
+
+def test_locks():
+    from .filesystem import FileSystem
+    from .checker import compare
+    fs = FileSystem({"home": {"u": {"n.txt": "x", ".n.txt.lock": "locked"}}}, "/home/u")
+    for name, args in [("write_file", {"path": "n.txt", "content": "y"}), ("delete_file", {"path": "n.txt"}),
+                       ("move", {"source": "n.txt", "destination": "m.txt"})]:
+        assert "unlock it first" in execute(fs, name, args)["error"], name
+    assert all(e["name"] != ".n.txt.lock" for e in execute(fs, "list_dir", {})["result"]["entries"])
+    execute(fs, "unlock", {"path": "n.txt"}); assert "result" in execute(fs, "write_file", {"path": "n.txt", "content": "y"})
+    unlocked = fs.tree(); execute(fs, "lock", {"path": "n.txt"})
+    assert compare(fs.tree(), unlocked), "locking again must show in the tree"
+
+
+def test_maintenance_mode():
+    from .filesystem import FileSystem
+    fs = FileSystem({"home": {"u": {"srv": {"status.txt": "maintenance: off", "c.ini": "1"}, "free.txt": "ok"}}}, "/home/u")
+    assert "maintenance: on" in execute(fs, "write_file", {"path": "srv/c.ini", "content": "2"})["error"]
+    assert "result" in execute(fs, "write_file", {"path": "free.txt", "content": "fine"}), "folders without status.txt are unaffected"
+    assert "result" in execute(fs, "write_file", {"path": "srv/status.txt", "content": "maintenance: on"})
+    assert "result" in execute(fs, "write_file", {"path": "srv/c.ini", "content": "2"})
+
+
+def test_a1_brake_task_set():
+    from .tasks import load_tasks, source_path, task_sources
+    assert "a1_brake.json" in task_sources()
+    tasks = load_tasks(source_path("a1_brake.json"), seed=7)
+    assert len(tasks) == 60 and {t["cause"] for t in tasks} == {"A1-I", "A1-II", "A1-III", "A1-IV", "A1-V", "A1-VI"}
+    for t in tasks:
+        assert not validate(t), (t["id"], validate(t)[:2])
+
+
 if __name__ == "__main__":
     tests = [v for k, v in dict(globals()).items() if k.startswith("test_")]
     for test in tests:

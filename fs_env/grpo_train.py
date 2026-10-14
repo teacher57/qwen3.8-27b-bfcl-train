@@ -29,7 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from types import SimpleNamespace
 
-from .tasks import TASK_DIR, USER_NAMES, instantiate, load_templates
+from .tasks import TASK_DIR, USER_NAMES, instantiate, load_templates, source_path, task_sources
 
 
 # ---------------- vLLM control ----------------
@@ -144,6 +144,10 @@ def main():
     ap.add_argument("--init-adapter", help="start from this LoRA (e.g. the SFT warm start); default: a fresh LoRA")
     ap.add_argument("--out", required=True)
     ap.add_argument("--causes", default="A3,D,E")
+    ap.add_argument("--task-set", default="tasks", choices=task_sources(),
+                    help="tasks/ (only its TRAIN split is used) or a JSON task set in fs_env/task_sets/ (all of it: it is the training set)")
+    ap.add_argument("--replay-causes", default="", help="also draw these causes from tasks/'s train split every step, e.g. A3,D,E")
+    ap.add_argument("--replay-per-step", type=int, default=0, help="how many replay tasks per step (on top of --tasks-per-step)")
     ap.add_argument("--steps", type=int, default=30)
     ap.add_argument("--tasks-per-step", type=int, default=4)
     ap.add_argument("--group", type=int, default=8)
@@ -183,7 +187,14 @@ def main():
     rng = random.Random(args.seed)
     split = json.loads((TASK_DIR.parent / "split.json").read_text())
     causes = set(args.causes.split(","))
-    pool = [t for t in load_templates() if t["id"] in set(split["train"]) and t["cause"] in causes]   # templates
+    if args.task_set == "tasks":
+        pool = [t for t in load_templates() if t["id"] in set(split["train"]) and t["cause"] in causes]   # templates
+    else:
+        pool = [t for t in load_templates(source_path(args.task_set)) if t["cause"] in causes]
+    replay = set(args.replay_causes.split(",")) - {""}
+    replay_pool = [t for t in load_templates() if t["id"] in set(split["train"]) and t["cause"] in replay]
+    if args.replay_per_step and not replay_pool:
+        raise SystemExit(f"--replay-per-step {args.replay_per_step} but no train tasks for causes {sorted(replay)}")
     tasks_by_id = {}   # the instance used at each draw (a fresh user name, folder names and clutter per draw)
     flat_count = {}    # task id -> times its whole group came out the same (all pass or all fail)
 
@@ -223,6 +234,8 @@ def main():
             except Exception: pass
         write_status(stage="rollouts", step=step, max_steps=args.steps)
         picks = pick_tasks(pool, flat_count, args.tasks_per_step, rng)
+        if args.replay_per_step:   # old causes mixed in, so what earlier training taught isn't forgotten
+            picks += pick_tasks(replay_pool, flat_count, args.replay_per_step, rng)
         # one fresh instance per task per step: the same for all of its group (a fair comparison), new on the next draw
         batch = [instantiate(t, rng.choice(USER_NAMES), rng) for t in picks]
         tasks_by_id.update({t["id"]: t for t in batch})

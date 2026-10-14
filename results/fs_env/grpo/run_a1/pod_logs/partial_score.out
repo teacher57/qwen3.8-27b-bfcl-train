@@ -1,0 +1,12 @@
+12:05:27 partial scores: 
+12:32:39 partial scores: miss_func=123/200 miss_param=86/149 
+12:37:47 partial scores: miss_func=123/200 miss_param=117/197 
+12:42:55 partial scores: miss_func=123/200 miss_param=119/200 
+12:48:06 partial scores: base=94/124 miss_func=123/200 miss_param=119/200 
+12:53:20 partial scores: base=152/200 long_context=21/37 miss_func=123/200 miss_param=119/200 
+12:58:34 partial scores: base=152/200 long_context=67/105 miss_func=123/200 miss_param=119/200 
+13:03:48 partial scores: base=152/200 long_context=83/124 miss_func=123/200 miss_param=119/200 
+13:09:03 partial scores: base=152/200 long_context=106/153 miss_func=123/200 miss_param=119/200 
+13:14:17 partial scores: base=152/200 long_context=126/184 miss_func=123/200 miss_param=119/200 
+13:19:31 partial scores: base=152/200 long_context=134/198 miss_func=123/200 miss_param=119/200 
+13:24:45 partial scores: base=152/200 long_context=135/199 miss_func=123/200 miss_param=119/200 

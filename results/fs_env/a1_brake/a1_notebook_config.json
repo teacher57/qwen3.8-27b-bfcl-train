@@ -1,0 +1,116 @@
+{
+ "_about": "Which run a1_brake_eval.ipynb shows. Pipelines change this file and the run's data files, never the notebook.",
+ "run": "grpo-s20",
+ "model_label": "GRPO step 20 (SFT v1 -> GRPO run_v1)",
+ "task_set": "a1_brake.json",
+ "results_file": "grpo-s20.jsonl",
+ "remote_dir": "/root/a1_eval",
+ "local_dir": "results/fs_env/a1_brake/grpo-s20",
+ "tasks": 60,
+ "trials": 4,
+ "settings": "temperature 1, thinking on, 16,384 tokens per call, seed 13, 16 threads, vLLM 0.30.0, A100 80GB; up to 20 model calls per turn for A1-I..IV and A1-VI, but 10 for A1-V (re-run; the same limit GRPO trained with)",
+ "started_utc": "2026-10-13T11:10:00",
+ "price_per_hour": 1.8,
+ "price_note": "A100 80GB rate assumed from the earlier A100 pods; change it here if this pod costs something else",
+ "replacements": [
+  {
+   "cause": "A1-V",
+   "file": "grpo-s20_A1-V_fixed.jsonl",
+   "why": "the first A1-V run had a loophole (an archive renamed without .zip could be read as text, so unzip wasn't the only way in); fixed in filesystem.py and re-run with the same seed. The original A1-V results are in invalid/. The re-run allows at most 10 model calls per turn (max 10; the others 20), so A1-V conversations that only refuse after a long search count as failures."
+  }
+ ],
+ "runs": {
+  "grpo-s20": {
+   "run": "grpo-s20",
+   "model_label": "GRPO step 20 (SFT v1 -> GRPO run_v1)",
+   "results_file": "grpo-s20.jsonl",
+   "remote_dir": "/root/a1_eval",
+   "local_dir": "results/fs_env/a1_brake/grpo-s20",
+   "tasks": 60,
+   "trials": 4,
+   "settings": "temperature 1, thinking on, 16,384 tokens per call, seed 13, 16 threads, vLLM 0.30.0, A100 80GB; up to 20 model calls per turn for A1-I..IV and A1-VI, but 10 for A1-V (re-run; the same limit GRPO trained with)",
+   "started_utc": "2026-10-13T11:10:00",
+   "price_per_hour": 1.8,
+   "price_note": "A100 80GB rate assumed from the earlier A100 pods; change it here if this pod costs something else",
+   "replacements": [
+    {
+     "cause": "A1-V",
+     "file": "grpo-s20_A1-V_fixed.jsonl",
+     "why": "the first A1-V run had a loophole (an archive renamed without .zip could be read as text, so unzip wasn't the only way in); fixed in filesystem.py and re-run with the same seed. The original A1-V results are in invalid/. The re-run allows at most 10 model calls per turn (max 10; the others 20), so A1-V conversations that only refuse after a long search count as failures."
+    }
+   ],
+   "short": "step 20 (start)"
+  },
+  "run_a1-s10": {
+   "run": "run_a1-s10",
+   "short": "run_a1 step 10",
+   "model_label": "GRPO run_a1 step 10 (from step 20, trained on A1 + replay)",
+   "results_file": "run_a1-s10.jsonl",
+   "remote_dir": "/root/a1_eval_run_a1",
+   "local_dir": "results/fs_env/a1_brake/run_a1-s10",
+   "tasks": 40,
+   "trials": 4,
+   "settings": "A1-I, A1-II, A1-III, A1-VI test tasks (the trained scenarios), temperature 1, thinking on, seed 13, up to 20 model calls per turn (as the step-20 baseline), 8 threads per checkpoint (4 at once), H200 NVL",
+   "started_utc": "2026-10-14T11:45:00",
+   "price_per_hour": 3.79,
+   "price_note": "H200 NVL"
+  },
+  "run_a1-s20": {
+   "run": "run_a1-s20",
+   "short": "run_a1 step 20",
+   "model_label": "GRPO run_a1 step 20 (from step 20, trained on A1 + replay)",
+   "results_file": "run_a1-s20.jsonl",
+   "remote_dir": "/root/a1_eval_run_a1",
+   "local_dir": "results/fs_env/a1_brake/run_a1-s20",
+   "tasks": 40,
+   "trials": 4,
+   "settings": "A1-I, A1-II, A1-III, A1-VI test tasks (the trained scenarios), temperature 1, thinking on, seed 13, up to 20 model calls per turn (as the step-20 baseline), 8 threads per checkpoint (4 at once), H200 NVL",
+   "started_utc": "2026-10-14T11:45:00",
+   "price_per_hour": 3.79,
+   "price_note": "H200 NVL"
+  },
+  "run_a1-s30": {
+   "run": "run_a1-s30",
+   "short": "run_a1 step 30",
+   "model_label": "GRPO run_a1 step 30 (from step 20, trained on A1 + replay)",
+   "results_file": "run_a1-s30.jsonl",
+   "remote_dir": "/root/a1_eval_run_a1",
+   "local_dir": "results/fs_env/a1_brake/run_a1-s30",
+   "tasks": 40,
+   "trials": 4,
+   "settings": "A1-I, A1-II, A1-III, A1-VI test tasks (the trained scenarios), temperature 1, thinking on, seed 13, up to 20 model calls per turn (as the step-20 baseline), 8 threads per checkpoint (4 at once), H200 NVL",
+   "started_utc": "2026-10-14T11:45:00",
+   "price_per_hour": 3.79,
+   "price_note": "H200 NVL"
+  },
+  "run_a1-s40": {
+   "run": "run_a1-s40",
+   "short": "run_a1 step 40",
+   "model_label": "GRPO run_a1 step 40 (from step 20, trained on A1 + replay)",
+   "results_file": "run_a1-s40.jsonl",
+   "remote_dir": "/root/a1_eval_run_a1",
+   "local_dir": "results/fs_env/a1_brake/run_a1-s40",
+   "tasks": 40,
+   "trials": 4,
+   "settings": "A1-I, A1-II, A1-III, A1-VI test tasks (the trained scenarios), temperature 1, thinking on, seed 13, up to 20 model calls per turn (as the step-20 baseline), 8 threads per checkpoint (4 at once), H200 NVL",
+   "started_utc": "2026-10-14T11:45:00",
+   "price_per_hour": 3.79,
+   "price_note": "H200 NVL"
+  }
+ },
+ "compare": [
+  "grpo-s20",
+  "run_a1-s10",
+  "run_a1-s20",
+  "run_a1-s30",
+  "run_a1-s40"
+ ],
+ "_runs_about": "Every model the notebook can show: RUN in its first code cell picks one for sections 1-4; section 5 compares the models in 'compare' that have results. The top-level run is what ./a1_updater.sh syncs.",
+ "sync": [
+  "run_a1-s10",
+  "run_a1-s20",
+  "run_a1-s30",
+  "run_a1-s40"
+ ],
+ "_sync_about": "Runs ./a1_updater.sh copies from the pod (each into its own local_dir). Empty or missing: only the top-level run."
+}

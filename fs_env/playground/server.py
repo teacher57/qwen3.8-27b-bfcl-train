@@ -15,7 +15,7 @@ from pathlib import Path
 
 from ..checker import check_answer, compare, flatten, is_rule
 from ..filesystem import STATE_CHANGING
-from ..tasks import FOLDER_WORDS, USER_NAMES, instantiate, load_templates, new_fs
+from ..tasks import FOLDER_WORDS, USER_NAMES, instantiate, load_templates, new_fs, source_path, task_sources
 from ..tools import TOOLS, execute
 
 PAGE = Path(__file__).parent / "page.html"
@@ -176,16 +176,24 @@ def task_order(t: dict) -> tuple:
     return t["cause"], int(part) if part.isdigit() else 1
 
 
+def task_set(req: dict) -> str:
+    """The task file the page asked for: "tasks" (the folder) or a JSON file in task_sets/; unknown -> "tasks"."""
+    name = req.get("task_set") or "tasks"
+    return name if name in task_sources() else "tasks"
+
+
 def handle(req: dict) -> dict:
     op = req.get("op")
     if op == "init":
-        return {"tools": TOOLS, "state_changing": sorted(STATE_CHANGING), "folder_words": FOLDER_WORDS,
+        name = task_set(req)
+        return {"tools": TOOLS, "state_changing": sorted(STATE_CHANGING), "folder_words": FOLDER_WORDS, "task_set": name,
+                "task_sets": [{"name": n, "count": len(load_templates(source_path(n)))} for n in task_sources()],
                 "tasks": [{"id": t["id"], "cause": t["cause"], "cause_title": t["cause_title"], "turns": len(t["turns"]),
                            "fixed": t.get("fixed"), "new": t["id"].split("_")[1].isdigit() and int(t["id"].split("_")[1]) > 10,
                            "search": search_text_of(t)}
-                          for t in sorted(load_templates(), key=task_order)]}
+                          for t in sorted(load_templates(source_path(name)), key=task_order)]}
     if op == "start":
-        templates = {t["id"]: t for t in load_templates()}  # re-read so edits to tasks/*.json show up
+        templates = {t["id"]: t for t in load_templates(source_path(task_set(req)))}  # re-read so edits show up
         if req["task_id"] not in templates:
             raise ValueError(f"no task {req['task_id']}")
         old = SESSIONS.get(req.get("session"))

@@ -4,7 +4,9 @@ the model's thinking / tool calls / results / replies, the per-turn verdict with
     python3 build_fs_viewer.py run.jsonl          -> renders/fs_env_<run>.html
     python3 build_fs_viewer.py a.jsonl b.jsonl    -> renders/fs_env_all_runs.html (a tab per run)
     python3 build_fs_viewer.py --all              -> renders/fs_env_all_runs.html for every run in ALL_RUNS
-Reads results/fs_env/fs-results/<run>.jsonl and fs_env/tasks/<id>.json."""
+    options: --task-set a1_brake.json --seed 13   tasks exactly as the run saw them (same random names; run.py --seed)
+             --labels "tab 1|tab 2" --out name.html
+Reads results/fs_env/fs-results/<run>.jsonl and fs_env/tasks/<id>.json (or the --task-set instances)."""
 import json, os, sys
 from collections import defaultdict
 from math import comb
@@ -41,7 +43,12 @@ def fmt_call(name, args):
     return f"{name}({', '.join(f'{k}={json.dumps(v, ensure_ascii=False)}' for k, v in a.items())})"
 
 
+INSTANCES = {}   # task id -> the task as the run saw it (--task-set/--seed), else the template from fs_env/tasks/
+
+
 def task_spec(tid, user):
+    if tid in INSTANCES:
+        return INSTANCES[tid]
     p = TASKS / f"{tid}.json"
     if not p.exists(): return None
     return json.loads(p.read_text().replace("{user}", user))
@@ -209,14 +216,24 @@ tab(hk, hid);
 
 if __name__ == "__main__":
     args = sys.argv[1:] or [str(RES / "q38_fs_x4.jsonl")]
+    opt = {}
+    for flag in ("--task-set", "--seed", "--labels", "--out"):
+        if flag in args:
+            i = args.index(flag); opt[flag] = args[i + 1]; del args[i:i + 2]
+    if "--task-set" in opt:
+        sys.path.insert(0, str(HERE))
+        from fs_env.tasks import load_tasks, source_path
+        seed = int(opt["--seed"]) if "--seed" in opt else None
+        INSTANCES.update({t["id"]: t for t in load_tasks(source_path(opt["--task-set"]), seed=seed)})
+    labels = opt["--labels"].split("|") if "--labels" in opt else []
     runs = [RES / f for f in ALL_RUNS] if args == ["--all"] else [Path(a) for a in args]
     data = []
-    for run in runs:
+    for i, run in enumerate(runs):
         rows = [json.loads(l) for l in open(run) if l.strip()]
-        data.append(build(rows, run.stem, ALL_RUNS.get(run.name, run.stem)))
+        data.append(build(rows, run.stem, labels[i] if i < len(labels) else ALL_RUNS.get(run.name, run.stem)))
         print(f"{data[-1]['label']:44s} {data[-1]['sub']}")
     OUT.mkdir(exist_ok=True)
-    path = OUT / (f"fs_env_{runs[0].stem}.html" if len(runs) == 1 else "fs_env_all_runs.html")
+    path = OUT / (opt.get("--out") or (f"fs_env_{runs[0].stem}.html" if len(runs) == 1 else "fs_env_all_runs.html"))
     dump = lambda o: json.dumps(o, ensure_ascii=False).replace("</", "<\\/")
     path.write_text(TEMPLATE.replace("__EXPECT__", dump(EXPECT)).replace("__DATA__", dump(data)))
     print(f"wrote {path.relative_to(HERE)} ({os.path.getsize(path) / 1e6:.1f} MB)")
