@@ -25,8 +25,8 @@ step 40 passes **147/160 vs 112/160** (p < 0.001). On **BFCL multi-turn it score
 the habit learned on files transferred to a car it never trained on. This is the first result here that is clearly significant.
 
 Everything is in this repo: the environment, the training code, every eval (all conversations, with the model's
-thinking), the notebooks and the scripts that made the figures. LoRA weights (~450 MB each) are not in git (see
-[Repo contents](#repo-contents)).
+thinking), the notebooks and the scripts that made the figures. LoRA weights (~450 MB each) are on
+[Hugging Face](https://huggingface.co/teacher57/qwen3.8-27b-bfcl-grpo-lora).
 
 ## The benchmark
 
@@ -170,6 +170,8 @@ The run **peaked mid-way**: step 30 lost most of the gain, mainly on A3 (25 → 
 improved at every checkpoint (14 → 20/21/19 of 44); D didn't improve (21 → 18/19/19). The other 8 causes didn't regress
 (149 → 154–156 of 160).
 
+![run_v1 checkpoints on the held-out tasks, task by task](figures/fig10_heatmap_run_v1_heldout.png)
+
 **Choosing the BFCL model:** the rule was fixed before seeing these numbers: highest overall; if within ±3, the higher
 A3 + D + E total; if still tied, step 30. Step 20 (220, A3+D+E 65) beat step 10 (219, 63). Picking the best of three on
 the same data flatters the winner a little, so step 20's held-out p-value is optimistic; BFCL is the independent test.
@@ -274,6 +276,8 @@ updates. One H200 NVL, 7.9 min per step, 4 h. Checkpoints kept every 10 steps (`
 | A1-VI conditional | 29/40 | 32 | 35 | 36 | **38** | p = 0.012 |
 | **all four** | **112/160** | 118 | 128 | 141 | **147** | **p < 0.001** |
 
+![run_a1 checkpoints on the A1 test tasks, task by task](figures/fig11_heatmap_run_a1_brake_tests.png)
+
 Unlike the first run, this one kept improving to its last checkpoint; pass^4 (all 4 trials right) went from 35% to 72.5%.
 Notebook: `notebooks/a1_brake_eval.ipynb` (section 5); every conversation: `renders/a1_brake_run_a1_checkpoints.html`.
 
@@ -291,6 +295,8 @@ Notebook: `notebooks/a1_brake_eval.ipynb` (section 5); every conversation: `rend
 | like-for-like (789) | | | | **p = 0.0013** | **p = 0.013** |
 
 ![BFCL failure causes: base, step 20, step 40](figures/fig9_bfcl_causes_three_models.png)
+
+![BFCL multi-turn, every entry: base, step 20, step 40](figures/fig12_heatmap_bfcl_entries.png)
 
 **The brake transferred.** A1 failures fall from 39 (45 at step 20) to **17**: 25 fixed, 9 new, and in long_context from 12
 (17) to 6. The model learned "leave the precondition as it is" on archives, locks and a maintenance flag, and applies it to a
@@ -384,11 +390,12 @@ renders/           offline HTML viewers: bfcl_multi_turn_a1s40.html, bfcl_dsat_b
                    fixed / same / new per conversation, first wrong turn, both full conversations);
                    bfcl_multi_turn.html (every baseline multi-turn conversation, grouped by failure
                    type), fs_env_*.html (every fs_env conversation per run)
-figures/           the README figures (python code/make_figures.py)
+figures/           the README figures, incl. checkpoint heatmaps 10-12 (python code/make_figures.py)
 docs/              BFCL_SETUP.md (baseline setup and gotchas), GRPO_HANDOFF.md (the brief the GRPO run started from)
 ```
 
-**Not in git:** the LoRA weights (SFT v1, GRPO run_v1 steps 5-30, GRPO run_a1 steps 10/20/30/40; ~450 MB each, md5s in the training logs).
+**LoRA weights** are not in git; they are on Hugging Face: [teacher57/qwen3.8-27b-bfcl-grpo-lora](https://huggingface.co/teacher57/qwen3.8-27b-bfcl-grpo-lora) (SFT v1, GRPO run_v1 steps 10/20/30,
+GRPO run_a1 steps 10/20/30/40, with the heatmaps that explain each checkpoint choice).
 
 ## Setup notes (for anyone reproducing this)
 

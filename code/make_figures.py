@@ -216,3 +216,59 @@ ax.set_xticks(range(len(order)), [names[k] for k in order]); style(ax)
 ax.set_ylabel("wrong-final-state failures (of 800)"); ax.legend(ncol=3, loc="upper right", fontsize=8.5)
 ax.set_title("BFCL multi-turn failure causes (DSAT): fewer is better", loc="left")
 save(fig, "fig9_bfcl_causes_three_models.png")
+
+
+# ---------- 10-12. heatmaps: every eval of every checkpoint (why each checkpoint was chosen) ----------
+from matplotlib.colors import LinearSegmentedColormap, ListedColormap
+PURPLE = LinearSegmentedColormap.from_list("purple", ["#F4EFF8", "#B48FCF", "#4A2A66"])
+
+
+def task_heatmap(models, title, name, note):
+    """models: [(label, rows)]; one row per model, one column per task (cause order), cell = trials passed / trials"""
+    order = ["A1-I", "A1-II", "A1-III", "A1-IV", "A1-V", "A1-VI", "A1", "A2", "A3", "A4", "B", "C", "D", "E", "F", "G", "H"]
+    ids = sorted({r["id"] for _, rs in models for r in rs},
+                 key=lambda i: (order.index(i.split("_")[0]) if i.split("_")[0] in order else 99, i))
+    grid = []
+    for _, rs in models:
+        cell = defaultdict(list)
+        for r in rs: cell[r["id"]].append(r["passed"])
+        grid.append([sum(cell[i]) / len(cell[i]) if cell[i] else float("nan") for i in ids])
+    fig, ax = plt.subplots(figsize=(min(16, 2.2 + 0.2 * len(ids)), 1.4 + 0.42 * len(models)))
+    im = ax.imshow(grid, cmap=PURPLE, vmin=0, vmax=1, aspect="auto")
+    ax.set_yticks(range(len(models)), [f"{lab}  ({sum(r['passed'] for r in rs)}/{len(rs)})" for lab, rs in models], fontsize=9)
+    causes = [i.split("_")[0] for i in ids]; starts = [k for k in range(len(ids)) if k == 0 or causes[k] != causes[k - 1]]
+    ax.set_xticks([s + (([*starts[1:], len(ids)][j] - s) - 1) / 2 for j, s in enumerate(starts)], [causes[s] for s in starts], fontsize=8)
+    for s in starts[1:]: ax.axvline(s - 0.5, color=SURFACE, linewidth=2)
+    ax.tick_params(length=0); [sp.set_visible(False) for sp in ax.spines.values()]
+    cb = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.01); cb.set_ticks([0, .25, .5, .75, 1], labels=["0/4", "1/4", "2/4", "3/4", "4/4"]); cb.outline.set_visible(False)
+    ax.set_title(title, loc="left", fontsize=11)
+    ax.set_xlabel(note, fontsize=8.5, color=INK2, loc="left", labelpad=8)
+    save(fig, name)
+
+
+E = ROOT / "results/fs_env/grpo/run_v1/eval"
+task_heatmap([("SFT v1 (start)", jsonl(E / "sft-v1.jsonl")), ("run_v1 step 10", jsonl(E / "grpo-s10.jsonl")),
+              ("run_v1 step 20  <- chosen", jsonl(E / "grpo-s20.jsonl")), ("run_v1 step 30", jsonl(E / "grpo-final.jsonl"))],
+             "run_v1: the 73 held-out fs_env tasks, trials passed out of 4 (dark = always right)", "fig10_heatmap_run_v1_heldout.png",
+             "Step 20 chosen by a rule fixed in advance: best overall (220/292); step 10 within 3, so the higher A3+D+E total decided. Step 30 lost ground on A3.")
+A = ROOT / "results/fs_env/a1_brake"; keep = ("A1-I", "A1-II", "A1-III", "A1-VI")
+task_heatmap([("step 20 (start)", [r for r in jsonl(A / "grpo-s20/grpo-s20.jsonl") if r["cause"] in keep])] +
+             [(f"run_a1 step {s}" + ("  <- chosen" if s == 40 else ""), jsonl(A / f"run_a1-s{s}/run_a1-s{s}.jsonl")) for s in (10, 20, 30, 40)],
+             "run_a1: the 40 A1 'brake' test tasks, trials passed out of 4", "fig11_heatmap_run_a1_brake_tests.png",
+             "Step 40 chosen: best on every scenario and overall (147/160 vs 112/160 for step 20, p < 0.001); the run was still improving.")
+
+# BFCL: every entry, pass / fail, base -> step 20 -> step 40
+models = [("base Qwen3.8-27B", B, "qwen3.8-27b-FC"), ("GRPO run_v1 step 20", S, None), ("GRPO run_a1 step 40", S40, None)]
+fig, axes = plt.subplots(4, 1, figsize=(13, 6.6), sharex=True)
+for ax, c in zip(axes, cats):
+    rows = []
+    for _, d, _ in models:
+        L = jsonl(d / f"BFCL_v4_{c}_score.json"); failed = {r["id"] for r in L[1:]}
+        rows.append([0 if f"{c}_{i}" in failed else 1 for i in range(200)])
+    ax.imshow(rows, cmap=ListedColormap(["#E9E2F0", "#4A2A66"]), vmin=0, vmax=1, aspect="auto", interpolation="nearest")
+    ax.set_yticks(range(3), [f"{lab}  {sum(r)}/200" for (lab, _, _), r in zip(models, rows)], fontsize=8)
+    ax.set_title(short(c), loc="left", fontsize=9.5, color=INK, pad=3)
+    ax.tick_params(length=0); [sp.set_visible(False) for sp in ax.spines.values()]
+axes[-1].set_xlabel("entry (0-199); dark = passed, pale = failed", fontsize=9)
+fig.suptitle("BFCL v4 multi-turn: every entry, base -> GRPO step 20 -> GRPO step 40 (all 800: 482 -> 505 -> 530)", x=0.01, ha="left", fontsize=11, fontweight="bold")
+save(fig, "fig12_heatmap_bfcl_entries.png")
