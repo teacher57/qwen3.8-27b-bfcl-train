@@ -431,3 +431,9 @@ GRPO run_a1 steps 10/20/30/40, with the heatmaps that explain each checkpoint ch
   accident, or does the model need an SFT warm start for D too?
 - The other causes (A1 brake, B rewriting the user's text, C exact values) are bigger than A3/D/E in BFCL. B and C fit the
   same environment idea.
+
+## Credits
+
+Designed and run by [teacher57](https://github.com/teacher57). Built together with Claude (Anthropic) in Claude Code:
+the environment code, training and evaluation scripts, notebooks, analyses and this write-up were written in that
+collaboration; the decisions about what to build, train and publish were the author's.
