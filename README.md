@@ -432,6 +432,12 @@ GRPO run_a1 steps 10/20/30/40, with the heatmaps that explain each checkpoint ch
 - The other causes (A1 brake, B rewriting the user's text, C exact values) are bigger than A3/D/E in BFCL. B and C fit the
   same environment idea.
 
+## License
+
+MIT (see `LICENSE`): the code, the fs_env tasks, the analyses, the figures and the LoRA adapters. Not covered: the base
+model `Qwen/Qwen3.8-27B` (its own license, Apache-2.0) and BFCL's test prompts, which appear inside the saved BFCL
+conversations (gorilla repo, Apache-2.0).
+
 ## Credits
 
 Designed and run by [teacher57](https://github.com/teacher57). Built together with Claude (Anthropic) in Claude Code:
