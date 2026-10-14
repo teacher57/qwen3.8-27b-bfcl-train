@@ -97,7 +97,8 @@ applies the turn's reply check, deterministically. Every load gives a task a ran
 failure) must fail, and `python -m fs_env.test_fs_env` has 16 self-tests. `fs_env/split.json` splits the tasks into
 **307 train / 73 held-out** (the held-out set includes every task that already had a "before" number, the 11 originals,
 and 5 of every other cause as a regression check). There is a playground to try the tools and tasks by hand:
-`python -m fs_env.playground.server` → http://localhost:8765.
+`python -m fs_env.playground.server` → http://localhost:8765. A task-file selector in its Tasks panel switches
+between `fs_env/tasks/` and the A1 sets in `fs_env/task_sets/` (`a1_brake.json` test, `a1_brake_train.json` GRPO train).
 
 ### 4. The base model on fs_env
 
